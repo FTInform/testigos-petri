@@ -138,12 +138,24 @@ h2{font:400 1.8rem/1.2 var(--disp);margin:0 0 10px}
 .atajos-ini button{border-color:var(--trazo2);padding:.55rem 1.05rem}
 .atajos-ini button:hover{background:rgba(219,231,255,.09)}
 .curso section{scroll-margin-top:20px}
+.foco-info{margin:0 0 6px;max-width:46em;color:var(--trazo)}
+.lista button:disabled{opacity:.45;cursor:not-allowed}
+.lista button:disabled:hover{background:none}
 .aviso{color:var(--ficha);min-height:1.5em;margin:0 0 8px}
 
 .car{display:grid;grid-template-columns:auto minmax(0,2.4fr) minmax(0,1.4fr) repeat(3,minmax(68px,.7fr));border:1.5px solid var(--trazo);background:var(--plano2)}
 .car>*{border-right:1px solid var(--trazo2);padding:6px 12px;min-width:0}
 .car>*:last-child{border-right:0}
 .car button{border:0;border-right:1px solid var(--trazo2);border-radius:0}
+.car .ctl{display:flex;padding:0}
+.car .ctl button{padding:6px 14px;min-height:44px}
+.car .ctl button:hover{background:rgba(219,231,255,.09)}
+.car .ctl button.arm{background:var(--ficha);color:var(--tinta)}
+.pasos.prog li{position:relative}
+.pasos.prog button{position:absolute;inset:-7px 0;width:100%;border:0;padding:0;background:none;cursor:pointer}
+.pasos.prog button:disabled{cursor:default}
+.pasos.prog li:not(.ya):has(button:not(:disabled)):hover{background:rgba(255,210,63,.45)}
+.acc.vuelta{margin-top:10px;padding-top:12px;border-top:1px solid var(--linea)}
 .car .dat{position:relative}
 .mas{position:absolute;right:8px;top:6px;font:700 .95rem var(--num);color:var(--ficha);pointer-events:none;animation:sube .7s ease-out forwards}
 @keyframes sube{from{opacity:0;transform:translateY(8px)}25%{opacity:1}to{opacity:0;transform:translateY(-12px)}}
@@ -257,6 +269,9 @@ h2{font:400 1.8rem/1.2 var(--disp);margin:0 0 10px}
 @media (max-width:860px){
   #app{padding:12px 16px 50px}
   .hero{grid-template-columns:minmax(0,1fr)}
+  .car .ctl{flex-direction:column}
+  .car .ctl button{border-right:0;min-height:0;padding:5px 10px;flex:1;font-size:.9rem}
+  .car .ctl button+button{border-top:1px solid var(--trazo2)}
   .shell{grid-template-columns:minmax(0,1fr)}
   .lado{display:none}
   .vista{padding:14px 16px 96px}
@@ -275,7 +290,7 @@ h2{font:400 1.8rem/1.2 var(--disp);margin:0 0 10px}
   .est #st,.atajo{display:none}
   .curso{columns:1}
   .car.enl{grid-template-columns:auto minmax(0,1fr) auto}
-  .car.enl #salir{grid-column:1;grid-row:1}
+  .car.enl .ctl{grid-column:1;grid-row:1}
   .car.enl .ancho:nth-child(3) b{white-space:nowrap}
   .car.enl .ancho{grid-row:1;grid-column:auto!important;border-top:0}
   .car.enl b{white-space:normal}
@@ -650,7 +665,8 @@ function home(v,msg){
   <h3 class="sb">Qué querés practicar</h3>
   <div class="foco" role="group" aria-label="Etapas a practicar">${foco.map(([k,t])=>`<button data-f="${k}" aria-pressed="${k===FOCO}">${t}</button>`).join('')}</div>
   <p class="aviso" id="aviso" role="status">${msg||''}</p>
-  <ol class="lista">${NETS.map((d,i)=>`<li><button data-n="${i}"><span class="n">${i+1}</span><b>${d.t}</b><i>${d.s}</i>${rate(SAVE.best[d.id]||0)}</button></li>`).join('')}</ol>`};
+  <p class="foco-info" id="foco-info"></p>
+  <ol class="lista" id="lista-redes"></ol>`};
  $('#app').className='conshell';
  $('#app').innerHTML=`<div class="shell">
   <aside class="lado">
@@ -665,11 +681,30 @@ function home(v,msg){
  document.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(b.dataset.v!==VISTA)ir(b.dataset.v);});
  document.querySelectorAll('[data-ir]').forEach(b=>b.onclick=()=>ir(b.dataset.ir));
  document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{const m=b.dataset.m;if(m==='az')start(randNet(),'azar');else if(m==='ex')start(randNet(8),'examen');else teoria();});
- if(canSave){let arm=false;document.querySelectorAll('.borrar').forEach(x=>x.onclick=()=>{if(!arm){arm=true;document.querySelectorAll('.borrar').forEach(y=>y.textContent='Tocá de nuevo para confirmar');return;}SAVE={best:{},pts:0,done:{},seen:{}};store();home(VISTA);});}
- document.querySelectorAll('.foco button').forEach(b=>b.onclick=()=>{FOCO=b.dataset.f;document.querySelectorAll('.foco button').forEach(x=>x.setAttribute('aria-pressed',x===b));});
- document.querySelectorAll('.lista button').forEach(b=>b.onclick=()=>start(mkNet(NETS[+b.dataset.n]),'nivel'));
+ if(canSave){let arm=false;document.querySelectorAll('.borrar').forEach(x=>x.onclick=()=>{if(!arm){arm=true;document.querySelectorAll('.borrar').forEach(y=>y.textContent='Tocá de nuevo para confirmar');return;}SAVE={best:{},pts:0,done:{},seen:{},bs:{}};store();home(VISTA);});}
+ document.querySelectorAll('.foco button').forEach(b=>b.onclick=()=>{FOCO=b.dataset.f;document.querySelectorAll('.foco button').forEach(x=>x.setAttribute('aria-pressed',x===b));const a=$('#aviso');if(a)a.textContent='';listaRedes();});
+ if(v==='practicar')listaRedes();
  document.querySelectorAll('.curso button').forEach(b=>b.onclick=()=>lesson(+b.dataset.l));
  if(v==='inicio'){$('#cta').onclick=()=>lesson(LECS.indexOf(nextL));demo();}
+}
+const ACOTADA={};
+function soporta(d,st){
+ if(st!=='mt')return true;
+ if(!(d.id in ACOTADA)){const n=mkNet(d);ACOTADA[d.id]=analyze(n).bounded;}
+ return ACOTADA[d.id];
+}
+const FOCO_TXT={todo:'Cada red se resuelve completa: disparos, árbol, máquina de testigos, propiedades y matrices.',
+ disparo:'Solo disparos: elegís qué transiciones están habilitadas y calculás el marcado que queda.',
+ arbol:'Solo el árbol de alcanzabilidad, nodo por nodo.',
+ mt:'Solo la máquina de testigos. Las redes con ω no la tienen y quedan desactivadas.',
+ props:'Solo propiedades: limitación, vivacidad, ciclicidad, conservación, conflicto, exclusión mutua y subclases.',
+ matriz:'Solo método matricial: C⁻, C⁺, C, habilitación, disparo, vector f y alcanzabilidad.'};
+function notaRed(d){return FOCO==='todo'?(SAVE.best[d.id]||0):((SAVE.bs||{})[FOCO+':'+d.id]||0);}
+function listaRedes(){
+ const L=$('#lista-redes');if(!L)return;
+ $('#foco-info').innerHTML=FOCO_TXT[FOCO].replace('C⁻','C<sup>−</sup>').replace('C⁺','C<sup>+</sup>')+' La red al azar también usa este filtro.';
+ L.innerHTML=NETS.map((d,i)=>{const ok=soporta(d,FOCO);return `<li><button data-n="${i}"${ok?'':' disabled'}><span class="n">${i+1}</span><b>${d.t}</b><i>${ok?d.s:'Tiene ω: no tiene máquina de testigos.'}</i>${rate(notaRed(d))}</button></li>`;}).join('');
+ L.querySelectorAll('button').forEach(b=>b.onclick=()=>start(mkNet(NETS[+b.dataset.n]),'nivel'));
 }
 function demo(){
  const n=mkNet(NETS[4]);let M=n.m0.slice(),busy=false;
@@ -694,11 +729,19 @@ async function start(n,mode){
  if(!list.length){home('practicar','Esta red no es limitada: tiene ω, y su máquina de testigos no entra en la práctica. Elegí otra red o cambiá la etapa.');return;}
  exitRun();
  ruta('#red');
- RUN={n,an,mode,list,st:list[0],pts:0,streak:0,total:0,first:0,t0:Date.now(),log:[]};
+ RUN={n,an,mode,list,st:list[0],pts:0,streak:0,total:0,first:0,t0:Date.now(),log:[],again:()=>start(n,mode)};
  renderPlay();
  if(mode==='examen')timer=setInterval(()=>{const e=$('#hud-r');if(e)e.textContent=clock();},1000);
  for(const s of list){RUN.st=s;updHud();setExtra(false);setM(n.m0,'Marcado inicial M0');await ST[s]();}
  finish();
+}
+const hayAvance=()=>RUN&&(RUN.total>0||(RUN.mode==='leccion'&&RUN.idx>0));
+function confirmar(b,fn){
+ const txt=b.textContent;let arm=false;
+ b.onclick=()=>{
+  if(hayAvance()&&!arm){arm=true;b.textContent='¿Seguro?';b.classList.add('arm');const ep=EPOCH;setTimeout(()=>{if(ep===EPOCH&&b.isConnected){arm=false;b.textContent=txt;b.classList.remove('arm');}},2600);return;}
+  fn();
+ };
 }
 const clock=()=>{const s=Math.floor((Date.now()-RUN.t0)/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
 function renderPlay(){
@@ -706,7 +749,7 @@ function renderPlay(){
  $('#app').className='';
  window.scrollTo(0,0);
  $('#app').innerHTML=`
- <div class="car"><button id="salir">Salir</button>
+ <div class="car"><div class="ctl"><button id="inicio">Inicio</button><button id="reini">Reiniciar</button></div>
   <div class="ancho"><small>Red</small><b>${R.n.title}</b></div>
   <div class="ancho"><small>Etapa</small><b id="hud-e"></b></div>
   <div class="dat"><small>Aciertos</small><b id="hud-a" class="mono">0/0</b></div>
@@ -719,8 +762,8 @@ function renderPlay(){
   <section class="sheet" id="task" aria-live="polite"></section>
   <section class="ext marco" id="extra" hidden></section>
  </main>`;
- let armado=false;
- $('#salir').onclick=e=>{const R2=RUN,b=e.currentTarget;if(R2&&R2.mode!=='leccion'&&R2.total>0&&!armado){armado=true;b.textContent='¿Seguro?';const ep=EPOCH;setTimeout(()=>{if(ep===EPOCH){armado=false;b.textContent='Salir';}},2600);return;}irInicio();};
+ confirmar($('#inicio'),()=>ir('inicio'));
+ confirmar($('#reini'),()=>{const r=RUN&&RUN.again;if(r)r();});
  R.view=drawNet(R.n,$('#net'));
  updHud();
 }
@@ -729,7 +772,7 @@ function updHud(){
  $('#hud-e').textContent=R.mode==='leccion'?`Paso ${R.idx+1} de ${R.list.length}`:(STG[R.st]||'Teoría');
  $('#hud-a').textContent=R.first+'/'+R.total;$('#hud-p').textContent=R.pts;
  if(R.mode==='examen')$('#hud-r').textContent=clock();else $('#hud-r').innerHTML=R.streak+(R.streak>=3?`<span class="x">×${mult()}</span>`:'');
- if(R.mode==='leccion'){$('#pasos').className='pasos prog';$('#pasos').innerHTML=R.list.map((_,i)=>`<li class="${i===R.idx?'ya':i<R.idx?'hecho':''}"></li>`).join('');return;}
+ if(R.mode==='leccion'){const P=$('#pasos');P.className='pasos prog';P.innerHTML=R.list.map((_,i)=>`<li class="${i===R.idx?'ya':i<R.idx?'hecho':''}"><button data-k="${i}" aria-label="Ir al paso ${i+1}"${i>R.max||i===R.idx?' disabled':''}></button></li>`).join('');P.querySelectorAll('button').forEach(b=>b.onclick=()=>{const r=RUN;lesson(r.lec,+b.dataset.k,r.max);});return;}
  const idx=R.list.indexOf(R.st);
  $('#pasos').innerHTML=R.list.map((s,i)=>`<li class="${i===idx?'ya':i<idx?'hecho':''}">${s==='mt'?'Máquina':(s==='props'&&innerWidth<=860)?'Propied.':(STG[s]||'Teoría')}</li>`).join('');
 }
@@ -1073,7 +1116,7 @@ async function teoria(){
  exitRun();
  ruta('#teoria');
  const n=mkNet(NETS[0]);
- RUN={n,an:null,mode:'teoria',list:['teoria'],st:'teoria',pts:0,streak:0,total:0,first:0,t0:Date.now()};
+ RUN={n,an:null,mode:'teoria',list:['teoria'],st:'teoria',pts:0,streak:0,total:0,first:0,t0:Date.now(),again:teoria};
  renderPlay();RUN.title='Teoría';$('.play').classList.add('solo');$('.car .ancho b').textContent='Definiciones';
  NOTA.teoria='Elegí la opción correcta.';
  for(const [q,o,c,w] of shuffle(TEO).slice(0,12)){
@@ -1086,6 +1129,7 @@ function finish(){
  const R=RUN,acc=R.total?R.first/R.total:0,t=acc>=.95?3:acc>=.75?2:1;
  SAVE.pts+=R.pts;
  if(R.mode==='nivel'&&FOCO==='todo')SAVE.best[R.n.id]=Math.max(SAVE.best[R.n.id]||0,t);
+ if(R.mode==='nivel'&&FOCO!=='todo'){SAVE.bs=SAVE.bs||{};const k=FOCO+':'+R.n.id;SAVE.bs[k]=Math.max(SAVE.bs[k]||0,t);}
  store();
  const n=R.n,mode=R.mode,time=clock(),nota=Math.max(1,Math.round(acc*10));
  const ets=Object.entries(R.by||{}).filter(([k])=>AYUDA[k]);
@@ -1100,9 +1144,11 @@ function finish(){
   <p>${msg}</p>
   <dl><dt>Aciertos a la primera</dt><dd>${R.first} de ${R.total}</dd><dt>Puntos</dt><dd>${R.pts}</dd><dt>Tiempo</dt><dd>${time}</dd></dl>
   ${filas?`<table class="etapas">${filas}</table>`:''}
-  <div class="acc"><button class="pri" id="otra">${mode==='nivel'?'Repetir esta red':mode==='teoria'?'Otras preguntas':'Otra red'}</button><button class="sec" id="menu">Volver al inicio</button></div>
+  <div class="acc"><button class="pri" id="otra">${mode==='nivel'?'Repetir esta red':mode==='teoria'?'Otras preguntas':'Otra red'}</button>${mode==='azar'||mode==='examen'?'<button class="sec" id="misma">Repetir esta misma red</button>':''}</div>
+  <div class="acc vuelta"><button class="sec" id="sec">Volver a Practicar</button><button class="sec" id="menu">Ir al inicio</button></div>
  </section>`;
- $('#menu').onclick=()=>irInicio();
+ $('#menu').onclick=()=>ir('inicio');$('#sec').onclick=()=>ir('practicar');
+ if($('#misma'))$('#misma').onclick=()=>start(n,mode);
  document.querySelectorAll('[data-rep]').forEach(b=>b.onclick=()=>lesson(LECS.findIndex(l=>l.id===b.dataset.rep)));
  $('#otra').onclick=()=>{if(mode==='nivel')start(mkNet(NETS.find(d=>d.id===n.id)),'nivel');else if(mode==='teoria')teoria();else if(mode==='examen')start(randNet(8),'examen');else start(randNet(),'azar');};
 }
@@ -1382,16 +1428,16 @@ function navStep(st,k,total){
   if(FINE)$('#next').focus({preventScroll:true});
  });
 }
-async function lesson(i){
+async function lesson(i,k0=0,max0=0){
  exitRun();
  const L=LECS[i];
  ruta('#leccion-'+L.id);
- RUN={n:mkNet(NETS[0]),an:null,mode:'leccion',list:L.s,st:'leccion',pts:0,streak:0,total:0,first:0,t0:Date.now(),idx:0};
+ RUN={n:mkNet(NETS[0]),an:null,mode:'leccion',list:L.s,st:'leccion',pts:0,streak:0,total:0,first:0,t0:Date.now(),idx:k0,max:Math.max(k0,max0),lec:i,again:()=>lesson(i)};
  renderPlay();
  $('.car').classList.add('enl');document.querySelectorAll('.car .ancho small')[1].textContent='Avance';$('.car .ancho b').innerHTML=L.t;$('.car .ancho small').textContent='Lección '+(i+1);
- const R=RUN;let k=0;
+ const R=RUN;let k=k0;
  while(k<L.s.length){
-  R.idx=k;updHud();
+  R.idx=k;R.max=Math.max(R.max,k);updHud();
   const st=L.s[k];lessonFig(st);window.scrollTo(0,0);
   if(st.ask){
    const it=st.ask(R.n);if(st.t)it.note=typeof st.t==='function'?st.t(R.n):st.t;it.canBack=k>0;
@@ -1407,8 +1453,9 @@ function lessonEnd(i){
  CUR=null;EPOCH++;RUN=null;window.scrollTo(0,0);
  $('#app').innerHTML=`<section class="fin"><h2>Lección terminada</h2><p>Terminaste <b>${L.t}</b>.</p>
  ${R.total?`<dl><dt>Aciertos a la primera</dt><dd>${R.first} de ${R.total}</dd><dt>Puntos</dt><dd>${R.pts}</dd></dl>`:''}
- <div class="acc">${nx?`<button class="pri" id="nx">Seguir con: ${nx.t}</button>`:''}${L.pr?`<button class="${nx?'sec':'pri'}" id="pr">${L.pr.ex?'Hacer un simulacro':L.pr.teo?'Practicar teoría':'Practicar lo que aprendiste'}</button>`:''}<button class="sec" id="menu">Volver al inicio</button></div></section>`;
- $('#menu').onclick=()=>irInicio();
+ <div class="acc">${nx?`<button class="pri" id="nx">Seguir con: ${nx.t}</button>`:''}${L.pr?`<button class="${nx?'sec':'pri'}" id="pr">${L.pr.ex?'Hacer un simulacro':L.pr.teo?'Practicar teoría':'Practicar lo que aprendiste'}</button>`:''}</div>
+ <div class="acc vuelta"><button class="sec" id="rep">Repetir la lección</button><button class="sec" id="sec">Volver al Curso</button><button class="sec" id="menu">Ir al inicio</button></div></section>`;
+ $('#menu').onclick=()=>ir('inicio');$('#sec').onclick=()=>ir('curso');$('#rep').onclick=()=>lesson(i);
  if(nx)$('#nx').onclick=()=>lesson(i+1);
  if(L.pr)$('#pr').onclick=()=>{if(L.pr.ex)start(randNet(8),'examen');else if(L.pr.teo)teoria();else{FOCO=L.pr.st;start(mkNet(NETS.find(d=>d.id===L.pr.net)),'nivel');}};
 }

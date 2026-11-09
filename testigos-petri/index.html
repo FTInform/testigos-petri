@@ -40,7 +40,7 @@ sup{font-size:.68em;line-height:0;vertical-align:.42em}
 #app{max-width:1220px;margin:0 auto;padding:20px 20px 60px}
 
 .hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:32px;align-items:center;padding:16px 0 26px}
-h1{font:400 clamp(3.9rem,10.4vw,7rem)/.95 var(--sello);margin:0 0 16px;color:var(--trazo);display:flex;flex-wrap:wrap;align-items:baseline;column-gap:14px}
+h1{font:400 clamp(3.4rem,5.7vw,6rem)/.95 var(--sello);white-space:nowrap;margin:0 0 16px;color:var(--trazo);display:flex;flex-wrap:wrap;align-items:baseline;column-gap:14px}
 .by{font:400 .92rem/1 var(--num);color:var(--trazo2);white-space:nowrap}
 .o{display:inline-block;width:.6em;height:.6em;border:.115em solid var(--trazo);border-radius:50%;position:relative;vertical-align:-.02em;margin:0 .02em}
 .o::after{content:"";position:absolute;inset:.1em;border-radius:50%;background:var(--ficha)}
@@ -103,6 +103,41 @@ h2{font:400 1.8rem/1.2 var(--disp);margin:0 0 10px}
 .play.solo .red{display:none}
 .pasos.prog li{padding:0;height:7px}
 .red[hidden]{display:none}
+#app.conshell{max-width:none;padding:0}
+.shell{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
+.lado{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:20px;padding:24px 14px 18px;background:var(--plano2);border-right:1px solid rgba(143,176,230,.35);overflow-y:auto}
+.marca{border:0;text-align:left;padding:2px 10px 0}
+.marca b{display:block;font:400 2.15rem/1 var(--sello);color:var(--trazo)}
+.marca small{display:block;margin-top:5px;font:.78rem var(--num);color:var(--trazo2)}
+.lado nav{display:flex;flex-direction:column;gap:2px}
+.lado nav button,.abajo button{display:flex;align-items:center;gap:11px;border:0;border-radius:2px;padding:9px 10px;text-align:left;font:400 1.2rem/1.2 var(--disp)}
+.lado nav button:hover,.abajo button:hover{background:rgba(219,231,255,.08)}
+.lado nav s,.abajo s{width:13px;height:13px;border-radius:50%;border:1.5px solid var(--trazo2);flex:none}
+.lado nav [aria-current=page],.abajo [aria-current=page]{background:rgba(255,210,63,.12);color:var(--ficha)}
+.lado nav [aria-current=page] s,.abajo [aria-current=page] s{background:var(--ficha);border-color:var(--ficha)}
+.lado nav span{margin-left:auto;font:.78rem var(--num);color:var(--trazo2)}
+.subnav{display:flex;flex-direction:column;margin:-12px 0 0 16px;padding-left:10px;border-left:1px solid rgba(143,176,230,.35)}
+.subnav button{border:0;text-align:left;padding:5px 8px;font-size:.87rem;line-height:1.3;color:var(--trazo2)}
+.subnav button:hover{color:var(--trazo);background:rgba(219,231,255,.06)}
+.lado-pie{margin-top:auto;padding:0 10px;font-size:.8rem;color:var(--trazo2)}
+.lado-pie p{margin:0 0 8px}
+.lado-pie button{font-size:.8rem;padding:.25rem .6rem;border-color:var(--trazo2);color:var(--trazo)}
+.lado-pie button:hover{background:rgba(219,231,255,.08)}
+.vista{width:100%;max-width:1100px;margin:0 auto;padding:26px 36px 60px}
+.vista .sito,.abajo,.marca-m{display:none}
+.vista>h2:first-child,.vista .cab:first-child{margin-top:4px}
+.vista .hero{padding-top:0}
+.tablero{display:grid;grid-template-columns:2.2fr 1fr 1fr;border:1.5px solid var(--trazo);background:var(--plano2);margin:8px 0 16px}
+.tablero>div{padding:10px 14px;border-right:1px solid var(--trazo2);min-width:0}
+.tablero>div:last-child{border-right:0}
+.tablero small{display:block;font-size:.78rem;color:var(--trazo2)}
+.tablero b{display:block;font:400 1.5rem/1.3 var(--disp)}
+.tablero .avance{margin-top:6px}
+.tablero .avance span{display:none}
+.atajos-ini{display:flex;flex-wrap:wrap;gap:10px}
+.atajos-ini button{border-color:var(--trazo2);padding:.55rem 1.05rem}
+.atajos-ini button:hover{background:rgba(219,231,255,.09)}
+.curso section{scroll-margin-top:20px}
 .aviso{color:var(--ficha);min-height:1.5em;margin:0 0 8px}
 
 .car{display:grid;grid-template-columns:auto minmax(0,2.4fr) minmax(0,1.4fr) repeat(3,minmax(68px,.7fr));border:1.5px solid var(--trazo);background:var(--plano2)}
@@ -222,6 +257,18 @@ h2{font:400 1.8rem/1.2 var(--disp);margin:0 0 10px}
 @media (max-width:860px){
   #app{padding:12px 16px 50px}
   .hero{grid-template-columns:minmax(0,1fr)}
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .lado{display:none}
+  .vista{padding:14px 16px 96px}
+  .vista .sito{display:flex}
+  h1{font-size:clamp(3.4rem,17vw,4.6rem)}
+  .marca-m{display:block;font:400 1.5rem/1 var(--sello);margin:0 0 14px}
+  .marca-m small{font:.72rem var(--num);color:var(--trazo2)}
+  .abajo{display:flex;gap:4px;position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--plano2);border-top:1px solid var(--trazo2);padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
+  .abajo button{flex:1;flex-direction:column;justify-content:center;gap:5px;font-size:1rem;padding:7px 4px}
+  .abajo span{display:none}
+  .tablero{grid-template-columns:1fr 1fr}
+  .tablero>div:first-child{grid-column:1/-1;border-right:0;border-bottom:1px solid var(--trazo2)}
   .play,.play.solo{grid-template-columns:minmax(0,1fr);grid-template-areas:"red" "sheet" "ext";grid-template-rows:auto}
   #task{position:static;max-height:none;overflow:visible;min-height:0}
   .red svg{max-height:38vh}
@@ -549,49 +596,80 @@ async function animFire(V,j,from,to){
 }
 
 let EPOCH=0,RUN=null,CUR=null,FOCO='todo',timer=null;
+const VISTAS={inicio:'Inicio',curso:'Curso',practicar:'Practicar'};
+let VISTA='inicio';
 function ruta(h){try{if(location.hash!==h)history.pushState({t:1},'',h);}catch(e){}}
 function limpiarRuta(){try{if(location.hash)history.replaceState(null,'',location.pathname+location.search);}catch(e){}}
-function irInicio(){if(history.state&&history.state.t)history.back();else{limpiarRuta();home();}}
-function enrutar(){const m=location.hash.match(/^#leccion-(.+)$/),i=m?LECS.findIndex(l=>l.id===m[1]):-1;if(i>=0)lesson(i);else{limpiarRuta();home();}}
+function irInicio(){if(history.state&&history.state.t)history.back();else{limpiarRuta();home('inicio');}}
+function ir(v){if(v==='inicio'){try{if(location.hash)history.pushState({t:1},'',location.pathname+location.search);}catch(e){}}else ruta('#'+v);home(v);}
+function enrutar(){
+ const h=location.hash,m=h.match(/^#leccion-(.+)$/),i=m?LECS.findIndex(l=>l.id===m[1]):-1;
+ if(i>=0){lesson(i);return;}
+ const v=h.slice(1);
+ if(VISTAS[v]){home(v);return;}
+ if(h==='#red'||h==='#teoria'){try{history.replaceState(null,'','#practicar');}catch(e){}home('practicar');return;}
+ limpiarRuta();home('inicio');
+}
 window.addEventListener('popstate',enrutar);
 function exitRun(){EPOCH++;RUN=null;CUR=null;if(timer){clearInterval(timer);timer=null;}}
 
 function rate(n,max=3){return `<span class="rate" role="img" aria-label="${n} de ${max} fichas">`+[...Array(max)].map((_,i)=>`<s class="${i<n?'on':''}"></s>`).join('')+'</span>';}
-function home(msg){
+function home(v,msg){
  exitRun();
+ v=VISTAS[v]?v:'inicio';VISTA=v;
  window.scrollTo(0,0);
  const foco=[['todo','Todo'],...Object.entries(STG)];
- const nextL=LECS.find(l=>!SAVE.done[l.id])||LECS[0],doneN=LECS.filter(l=>SAVE.done[l.id]).length;let nL=0;
- $('#app').innerHTML=`
- <header class="hero"><div>
+ const nextL=LECS.find(l=>!SAVE.done[l.id])||LECS[0],doneN=LECS.filter(l=>SAVE.done[l.id]).length,redesN=NETS.filter(d=>SAVE.best[d.id]).length;let nL=0;
+ const fichas=`<div class="avance" role="img" aria-label="${doneN} de ${LECS.length} lecciones terminadas"><div>${LECS.map(l=>`<i class="${SAVE.done[l.id]?'on':''}"></i>`).join('')}</div><span>${doneN} de ${LECS.length}</span></div>`;
+ const cta=LECS.every(l=>SAVE.done[l.id])?'Repasar desde la lección 1':doneN?'Seguir con: '+nextL.t:'Empezar desde cero';
+ const pie=canSave?'Tu progreso se guarda automáticamente en este navegador.':'Este navegador no permite guardar: tu progreso se perderá al cerrar la página.';
+ const borrar=canSave?'<button class="borrar">Borrar mi progreso</button>':'';
+ const nav=Object.entries(VISTAS).map(([k,t])=>`<button data-v="${k}"${k===v?' aria-current="page"':''}><s></s>${t}${k==='curso'?`<span>${doneN}/${LECS.length}</span>`:''}</button>`).join('');
+ const modos=`<div class="modes">
+  <button data-m="az"><b>Red al azar</b><span>Una red nueva cada vez, con todas las ayudas.</span></button>
+  <button data-m="ex"><b>Simulacro de parcial</b><span>Sin pistas, con reloj y una nota del 1 al 10.</span></button>
+  <button data-m="te"><b>Teoría</b><span>Preguntas sobre definiciones, propiedades y métodos.</span></button></div>`;
+ const V={
+ inicio:`<header class="hero"><div>
    <h1 aria-label="Testigos, by FTinform"><span aria-hidden="true">Testig<span class="o"></span>s</span><small class="by" aria-hidden="true">by FTinform</small></h1>
    <p>Aprendé redes de Petri desde cero y practicá todo lo del parcial: disparos, árbol de alcanzabilidad, máquina de testigos, propiedades y método matricial.</p>
-   <small>Puntos acumulados: <span class="mono">${SAVE.pts}</span></small>
-   <button class="cta" id="cta">${LECS.every(l=>SAVE.done[l.id])?'Repasar desde la lección 1':LECS.some(l=>SAVE.done[l.id])?'Seguir con: '+nextL.t:'Empezar desde cero'}</button>
- </div><div class="marco"><div id="demo"></div><small class="pie">Probala: tocá la rayita amarilla</small></div></header>
- <div class="cab"><h2 id="apr">Aprendé paso a paso</h2><div class="avance" role="img" aria-label="${doneN} de ${LECS.length} lecciones terminadas"><div>${LECS.map(l=>`<i class="${SAVE.done[l.id]?'on':''}"></i>`).join('')}</div><span>${doneN} de ${LECS.length}</span></div></div>
- <p class="sub">Lecciones cortas, de lo más fácil a lo más difícil. Cada una explica, muestra y te hace practicar.</p>
- <div class="curso">${CURSO.map(b=>`<section><h3>${b.b}</h3><ol start="${nL+1}">${b.l.map(l=>{const i=nL++;return `<li><button data-l="${i}"><span>${l.t}</span>${SAVE.done[l.id]?'<s class="on" aria-label="Terminada"></s>':'<s></s>'}</button></li>`;}).join('')}</ol></section>`).join('')}</div>
- <h2 class="pr">Practicá con redes completas</h2>
- <nav class="modes">
-  <button id="m-az"><b>Red al azar</b><span>Una red nueva cada vez, con todas las ayudas.</span></button>
-  <button id="m-ex"><b>Simulacro de parcial</b><span>Sin pistas, con reloj y una nota del 1 al 10.</span></button>
-  <button id="m-te"><b>Teoría</b><span>Preguntas sobre definiciones, propiedades y métodos.</span></button>
- </nav>
- <h3 class="sb">Qué querés practicar</h3>
- <div class="foco" role="group" aria-label="Etapas a practicar">${foco.map(([k,v])=>`<button data-f="${k}" aria-pressed="${k===FOCO}">${v}</button>`).join('')}</div>
- <p class="aviso" id="aviso" role="status">${msg||''}</p>
- <ol class="lista">${NETS.map((d,i)=>`<li><button data-n="${i}"><span class="n">${i+1}</span><b>${d.t}</b><i>${d.s}</i>${rate(SAVE.best[d.id]||0)}</button></li>`).join('')}</ol>
- <footer class="sito"><span>${canSave?'Tu progreso se guarda automáticamente en este navegador.':'Este navegador no permite guardar: tu progreso se perderá al cerrar la página.'}</span>${canSave?'<button id="borrar">Borrar mi progreso</button>':''}<span>by FTinform</span></footer>`;
- if(canSave){let arm=false;$('#borrar').onclick=e=>{if(!arm){arm=true;e.currentTarget.textContent='Tocá de nuevo para confirmar';return;}SAVE={best:{},pts:0,done:{},seen:{}};store();home();};}
+   <button class="cta" id="cta">${cta}</button>
+  </div><div class="marco"><div id="demo"></div><small class="pie">Probala: tocá la rayita amarilla</small></div></header>
+  <section class="tablero" aria-label="Tu avance">
+   <div><small>Curso</small><b>${doneN} de ${LECS.length} lecciones</b>${fichas}</div>
+   <div><small>Redes practicadas</small><b>${redesN} de ${NETS.length}</b></div>
+   <div><small>Puntos</small><b>${SAVE.pts}</b></div>
+  </section>
+  <div class="atajos-ini"><button data-ir="curso">Ver todas las lecciones</button><button data-ir="practicar">Practicar con redes</button><button data-m="ex">Hacer un simulacro</button></div>`,
+ curso:`<div class="cab"><h2>Curso</h2>${fichas}</div>
+  <p class="sub">Lecciones cortas, de lo más fácil a lo más difícil. Cada una explica, muestra y te hace practicar.</p>
+  <div class="curso">${CURSO.map((b,bi)=>`<section id="b${bi}"><h3>${b.b}</h3><ol start="${nL+1}">${b.l.map(l=>{const i=nL++;return `<li><button data-l="${i}"><span>${l.t}</span>${SAVE.done[l.id]?'<s class="on" aria-label="Terminada"></s>':'<s></s>'}</button></li>`;}).join('')}</ol></section>`).join('')}</div>`,
+ practicar:`<h2>Practicar</h2>
+  <p class="sub">Resolvé redes completas, de la más simple a la más larga, o probá un simulacro.</p>
+  ${modos}
+  <h3 class="sb">Qué querés practicar</h3>
+  <div class="foco" role="group" aria-label="Etapas a practicar">${foco.map(([k,t])=>`<button data-f="${k}" aria-pressed="${k===FOCO}">${t}</button>`).join('')}</div>
+  <p class="aviso" id="aviso" role="status">${msg||''}</p>
+  <ol class="lista">${NETS.map((d,i)=>`<li><button data-n="${i}"><span class="n">${i+1}</span><b>${d.t}</b><i>${d.s}</i>${rate(SAVE.best[d.id]||0)}</button></li>`).join('')}</ol>`};
+ $('#app').className='conshell';
+ $('#app').innerHTML=`<div class="shell">
+  <aside class="lado">
+   <button class="marca" data-v="inicio" aria-label="Ir al inicio"><b>Testig<span class="o"></span>s</b><small>by FTinform</small></button>
+   <nav aria-label="Secciones">${nav}</nav>
+   <div class="lado-pie"><p>${pie}</p>${borrar}</div>
+  </aside>
+  <main class="vista">${v!=='inicio'?'<div class="marca-m">Testigos <small>by FTinform</small></div>':''}${V[v]}
+   <footer class="sito"><span>${pie}</span>${borrar}<span>by FTinform</span></footer></main>
+  <nav class="abajo" aria-label="Secciones">${nav}</nav>
+ </div>`;
+ document.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(b.dataset.v!==VISTA)ir(b.dataset.v);});
+ document.querySelectorAll('[data-ir]').forEach(b=>b.onclick=()=>ir(b.dataset.ir));
+ document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{const m=b.dataset.m;if(m==='az')start(randNet(),'azar');else if(m==='ex')start(randNet(8),'examen');else teoria();});
+ if(canSave){let arm=false;document.querySelectorAll('.borrar').forEach(x=>x.onclick=()=>{if(!arm){arm=true;document.querySelectorAll('.borrar').forEach(y=>y.textContent='Tocá de nuevo para confirmar');return;}SAVE={best:{},pts:0,done:{},seen:{}};store();home(VISTA);});}
  document.querySelectorAll('.foco button').forEach(b=>b.onclick=()=>{FOCO=b.dataset.f;document.querySelectorAll('.foco button').forEach(x=>x.setAttribute('aria-pressed',x===b));});
  document.querySelectorAll('.lista button').forEach(b=>b.onclick=()=>start(mkNet(NETS[+b.dataset.n]),'nivel'));
  document.querySelectorAll('.curso button').forEach(b=>b.onclick=()=>lesson(+b.dataset.l));
- $('#cta').onclick=()=>lesson(LECS.indexOf(nextL));
- $('#m-az').onclick=()=>start(randNet(),'azar');
- $('#m-ex').onclick=()=>start(randNet(8),'examen');
- $('#m-te').onclick=teoria;
- demo();
+ if(v==='inicio'){$('#cta').onclick=()=>lesson(LECS.indexOf(nextL));demo();}
 }
 function demo(){
  const n=mkNet(NETS[4]);let M=n.m0.slice(),busy=false;
@@ -613,9 +691,9 @@ function stagesFor(n,an,mode){
 async function start(n,mode){
  const an=n.an||analyze(n);
  const list=stagesFor(n,an,mode);
- if(!list.length){home('Esta red no es limitada: tiene ω, y su máquina de testigos no entra en la práctica. Elegí otra red o cambiá la etapa.');return;}
+ if(!list.length){home('practicar','Esta red no es limitada: tiene ω, y su máquina de testigos no entra en la práctica. Elegí otra red o cambiá la etapa.');return;}
  exitRun();
- ruta('#practica');
+ ruta('#red');
  RUN={n,an,mode,list,st:list[0],pts:0,streak:0,total:0,first:0,t0:Date.now(),log:[]};
  renderPlay();
  if(mode==='examen')timer=setInterval(()=>{const e=$('#hud-r');if(e)e.textContent=clock();},1000);
@@ -625,6 +703,7 @@ async function start(n,mode){
 const clock=()=>{const s=Math.floor((Date.now()-RUN.t0)/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
 function renderPlay(){
  const R=RUN;
+ $('#app').className='';
  window.scrollTo(0,0);
  $('#app').innerHTML=`
  <div class="car"><button id="salir">Salir</button>

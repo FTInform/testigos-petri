@@ -9,6 +9,11 @@
 <meta name="theme-color" content="#143a78">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Testigos: aprendé redes de Petri">
+<meta property="og:url" content="https://testigos-petri.vercel.app/">
+<meta property="og:image" content="https://testigos-petri.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:description" content="Aprendé redes de Petri desde cero: disparos, árbol de alcanzabilidad, máquina de testigos, propiedades y método matricial, con lecciones y práctica interactiva.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23143a78'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23dbe7ff' stroke-width='2.6'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23ffd23f'/%3E%3C/svg%3E">
 <style>
@@ -141,6 +146,49 @@ h2{font:400 1.8rem/1.2 var(--disp);margin:0 0 10px}
 .foco-info{margin:0 0 6px;max-width:46em;color:var(--trazo)}
 .lista button:disabled{opacity:.45;cursor:not-allowed}
 .lista button:disabled:hover{background:none}
+.ops.largas{flex-direction:column;align-items:stretch}
+.ops.largas button{text-align:left;line-height:1.35;padding:.6rem .9rem}
+.modes{grid-template-columns:repeat(3,1fr)}
+.modes button:disabled{opacity:.5;cursor:not-allowed}
+.modes button:nth-child(3n){border-right:0}
+.modes button:nth-child(-n+3){border-bottom:1px solid var(--trazo2)}
+.tablero{grid-template-columns:2fr 1fr 1fr 1fr}
+.sync{margin-top:26px;padding-top:14px;border-top:1px solid rgba(143,176,230,.35);max-width:720px}
+.sync h3{font:400 1.25rem/1.2 var(--disp);margin:0 0 4px}
+.sync p{margin:0 0 10px;color:var(--trazo)}
+.sync textarea{width:100%;margin-top:10px;font:.85rem/1.4 var(--num);background:var(--plano2);color:var(--trazo);border:1px solid var(--trazo2);border-radius:2px;padding:8px;resize:vertical}
+.sync .acc{margin-top:8px}
+.sync .acc button{border-color:var(--trazo2);color:var(--trazo)}
+#sbox [role=status]{margin-top:8px;color:var(--ficha)}
+.play.papel #task{position:static;max-height:none;overflow:visible}
+.play.papel .red{position:sticky;top:12px;align-self:start}
+.pasos .ir-sec{border:0;padding:0;width:100%;text-align:left;font:inherit;color:inherit}
+.pasos .ir-sec:hover{text-decoration:underline}
+.psec{margin:0 0 24px;padding-top:12px;border-top:1px solid var(--linea);scroll-margin-top:14px}
+.psec h3{margin-bottom:6px}
+.campo{margin:0 0 16px}
+.campo .cq{margin:0 0 6px}
+.campo.pq{margin-top:-8px;padding-left:14px;border-left:2px solid var(--linea)}
+.campo.ok{border-left:4px solid var(--bien);padding-left:12px}
+.campo.mal{border-left:4px solid var(--mal);padding-left:12px}
+.campo select{width:100%;font:inherit;padding:.55rem .6rem;border:1px solid #8796b3;border-radius:2px;background:#fff;color:var(--tinta)}
+.campo input.num{width:110px;height:44px;font:600 1.1rem var(--num);text-align:center;border:1px solid var(--tinta);border-radius:2px}
+.vec input.err{background:var(--malf);border-color:var(--mal)}
+.chks{display:flex;flex-wrap:wrap;gap:6px 16px}
+.chk{display:inline-flex;align-items:center;gap:7px;font-size:.98rem;cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--tinta)}
+.fila{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-bottom:6px}
+.fila .vec{margin:0}
+.vec.chico input{height:40px}
+.vec.chico::before,.vec.chico::after{font-size:2.3rem;line-height:40px;height:40px}
+.fila .quitar{padding:.3rem .6rem;font-size:.85rem;border-color:var(--tinta2)}
+.filas>button{border-color:var(--tinta2);margin-top:4px}
+.corr{margin:8px 0 0;font-size:.94rem}
+.corr.bien{color:var(--bien)}.corr.mal{color:#7c1a14}
+.resumen{background:#eef2fb;padding:14px 16px;margin:0 0 18px}
+.resumen h3 b{font-size:1.6em}
+.resumen .acc+.acc{margin-top:8px}
+#res .resumen{margin:18px 0 0}
 .aviso{color:var(--ficha);min-height:1.5em;margin:0 0 8px}
 
 .car{display:grid;grid-template-columns:auto minmax(0,2.4fr) minmax(0,1.4fr) repeat(3,minmax(68px,.7fr));border:1.5px solid var(--trazo);background:var(--plano2)}
@@ -181,7 +229,7 @@ h2{font:400 1.8rem/1.2 var(--disp);margin:0 0 10px}
 .est{display:flex;flex-wrap:wrap;gap:2px 18px;justify-content:space-between;align-items:baseline;border-top:1px solid rgba(143,176,230,.45);padding-top:7px;margin-top:4px;font-size:.92rem}
 .est #st{color:var(--trazo2);font-size:.86rem}
 .est code{color:var(--ficha);font-size:1.1rem}
-.sheet{background:var(--hoja);color:var(--tinta);padding:22px 24px}
+.sheet{color-scheme:light;background:var(--hoja);color:var(--tinta);padding:22px 24px}
 #task{grid-area:sheet;position:sticky;top:12px;max-height:calc(100vh - 24px);overflow-y:auto;min-height:280px}
 .sheet .nota{color:var(--tinta2);font-size:.92rem;margin:0 0 10px;padding-bottom:9px;border-bottom:1px solid var(--linea)}
 .sheet h3{font:400 1.56rem/1.25 var(--disp);margin:0 0 15px}
@@ -296,6 +344,9 @@ h2{font:400 1.8rem/1.2 var(--disp);margin:0 0 10px}
   .car.enl b{white-space:normal}
   .hero{gap:14px;padding-top:6px}
   .modes{grid-template-columns:1fr}
+  .modes button:nth-child(n){border-right:0;border-bottom:1px solid var(--trazo2)}
+  .tablero{grid-template-columns:1fr 1fr}
+  .play.papel .red{position:static}
   .modes button{border-right:0;border-bottom:1px solid var(--trazo2)}
   .modes button:last-child{border-bottom:0}
   .lista button{grid-template-columns:2rem 1fr auto}
@@ -355,7 +406,11 @@ const NETS=[
 {id:'cruzadas',t:'Llaves cruzadas',s:'Cada proceso agarra una llave y espera la otra. Bloqueo clásico.',
  p:[['p1','A espera',70,75,1],['p2','A con llave 1',320,75],['p3','B espera',70,285,1],['p4','B con llave 2',320,285],['p5','llave 1',190,180,1],['p6','llave 2',450,180,1]],tr:[['t1','A toma 1',190,75],['t2','A termina',450,75],['t3','B toma 2',190,285],['t4','B termina',450,285]],a:['p1>t1','t1>p2','p2>t2','p5>t1','p6>t2','p3>t3','t3>p4','p4>t4','p6>t3','p5>t4'],h:345},
 {id:'cinco',t:'La red de cinco plazas',s:'La red del ejercicio largo, con ramas, ciclos y conflicto.',
- p:[['p1','',60,195,1,'a'],['p2','',240,125],['p3','',240,265],['p4','',480,125],['p5','',480,265]],tr:[['t1','',140,195],['t2','',360,125,'b'],['t3','',360,265],['t4','',360,60],['t5','',570,195]],a:['p1>t1','t1>p2','t1>p3','p2>t2','t2>p4','p3>t3','t3>p5','p4>t4@480,60','t4>p2@240,60','p4>t5','p5>t5','t5>p1@625,195;625,345;60,345'],h:370}
+ p:[['p1','',60,195,1,'a'],['p2','',240,125],['p3','',240,265],['p4','',480,125],['p5','',480,265]],tr:[['t1','',140,195],['t2','',360,125,'b'],['t3','',360,265],['t4','',360,60],['t5','',570,195]],a:['p1>t1','t1>p2','t1>p3','p2>t2','t2>p4','p3>t3','t3>p5','p4>t4@480,60','t4>p2@240,60','p4>t5','p5>t5','t5>p1@625,195;625,345;60,345'],h:370},
+{id:'r1',t:'Modelo de parcial: red R1',s:'En el enunciado: plazas 1 a 5 = p1 a p5; transiciones a, b, c, d, e = t1 a t5.',hz:1,
+ p:[['p1','',330,40,1,'l'],['p2','',455,140,0,'r'],['p3','',205,140,0,'r'],['p4','',455,262,0,'r'],['p5','',205,262,0,'r']],
+ tr:[['t1','',330,95,'r'],['t2','',455,200,'r'],['t3','',205,200,'r'],['t4','',455,322,'b'],['t5','',110,322,'b']],
+ a:['p1>t1','t1>p2','t1>p3','p2>t2','t2>p4','p3>t3','t3>p5','p4>t4','p5>t4','p5>t5','t5>p3@55,322;55,140','t4>p1@610,322;610,40'],h:345}
 ];
 const STG={disparo:'Disparos',arbol:'Árbol',mt:'Máquina de testigos',props:'Propiedades',matriz:'Matrices'};
 const NOTA={
@@ -366,7 +421,7 @@ const NOTA={
  matriz:'Filas: transiciones. Columnas: plazas. Tocá una celda para cambiar su valor, o escribí el número.'
 };
 const LS='testigos-petri-v1';
-let SAVE={best:{},pts:0,done:{},seen:{}};
+let SAVE={best:{},pts:0,done:{},seen:{},bs:{},err:{}};
 try{const r=localStorage.getItem(LS);if(r)SAVE=Object.assign(SAVE,JSON.parse(r));}catch(e){}
 const store=()=>{try{localStorage.setItem(LS,JSON.stringify(SAVE));}catch(e){}};
 const canSave=(()=>{try{localStorage.setItem(LS+'-t','1');localStorage.removeItem(LS+'-t');return true;}catch(e){return false;}})();
@@ -389,7 +444,7 @@ const $=s=>document.querySelector(s);
 
 function mkNet(d){
  const P=d.p.map(x=>({id:x[0],label:x[1]||'',x:x[2],y:x[3],pos:x[5]||'b'}));
- const T=d.tr.map(x=>({id:x[0],label:x[1]||'',x:x[2],y:x[3],pos:x[4]||'a'}));
+ const T=d.tr.map(x=>({id:x[0],label:x[1]||'',x:x[2],y:x[3],pos:x[4]||'a',hz:!!d.hz}));
  const m0=d.p.map(x=>x[4]||0);
  const pre=T.map(()=>P.map(()=>0)),post=T.map(()=>P.map(()=>0)),arcs=[];
  const ip=id=>P.findIndex(x=>x.id===id),it=id=>T.findIndex(x=>x.id===id);
@@ -492,33 +547,6 @@ function subclases(n){
   rle:ps.every(i=>outP(i).length<=1||outP(i).every(j=>inT(j)===1)),
   rs:ts.every(j=>ps.filter(i=>n.pre[j][i]>0&&outP(i).length>1).length<=1)};
 }
-function randNet(maxE=11){
- for(let tr=0;tr<1500;tr++){
-  const N=ri(3,5),M=ri(2,4),ps=[...Array(N).keys()],a=[];let bad=false;const touched=new Set();
-  for(let j=0;j<M;j++){
-   const I=shuffle(ps).slice(0,ri(1,2)),O=shuffle(ps).slice(0,ri(1,2));
-   if(I.some(x=>O.includes(x))){bad=true;break;}
-   I.forEach(i=>{touched.add(i);a.push(`p${i+1}>t${j+1}`+(Math.random()<.14?'*2':''));});
-   O.forEach(i=>{touched.add(i);a.push(`t${j+1}>p${i+1}`+(Math.random()<.14?'*2':''));});
-  }
-  if(bad||touched.size<N)continue;
-  const tot=N+M,order=[];let pi=0,ti=0;
-  for(let k=0;k<tot;k++){if((k%2===0&&pi<N)||ti>=M)order.push('p'+(++pi));else order.push('t'+(++ti));}
-  const pos={};order.forEach((id,k)=>{const an=Math.PI+2*Math.PI*k/tot;pos[id]=[Math.round(330+255*Math.cos(an)),Math.round(165+118*Math.sin(an))];});
-  const m0=ps.map(()=>0);m0[ri(0,N-1)]=Math.random()<.3?2:1;if(Math.random()<.5)m0[ri(0,N-1)]=1;
-  const d={id:'azar',t:'Red al azar',s:'Una red nueva cada vez.',a,
-   p:ps.map(i=>['p'+(i+1),'',pos['p'+(i+1)][0],pos['p'+(i+1)][1],m0[i]]),
-   tr:[...Array(M).keys()].map(j=>['t'+(j+1),'',pos['t'+(j+1)][0],pos['t'+(j+1)][1]])};
-  const n=mkNet(d);
-  if(!clear(n))continue;
-  const an=analyze(n);
-  if(!an||an.edgesCount<3||an.edgesCount>maxE)continue;
-  const used=new Set();(function w(x){x.kids.forEach(c=>{used.add(c.t);w(c);});})(an.tree);
-  if(used.size<M)continue;
-  n.an=an;return n;
- }
- const f=mkNet(NETS[11]);f.an=analyze(f);return f;
-}
 function clear(n){
  const all=[...n.P,...n.T];
  for(const a of n.arcs)for(let k=1;k<20;k++){
@@ -534,7 +562,7 @@ function clear(n){
 function anchor(o,tx,ty,isP){
  const dx=tx-o.x,dy=ty-o.y,L=Math.hypot(dx,dy)||1;
  if(isP)return [o.x+dx/L*27,o.y+dy/L*27];
- const t=Math.min(dx?9/Math.abs(dx):1e9,dy?27/Math.abs(dy):1e9);
+ const hw=o.hz?27:9,hh=o.hz?9:27,t=Math.min(dx?hw/Math.abs(dx):1e9,dy?hh/Math.abs(dy):1e9);
  return [o.x+dx*t,o.y+dy*t];
 }
 function drawNet(n,target,onT){
@@ -557,12 +585,12 @@ function drawNet(n,target,onT){
   if(a.w>1)add(sv('text',{class:'w',x:mx+8,y:my-8},a.w));
  }
  n.P.forEach(p=>{G.places.push(add(sv('circle',{class:'place',cx:p.x,cy:p.y,r:25})));
-  const y=p.pos==='a'?p.y-36:p.y+46;const t=add(sv('text',{class:'lab',x:p.x,y,'text-anchor':'middle'}));
+  const t=add(p.pos==='r'||p.pos==='l'?sv('text',{class:'lab',x:p.x+(p.pos==='r'?33:-33),y:p.y+5,'text-anchor':p.pos==='r'?'start':'end'}):sv('text',{class:'lab',x:p.x,y:p.pos==='a'?p.y-36:p.y+46,'text-anchor':'middle'}));
   t.appendChild(sv('tspan',{'font-weight':700},p.id));if(p.label)t.appendChild(sv('tspan',{},' '+p.label));});
- n.T.forEach((b,j)=>{const r=add(sv('rect',{class:'bar',x:b.x-7,y:b.y-25,width:14,height:50,rx:1}));G.bars.push(r);
-  const y=b.pos==='a'?b.y-34:b.y+44;const t=add(sv('text',{class:'lab',x:b.x,y,'text-anchor':'middle'}));
+ n.T.forEach((b,j)=>{const r=add(b.hz?sv('rect',{class:'bar',x:b.x-25,y:b.y-7,width:50,height:14,rx:1}):sv('rect',{class:'bar',x:b.x-7,y:b.y-25,width:14,height:50,rx:1}));G.bars.push(r);
+  const t=add(b.pos==='r'?sv('text',{class:'lab',x:b.x+(b.hz?33:16),y:b.y+5,'text-anchor':'start'}):sv('text',{class:'lab',x:b.x,y:b.pos==='a'?b.y-(b.hz?14:34):b.y+(b.hz?27:44),'text-anchor':'middle'}));
   t.appendChild(sv('tspan',{'font-weight':700},b.id));if(b.label)t.appendChild(sv('tspan',{},' '+b.label));
-  if(onT){const h=add(sv('rect',{x:b.x-24,y:b.y-40,width:48,height:80,fill:'transparent',style:'cursor:pointer',tabindex:0,role:'button','aria-label':'Disparar '+b.id}));
+  if(onT){const h=add(sv('rect',b.hz?{x:b.x-40,y:b.y-24,width:80,height:48}:{x:b.x-24,y:b.y-40,width:48,height:80}));for(const [k,v] of Object.entries({fill:'transparent',style:'cursor:pointer',tabindex:0,role:'button','aria-label':'Disparar '+b.id}))h.setAttribute(k,v);
    h.addEventListener('click',()=>onT(j));h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();onT(j);}});}
  });
  const tk=add(sv('g'));
@@ -622,7 +650,7 @@ function enrutar(){
  if(i>=0){lesson(i);return;}
  const v=h.slice(1);
  if(VISTAS[v]){home(v);return;}
- if(h==='#red'||h==='#teoria'){try{history.replaceState(null,'','#practicar');}catch(e){}home('practicar');return;}
+ if(h==='#red'||h==='#teoria'||h==='#errores'||h==='#escrito'){try{history.replaceState(null,'','#practicar');}catch(e){}home('practicar');return;}
  limpiarRuta();home('inicio');
 }
 window.addEventListener('popstate',enrutar);
@@ -640,10 +668,14 @@ function home(v,msg){
  const pie=canSave?'Tu progreso se guarda automáticamente en este navegador.':'Este navegador no permite guardar: tu progreso se perderá al cerrar la página.';
  const borrar=canSave?'<button class="borrar">Borrar mi progreso</button>':'';
  const nav=Object.entries(VISTAS).map(([k,t])=>`<button data-v="${k}"${k===v?' aria-current="page"':''}><s></s>${t}${k==='curso'?`<span>${doneN}/${LECS.length}</span>`:''}</button>`).join('');
+ const ne=nErr();
  const modos=`<div class="modes">
+  <button data-m="pa"><b>Simulacro escrito</b><span>Como el parcial: resolvés los puntos a) a e) y se corrige todo al final.</span></button>
+  <button data-m="ex"><b>Simulacro guiado</b><span>Paso a paso, sin pistas, con reloj y nota del 1 al 10.</span></button>
+  <button data-m="er"${ne?'':' disabled'}><b>Mis errores${ne?` (${ne})`:''}</b><span>${ne?'Te vuelve a preguntar lo que fallaste, con redes nuevas.':'Todavía no tenés errores guardados.'}</span></button>
   <button data-m="az"><b>Red al azar</b><span>Una red nueva cada vez, con todas las ayudas.</span></button>
-  <button data-m="ex"><b>Simulacro de parcial</b><span>Sin pistas, con reloj y una nota del 1 al 10.</span></button>
-  <button data-m="te"><b>Teoría</b><span>Preguntas sobre definiciones, propiedades y métodos.</span></button></div>`;
+  <button data-m="te"><b>Teoría</b><span>${TEO.length} preguntas de definiciones y de por qué.</span></button>
+  <button data-m="r1"><b>Parcial R1, escrito</b><span>La red de un parcial real, en modo escrito.</span></button></div>`;
  const V={
  inicio:`<header class="hero"><div>
    <h1 aria-label="Testigos, by FTinform"><span aria-hidden="true">Testig<span class="o"></span>s</span><small class="by" aria-hidden="true">by FTinform</small></h1>
@@ -653,9 +685,11 @@ function home(v,msg){
   <section class="tablero" aria-label="Tu avance">
    <div><small>Curso</small><b>${doneN} de ${LECS.length} lecciones</b>${fichas}</div>
    <div><small>Redes practicadas</small><b>${redesN} de ${NETS.length}</b></div>
+   <div><small>Errores para repasar</small><b>${ne}</b></div>
    <div><small>Puntos</small><b>${SAVE.pts}</b></div>
   </section>
-  <div class="atajos-ini"><button data-ir="curso">Ver todas las lecciones</button><button data-ir="practicar">Practicar con redes</button><button data-m="ex">Hacer un simulacro</button></div>`,
+  <div class="atajos-ini"><button data-ir="curso">Ver todas las lecciones</button><button data-ir="practicar">Practicar con redes</button><button data-m="pa">Simulacro escrito</button>${ne?`<button data-m="er">Repasar mis errores (${ne})</button>`:''}</div>
+  ${canSave?`<section class="sync"><h3>Llevar tu progreso a otra PC</h3><p>Copiá tu código y pegalo en el otro navegador. Al cargarlo, se reemplaza el progreso de ese navegador.</p><div class="atajos-ini"><button id="sx">Copiar mi código</button><button id="si">Pegar un código</button></div><div id="sbox"></div></section>`:''}`,
  curso:`<div class="cab"><h2>Curso</h2>${fichas}</div>
   <p class="sub">Lecciones cortas, de lo más fácil a lo más difícil. Cada una explica, muestra y te hace practicar.</p>
   <div class="curso">${CURSO.map((b,bi)=>`<section id="b${bi}"><h3>${b.b}</h3><ol start="${nL+1}">${b.l.map(l=>{const i=nL++;return `<li><button data-l="${i}"><span>${l.t}</span>${SAVE.done[l.id]?'<s class="on" aria-label="Terminada"></s>':'<s></s>'}</button></li>`;}).join('')}</ol></section>`).join('')}</div>`,
@@ -680,12 +714,12 @@ function home(v,msg){
  </div>`;
  document.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(b.dataset.v!==VISTA)ir(b.dataset.v);});
  document.querySelectorAll('[data-ir]').forEach(b=>b.onclick=()=>ir(b.dataset.ir));
- document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{const m=b.dataset.m;if(m==='az')start(randNet(),'azar');else if(m==='ex')start(randNet(8),'examen');else teoria();});
- if(canSave){let arm=false;document.querySelectorAll('.borrar').forEach(x=>x.onclick=()=>{if(!arm){arm=true;document.querySelectorAll('.borrar').forEach(y=>y.textContent='Tocá de nuevo para confirmar');return;}SAVE={best:{},pts:0,done:{},seen:{},bs:{}};store();home(VISTA);});}
+ document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{const m=b.dataset.m;if(m==='az')start(randNet(),'azar');else if(m==='ex')start(randNet(9,{bounded:true}),'examen');else if(m==='pa')papel();else if(m==='er')errores();else if(m==='r1')papel(mkNet(NETS.find(d=>d.id==='r1')));else teoria();});
+ if(canSave){let arm=false;document.querySelectorAll('.borrar').forEach(x=>x.onclick=()=>{if(!arm){arm=true;document.querySelectorAll('.borrar').forEach(y=>y.textContent='Tocá de nuevo para confirmar');return;}SAVE={best:{},pts:0,done:{},seen:{},bs:{},err:{}};store();home(VISTA);});}
  document.querySelectorAll('.foco button').forEach(b=>b.onclick=()=>{FOCO=b.dataset.f;document.querySelectorAll('.foco button').forEach(x=>x.setAttribute('aria-pressed',x===b));const a=$('#aviso');if(a)a.textContent='';listaRedes();});
  if(v==='practicar')listaRedes();
  document.querySelectorAll('.curso button').forEach(b=>b.onclick=()=>lesson(+b.dataset.l));
- if(v==='inicio'){$('#cta').onclick=()=>lesson(LECS.indexOf(nextL));demo();}
+ if(v==='inicio'){$('#cta').onclick=()=>lesson(LECS.indexOf(nextL));demo();syncPanel();}
 }
 const ACOTADA={};
 function soporta(d,st){
@@ -754,7 +788,7 @@ function renderPlay(){
   <div class="ancho"><small>Etapa</small><b id="hud-e"></b></div>
   <div class="dat"><small>Aciertos</small><b id="hud-a" class="mono">0/0</b></div>
   <div class="dat" id="cel-p"><small>Puntos</small><b id="hud-p" class="mono">0</b></div>
-  <div class="dat"><small>${R.mode==='examen'?'Tiempo':'Racha'}</small><b id="hud-r" class="mono">0</b></div></div>
+  <div class="dat"><small>${R.mode==='examen'||R.mode==='papel'?'Tiempo':'Racha'}</small><b id="hud-r" class="mono">0</b></div></div>
  <ol class="pasos" id="pasos"></ol>
  <main class="play">
   <section class="red marco"><div id="net"></div>
@@ -769,10 +803,12 @@ function renderPlay(){
 }
 function updHud(){
  const R=RUN;if(!R||!$('#hud-e'))return;
+ if(R.mode==='papel'){$('#hud-e').textContent='Simulacro escrito';$('#hud-a').textContent=R.graded?R.first+'/'+R.total:'–';$('#hud-p').textContent=R.pts;$('#hud-r').textContent=clock();return;}
  $('#hud-e').textContent=R.mode==='leccion'?`Paso ${R.idx+1} de ${R.list.length}`:(STG[R.st]||'Teoría');
  $('#hud-a').textContent=R.first+'/'+R.total;$('#hud-p').textContent=R.pts;
  if(R.mode==='examen')$('#hud-r').textContent=clock();else $('#hud-r').innerHTML=R.streak+(R.streak>=3?`<span class="x">×${mult()}</span>`:'');
  if(R.mode==='leccion'){const P=$('#pasos');P.className='pasos prog';P.innerHTML=R.list.map((_,i)=>`<li class="${i===R.idx?'ya':i<R.idx?'hecho':''}"><button data-k="${i}" aria-label="Ir al paso ${i+1}"${i>R.max||i===R.idx?' disabled':''}></button></li>`).join('');P.querySelectorAll('button').forEach(b=>b.onclick=()=>{const r=RUN;lesson(r.lec,+b.dataset.k,r.max);});return;}
+ if(R.mode==='errores'){const P=$('#pasos');P.className='pasos prog';P.innerHTML=R.list.map((_,i)=>`<li class="${i===R.idx?'ya':i<R.idx?'hecho':''}"></li>`).join('');return;}
  const idx=R.list.indexOf(R.st);
  $('#pasos').innerHTML=R.list.map((s,i)=>`<li class="${i===idx?'ya':i<idx?'hecho':''}">${s==='mt'?'Máquina':(s==='props'&&innerWidth<=860)?'Propied.':(STG[s]||'Teoría')}</li>`).join('');
 }
@@ -806,13 +842,14 @@ function ask(it){
    const ok=it.check?it.check(v):(Array.isArray(v)?(Array.isArray(it.sol)&&eq(v,it.sol)):v===it.sol);
    if(ok){
     me.locked=true;R.total+=me.tries?0:1;const by=(R.by=R.by||{}),bs=by[R.st]=by[R.st]||{t:0,f:0};if(!me.tries){bs.t++;bs.f++;const g=10*mult();R.first++;R.pts+=g;R.streak++;pop(g);}else{R.pts+=3;pop(3);}hl([]);
+    if(!me.tries&&it.tipo&&R.mode==='errores'&&SAVE.err&&SAVE.err[it.tipo]){if(--SAVE.err[it.tipo]<=0)delete SAVE.err[it.tipo];store();}
     updHud();lock(true);if(it.mark)it.mark(v);
     const extra=it.ok?it.ok:'';fb('bien','Correcto.'+(extra?' '+extra:''));
     if(R.mode==='leccion'){acc.innerHTML='<button class="pri" id="sg">Seguir</button>';$('#sg').onclick=()=>res(v);if(FINE)$('#sg').focus({preventScroll:true});return;}
     const delay=extra?1500:520,e=EPOCH;setTimeout(()=>{if(e===EPOCH&&CUR===me)res(v);},delay);
     return;
    }
-   if(!me.tries){R.total++;const by=(R.by=R.by||{}),bs=by[R.st]=by[R.st]||{t:0,f:0};bs.t++;}me.tries++;R.streak=0;updHud();
+   if(!me.tries){R.total++;const by=(R.by=R.by||{}),bs=by[R.st]=by[R.st]||{t:0,f:0};bs.t++;if(it.tipo){SAVE.err=SAVE.err||{};SAVE.err[it.tipo]=Math.min(3,(SAVE.err[it.tipo]||0)+1);store();}}me.tries++;R.streak=0;updHud();
    if(it.markErr)it.markErr(v);
    box.classList.remove('temblor');void box.offsetWidth;if(R.mode!=='examen')box.classList.add('temblor');
    if(R.mode==='examen'||me.tries>=2){
@@ -826,8 +863,9 @@ function ask(it){
   inp.onmouseover=over;inp.addEventListener('focusin',over);inp.onmouseleave=()=>hl([]);
   const lock=()=>{inp.querySelectorAll('button,input').forEach(x=>x.disabled=true);acc.querySelectorAll('button').forEach(x=>x.disabled=true);};
   const invalid=m=>fb('pista',m);
+  const larga=(it.opts||[]).some(o=>String(o.l).replace(/<[^>]+>/g,'').length>30);
   if(it.kind==='single'){
-   inp.innerHTML=`<div class="ops">${it.opts.map((o,i)=>`<button data-i="${i}" ${/^[tp]\d+$/.test(o.l)?`data-hl="${o.l}"`:''}>${o.l}</button>`).join('')}</div>`;
+   inp.innerHTML=`<div class="ops${larga?' largas':''}">${it.opts.map((o,i)=>`<button data-i="${i}" ${/^[tp]\d+$/.test(o.l)?`data-hl="${o.l}"`:''}>${o.l}</button>`).join('')}</div>`;
    inp.querySelectorAll('button').forEach(b=>b.onclick=()=>{const v=it.opts[+b.dataset.i].v;
     const before=me.tries;submit(v);
     if(me.tries>before&&!me.locked){b.classList.add('err');b.disabled=true;}
@@ -837,7 +875,7 @@ function ask(it){
    it.mark=v=>{inp.querySelectorAll('button').forEach((b,i)=>{if(it.opts[i].v===v)b.classList.add('ok');});};
   }
   if(it.kind==='multi'){
-   inp.innerHTML=`<div class="ops">${it.opts.map((o,i)=>`<button data-i="${i}" aria-pressed="false" ${/^[tp]\d+$/.test(o.l)?`data-hl="${o.l}"`:''}>${o.l}</button>`).join('')}</div>`;
+   inp.innerHTML=`<div class="ops${larga?' largas':''}">${it.opts.map((o,i)=>`<button data-i="${i}" aria-pressed="false" ${/^[tp]\d+$/.test(o.l)?`data-hl="${o.l}"`:''}>${o.l}</button>`).join('')}</div>`;
    inp.querySelectorAll('button').forEach(b=>b.onclick=()=>b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true'));
    read=()=>{const a=[];inp.querySelectorAll('button').forEach((b,i)=>{if(b.getAttribute('aria-pressed')==='true')a.push(it.opts[i].v);});return a.sort((x,y)=>x-y);};
    it.sol=it.sol.slice().sort((x,y)=>x-y);
@@ -926,13 +964,13 @@ async disparo(){
  for(let r=0;r<4;r++){
   setM(M,'Marcado actual');
   const e=enabled(n,M);
-  await ask({kind:'multi',q:`Con ${cv(M)}, ¿qué transiciones están habilitadas?`,opts:tOpts(n),sol:e,why:whyEn(n,M),hint:HINT_EN});
+  await ask({kind:'multi',q:`Con ${cv(M)}, ¿qué transiciones están habilitadas?`,opts:tOpts(n),sol:e,why:whyEn(n,M),hint:HINT_EN,tipo:'hab'});
   if(!e.length){M=n.m0.slice();continue;}
   const j=pick(e),to=fire(n,M,j);
-  await ask({kind:'vector',q:`Disparás <code>${tid(n,j)}</code> desde ${cv(M)}. ¿Qué marcado queda?`,labels:plab(n),sol:to,why:whyFire(n,M,j),hint:HINT_FIRE,pos:true});
+  await ask({kind:'vector',q:`Disparás <code>${tid(n,j)}</code> desde ${cv(M)}. ¿Qué marcado queda?`,labels:plab(n),sol:to,why:whyFire(n,M,j),hint:HINT_FIRE,pos:true,tipo:'disp'});
   await animFire(RUN.view,j,M,to);await wait(120);
   M=to;
-  if(!enabled(n,M).length&&r<3){setM(M,'Marcado actual');await ask({kind:'single',q:`¿Cómo se llama un marcado como ${cv(M)}, donde no se puede disparar nada?`,opts:[{v:'m',l:'Marcado muerto'},{v:'d',l:'Marcado duplicado'},{v:'i',l:'Marcado inicial'}],sol:'m',why:'Sin transiciones habilitadas, el marcado está muerto.'});M=n.m0.slice();}
+  if(!enabled(n,M).length&&r<3){setM(M,'Marcado actual');await ask({kind:'single',q:`¿Cómo se llama un marcado como ${cv(M)}, donde no se puede disparar nada?`,opts:[{v:'m',l:'Marcado muerto'},{v:'d',l:'Marcado duplicado'},{v:'i',l:'Marcado inicial'}],sol:'m',why:'Sin transiciones habilitadas, el marcado está muerto.',tipo:'muertodef'});M=n.m0.slice();}
  }
 },
 async arbol(){
@@ -942,27 +980,19 @@ async arbol(){
  while(q.length){
   const x=q.shift();drawTree(ex,root,x);setM(x.m,'Nodo que estás expandiendo');
   const e=enabled(n,x.m);
-  await ask({kind:'multi',q:`Nodo ${cv(x.m)}: ¿qué transiciones habilita?`,opts:tOpts(n),sol:e,why:whyEn(n,x.m),hint:HINT_EN});
+  await ask({kind:'multi',q:`Nodo ${cv(x.m)}: ¿qué transiciones habilita?`,opts:tOpts(n),sol:e,why:whyEn(n,x.m),hint:HINT_EN,tipo:'hab'});
   for(const c of x.kids){
    setM(x.m,'Nodo que estás expandiendo');
-   await ask({kind:'vector',q:`Desde ${cv(x.m)} disparás <code>${tid(n,c.t)}</code>. ¿Qué marcado queda?`,d:x.m.includes(Infinity)?'ω más o menos algo sigue siendo ω.':'',labels:plab(n),sol:c.raw,why:whyFire(n,x.m,c.t),hint:HINT_FIRE});
+   await ask({kind:'vector',q:`Desde ${cv(x.m)} disparás <code>${tid(n,c.t)}</code>. ¿Qué marcado queda?`,d:x.m.includes(Infinity)?'ω más o menos algo sigue siendo ω.':'',labels:plab(n),sol:c.raw,why:whyFire(n,x.m,c.t),hint:HINT_FIRE,tipo:'disp'});
    await animFire(RUN.view,c.t,x.m,c.raw);
    c.shown=true;c.pending=true;drawTree(ex,root,x);
-   const why={dup:`${cv(c.raw)} ya está en el árbol: es un duplicado y la rama se corta.`,
-    dead:`Con ${cv(c.raw)} ninguna transición queda habilitada: es un marcado muerto.`,
-    new:`Es un marcado nuevo y habilita ${enabled(n,c.raw).map(k=>tid(n,k)).join(', ')}: hay que seguir.`,
-    omega:c.anc?`Arriba en su rama está ${cv(c.anc.m)}: ${cv(c.raw)} tiene lo mismo o más en todas las plazas y habilita las mismas transiciones.`:''}[c.kind];
-   await ask({kind:'single',q:`¿Qué hacés con ${cv(c.raw)}?`,opts:[{v:'new',l:'Sigo expandiendo'},{v:'dup',l:'Corto: duplicado'},{v:'dead',l:'Corto: muerto'},{v:'omega',l:'Pongo ω'}],sol:c.kind,why,
-    hint:'Revisá en este orden: ¿ya apareció en el árbol? ¿Tiene más fichas que un antepasado de su rama y habilita lo mismo? ¿No habilita nada? Si no es ninguno, seguís.'});
-   if(c.kind==='omega'){
-    await ask({kind:'multi',q:`¿Qué plazas pasan a ω?`,d:`Compará ${cv(c.raw)} con ${cv(c.anc.m)}.`,opts:pOpts(n),sol:c.omega,why:'Pasan a ω las plazas donde el marcado nuevo tiene más fichas que su antepasado.',hint:'Buscá las plazas donde el número creció respecto del antepasado.',
-     ok:c.dupAfter?`Queda ${cv(c.m)}, que ya estaba en el árbol: se corta como duplicado.`:''});
-   }
+   await ask(cutItem(n,c));
+   if(c.kind==='omega')await ask(omegaItem(n,c));
    c.pending=false;drawTree(ex,root,x);
    if(c.kind==='new'||(c.kind==='omega'&&!c.dupAfter))q.push(c);
   }
  }
- drawTree(ex,root,null);await ask({kind:'single',note:'Árbol terminado.',q:`¿Cuántos marcados distintos tiene el árbol?`,opts:numOpts(an.states.length),sol:an.states.length,why:'Contá los nodos sin repetir los duplicados.',hint:'Los nodos punteados son duplicados de otros: no cuentan.',show:v=>'<code>'+v+'</code>'});
+ drawTree(ex,root,null);await ask(Object.assign(conteoItem(n,an),{note:'Árbol terminado.'}));
 },
 async mt(){
  const {n,an}=RUN,ex=setExtra(true,'Tu máquina de testigos hasta ahora');
@@ -972,80 +1002,17 @@ async mt(){
  drawMT(ex,seen,done);
  for(const e of an.edges){
   const A=an.states[e.from],B=an.states[e.to];setM(A,'Estado de salida');
-  await ask({kind:'bag',q:`Desde <code>${nm(A)}</code> se dispara <code>${tid(n,e.t)}</code>. ¿A qué estado llegás?`,d:'Tocá las plazas para escribir el estado. El orden no importa.',sol:name(B),check:v=>eq(v,name(B)),why:whyFire(n,A,e.t),hint:`En números, el marcado de salida es ${cv(A)}. Calculá el nuevo y escribí una vez cada plaza por cada ficha.`});
+  await ask({kind:'bag',q:`Desde <code>${nm(A)}</code> se dispara <code>${tid(n,e.t)}</code>. ¿A qué estado llegás?`,d:'Tocá las plazas para escribir el estado. El orden no importa.',sol:name(B),check:v=>eq(v,name(B)),why:whyFire(n,A,e.t),hint:`En números, el marcado de salida es ${cv(A)}. Calculá el nuevo y escribí una vez cada plaza por cada ficha.`,tipo:'mt'});
   seen.add(e.to);done.push(e);drawMT(ex,seen,done);
  }
 },
 async props(){
- const {n,an}=RUN,I=[],bnd=an.bounded;
- const nums=[...new Set([1,2,3,4,Math.min(an.maxTok,9)])].filter(x=>x!==Infinity).sort((a,b)=>a-b);
- I.push({kind:'single',q:'Limitación: ¿qué tan limitada es esta red?',opts:[...nums.map(k=>({v:k,l:k+'-limitada'})),{v:Infinity,l:'No es limitada'}],sol:an.maxTok,show:v=>v===Infinity?'no limitada':'<code>'+v+'-limitada</code>',
-  why:bnd?`La plaza más cargada llega a ${an.maxTok} ${an.maxTok===1?'ficha':'fichas'} en algún marcado alcanzable.`:'En el árbol aparece ω: alguna plaza puede crecer sin fin.',hint:'Buscá el número más grande en todos los marcados del árbol. Si aparece ω, no es limitada.'});
- I.push({kind:'single',q:'¿Tiene algún marcado muerto?',opts:YN,sol:an.dead.length>0,why:an.dead.length?`${cv(an.dead[0])} no habilita ninguna transición.`:'Todos los marcados habilitan al menos una transición.',hint:'Un marcado muerto es una hoja del árbol sin transiciones habilitadas.'});
- if(bnd){
-  I.push({kind:'single',q:'Vivacidad: ¿la red es viva?',opts:YN,sol:an.live,why:an.live?'Desde cualquier estado alcanzable siempre podés llegar a habilitar cada transición.':`Desde ${cv(an.liveW.m)} ya no hay forma de habilitar <code>${tid(n,an.liveW.t)}</code>.`,hint:'Viva: desde cualquier marcado alcanzable, cada transición puede volver a habilitarse.'});
-  I.push({kind:'single',q:'Ciclicidad: ¿desde todo marcado se puede volver a M0?',opts:YN,sol:an.cyc,why:an.cyc?'Todo estado tiene un camino de regreso a M0.':`Desde ${cv(an.cycW)} no hay camino de regreso a M0.`,hint:'Mirá la máquina de testigos: ¿desde cada óvalo hay un camino hasta el inicial?'});
-  I.push({kind:'single',q:'Conservación estricta: ¿el total de fichas se mantiene siempre igual?',opts:YN,sol:an.strict,why:`Los totales son: ${an.sums.join(', ')}.`,hint:'Sumá las fichas de cada marcado.'});
-  if(an.w)I.push({kind:'vector',q:'Conservación con pesos: encontrá un vector w, con todos sus valores positivos, que mantenga constante el valor de la red.',labels:plab(n),pos:true,sol:an.w,check:v=>v.every(x=>x>0&&x!==Infinity)&&n.C.every(r=>r.reduce((a,c,i)=>a+c*v[i],0)===0),show:v=>'por ejemplo '+cv(v),why:'En cada transición, el valor de lo que entra tiene que ser igual al valor de lo que sale.',hint:'Escribí una ecuación por transición: suma de w × peso en las entradas = suma de w × peso en las salidas. Asigná 1 a una plaza y despejá.'});
- }
- I.push({kind:'multi',q:'Conflicto estructural: ¿qué plazas alimentan a más de una transición?',d:'Si no hay ninguna, no marques nada.',opts:pOpts(n),sol:an.structural,why:an.structural.length?'Son las plazas de las que salen flechas hacia dos o más transiciones.':'Ninguna plaza tiene más de una transición de salida.',hint:'Contá cuántas flechas salen de cada círculo.'});
- const ef=an.effective;
- I.push({kind:'single',q:'Conflicto efectivo: ¿hay algún marcado donde dos transiciones estén habilitadas y disparar una deshabilite a la otra?',opts:YN,sol:!!ef,why:ef?`En ${cv(ef.m)}, <code>${tid(n,ef.a)}</code> y <code>${tid(n,ef.b)}</code> se quitan la ficha entre sí.`:'Cuando dos transiciones están habilitadas a la vez, una no le quita la posibilidad a la otra.',hint:'Buscá en el árbol marcados con dos ramas y fijate si comparten una ficha necesaria.'});
- if(bnd&&n.P.length>=2){
-  const pairs=[];for(let a=0;a<n.P.length;a++)for(let b=a+1;b<n.P.length;b++)pairs.push([a,b,!an.states.some(m=>m[a]>0&&m[b]>0)]);
-  const yes=pairs.filter(x=>x[2]),no=pairs.filter(x=>!x[2]);
-  [yes.length?pick(yes):null,no.length?pick(no):null].filter(Boolean).forEach(([a,b,v])=>{
-   const w=an.states.find(m=>m[a]>0&&m[b]>0);
-   I.push({kind:'single',q:`Exclusión mutua: ¿<code>${pid(n,a)}</code> y <code>${pid(n,b)}</code> nunca tienen fichas al mismo tiempo?`,opts:YN,sol:v,why:v?'En ningún marcado alcanzable aparecen las dos con fichas.':`En ${cv(w)} las dos tienen fichas.`,hint:'Recorré los marcados y buscá uno con fichas en las dos plazas.'});
-  });
- }
- const ord=n.pre.flat().concat(n.post.flat()).every(v=>v<=1);
- I.push({kind:'single',q:'¿La red es ordinaria o generalizada?',opts:[{v:true,l:'Ordinaria'},{v:false,l:'Generalizada'}],sol:ord,why:ord?'Todos los arcos pesan 1.':'Tiene al menos un arco con peso mayor que 1.',hint:'Ordinaria: todos los arcos pesan 1.'});
- const imp=n.T.findIndex((_,j)=>n.P.some((_,i)=>n.pre[j][i]&&n.post[j][i]));
- I.push({kind:'single',q:'¿La red es pura?',opts:YN,sol:imp<0,why:imp<0?'Ninguna plaza es a la vez entrada y salida de la misma transición.':`<code>${tid(n,imp)}</code> tiene una plaza que es entrada y salida a la vez.`,hint:'Buscá plazas con una flecha de ida y otra de vuelta hacia la misma transición.'});
- const sc=subclases(n),scO=[{v:0,l:'Máquina de estados'},{v:1,l:'Grafo marcado'},{v:2,l:'Libre elección'},{v:3,l:'Simple'}];
- I.push({kind:'multi',q:'¿A qué subclases pertenece?',d:'Puede ser más de una, o ninguna.',opts:scO,sol:[sc.me&&0,sc.gm&&1,sc.rle&&2,sc.rs&&3].filter(x=>x!==false),
-  why:'Máquina de estados: cada transición tiene 1 entrada y 1 salida. Grafo marcado: cada plaza tiene 1 entrada y 1 salida. Libre elección: una plaza compartida es la única entrada de sus transiciones. Simple: cada transición tiene como máximo 1 entrada compartida.',
-  hint:'Máquina de estados mira las transiciones; grafo marcado mira las plazas; libre elección y simple miran las plazas compartidas.'});
- setM(n.m0,'Marcado inicial M0');
- for(const it of I)await ask(it);
+ const {n,an}=RUN;setM(n.m0,'Marcado inicial M0');
+ for(const it of propsItems(n,an))await ask(it);
 },
 async matriz(){
- const {n}=RUN;setM(n.m0,'Marcado inicial M0');
- await ask({kind:'matrix',q:'Completá C<sup>−</sup>, la incidencia previa: cuántas fichas saca cada transición de cada plaza.',sol:n.pre,why:'Las celdas en rojo no coinciden. Mirá las flechas que entran a cada transición y su peso.',hint:'Fila t, columna p: el peso de la flecha que va de p hacia t. Si no hay flecha, 0.'});
- await ask({kind:'matrix',q:'Completá C<sup>+</sup>, la incidencia posterior: cuántas fichas pone cada transición en cada plaza.',sol:n.post,why:'Las celdas en rojo no coinciden. Mirá las flechas que salen de cada transición y su peso.',hint:'Fila t, columna p: el peso de la flecha que va de t hacia p. Si no hay flecha, 0.'});
- await ask({kind:'matrix',signed:true,q:'Completá C = C<sup>+</sup> − C<sup>−</sup>.',sol:n.C,why:'Las celdas en rojo no coinciden. Restá casillero por casillero.',hint:'En cada celda: lo que pone menos lo que saca. Tocar la celda alterna 0, 1, −1, 2, −2.'});
- let tr=walk(n,ri(0,3));while(!enabled(n,tr.M).length)tr=walk(n,ri(0,2));
- const M=tr.M,e=enabled(n,M),j=pick(e);setM(M,'Marcado de trabajo');
- const ej=n.T.map((_,k)=>k===j?1:0);
- await ask({kind:'vector',q:`Calculá <code>e${j+1}·C<sup>−</sup></code>, con <code>e${j+1} = (${ej.join(' ')})</code>.`,labels:plab(n),sol:n.pre[j],pos:true,why:`Multiplicar por e${j+1} es copiar la fila ${tid(n,j)} de C<sup>−</sup>.`,hint:'El vector ej tiene un solo 1, así que el resultado es la fila j de la matriz.'});
- await ask({kind:'single',q:`Con <code>M = ${vs(M)}</code>, ¿se cumple <code>M ≥ e${j+1}·C<sup>−</sup></code>?`,opts:YN,sol:true,why:'Compará posición por posición: cada número de M tiene que ser mayor o igual.',hint:'Compará posición por posición.'});
- const dis=n.T.map((_,k)=>k).filter(k=>!enOne(n,M,k));
- if(dis.length){const k=pick(dis);const bad=n.pre[k].findIndex((v,i)=>M[i]<v);
-  await ask({kind:'single',q:`Con <code>M = ${vs(M)}</code> y <code>e${k+1}·C<sup>−</sup> = ${vs(n.pre[k])}</code>, ¿está habilitada <code>${tid(n,k)}</code>?`,opts:YN,sol:false,why:`Falla en ${pid(n,bad)}: ${M[bad]} no es mayor o igual que ${n.pre[k][bad]}.`,hint:'Alcanza con que una posición falle para que no esté habilitada.'});}
- const to=fire(n,M,j);
- await ask({kind:'vector',q:`Calculá <code>M' = M + e${j+1}·C</code>, con <code>M = ${vs(M)}</code>.`,labels:plab(n),sol:to,pos:true,why:`Sumá la fila ${tid(n,j)} de C, que es ${vs(n.C[j])}, a M.`,hint:'Sumá posición por posición la fila de C.'});
- await animFire(RUN.view,j,M,to);await wait(100);
- let s=walk(n,4);for(let g=0;g<20&&s.seq.length<2;g++)s=walk(n,4);
- setM(n.m0,'Marcado inicial M0');
- const f=n.T.map((_,k)=>s.seq.filter(x=>x===k).length),seqT=s.seq.map(x=>tid(n,x)).join(' ');
- const fC=n.P.map((_,i)=>f.reduce((a,v,k)=>a+v*n.C[k][i],0));
- await ask({kind:'vector',q:`Para la secuencia <code>${seqT}</code>, escribí el vector de disparo <code>f</code>.`,labels:tlab(n),sol:f,pos:true,why:'Cada posición de f cuenta cuántas veces aparece esa transición en la secuencia.',hint:'Contá las apariciones de cada transición.'});
- await ask({kind:'vector',q:`Calculá <code>f·C</code>, con <code>f = ${vs(f)}</code>.`,labels:plab(n),sol:fC,pos:false,why:'Tomá cada fila de C tantas veces como diga f, y sumá.',hint:'f·C es la suma de las filas de C, cada una repetida según f.'});
- await ask({kind:'vector',q:`Calculá <code>M0 + f·C</code>.`,d:`<code>M0 = ${vs(n.m0)}</code>, <code>f·C = ${vs(fC)}</code>`,labels:plab(n),sol:s.M,pos:true,why:'Sumá posición por posición.',hint:'Sumá las dos listas.'});
- setM(s.M,'Después de la secuencia');await wait(250);setM(n.m0,'Marcado inicial M0');
- const q2='Resolvé <code>M0 + f·C = M</code>. Si hay solución, escribí un <code>f</code> con valores enteros no negativos.';
- const tg=walk(n,ri(1,4)).M;const tgt=eq(tg,n.m0)?walk(n,1).M:tg;
- const okF=v=>v!=='none'&&Array.isArray(v)&&v.every(x=>x>=0&&x!==Infinity)&&n.P.every((_,i)=>v.reduce((a,c,k)=>a+c*n.C[k][i],n.m0[i])===tgt[i]);
- const solv=solveF(n,tgt);
- if(solv)await ask({kind:'vector',q:q2,d:`<code>M = ${vs(tgt)}</code>`,labels:tlab(n),pos:true,sol:solv,check:okF,show:v=>'por ejemplo '+cv(v),alt:{l:'No tiene solución',v:'none'},why:'Escribí una ecuación por plaza: fichas iniciales + suma de (f × columna de C) = objetivo.',hint:'Cada columna de C da una ecuación. Elegí 0 para las variables libres y despejá las otras.'});
- let nope=null;
- for(let g=0;g<40&&!nope;g++){const b=walk(n,ri(0,3)).M.slice(),i=ri(0,b.length-1);b[i]+=pick([1,-1,2]);if(b[i]>=0&&!solveF(n,b))nope=b;}
- if(nope){
-  const w=n.m0;void w;
-  await ask({kind:'vector',q:q2,d:`<code>M = ${vs(nope)}</code>`,labels:tlab(n),pos:true,sol:'none',check:v=>v==='none',show:()=>'que no tiene solución',alt:{l:'No tiene solución',v:'none'},why:'Las ecuaciones por plaza se contradicen: ningún f cumple todas a la vez.',hint:'Escribí las ecuaciones por plaza y buscá una contradicción, como 0 = 1.',
-   markErr(){},fillSol(){}});
- }
+ const {n}=RUN;
+ for(const st of matrizSteps(n)){setM(st.M,st.lbl);await ask(st.item);if(st.anim){await animFire(RUN.view,st.anim.j,st.anim.from,st.anim.to);await wait(100);}}
 }
 };
 function numOpts(c){const s=new Set([c]);while(s.size<4){const v=c+ri(-3,3);if(v>0)s.add(v);}return [...s].sort((a,b)=>a-b).map(v=>({v,l:String(v)}));}
@@ -1110,7 +1077,56 @@ const TEO=[
 ['Un grafo marcado puede representar:',['Paralelismo y sincronización, pero no conflicto','Conflicto, pero no paralelismo','Solo ciclos simples'],0,'Cada plaza tiene exactamente una entrada y una salida.'],
 ['¿Quién propuso las redes de Petri?',['Carl Adam Petri, en 1962','Holt y Commoner, en 1970','Alan Turing, en 1936'],0,'Surgieron en su trabajo doctoral "Kommunikation mit Automaten".'],
 ['Una desventaja de las redes de Petri generales es que:',['No pueden modelar ciertas situaciones de prioridad','No admiten concurrencia','No se pueden analizar'],0,'También se complica el análisis en sistemas grandes.'],
-['La principal desventaja del análisis por árbol es que:',['Puede volverse grande e inmanejable','No muestra los marcados','No sirve para redes limitadas'],0,'Por eso existen técnicas compactas como la máquina de testigos.']
+['La principal desventaja del análisis por árbol es que:',['Puede volverse grande e inmanejable','No muestra los marcados','No sirve para redes limitadas'],0,'Por eso existen técnicas compactas como la máquina de testigos.'],
+['¿Por qué el árbol de alcanzabilidad puede analizar una red con infinitos marcados usando un número finito de nodos?',['Porque corta las ramas en marcados frontera (muertos, duplicados o crecientes) y usa ω para las plazas que crecen sin límite','Porque solo dibuja los marcados que aparecen en los primeros disparos','Porque elimina las transiciones que se disparan más de una vez','Porque una red con infinitos marcados no se puede analizar'],0,'Al cortar en marcados muertos, duplicados o crecientes, y anotar ω, cada rama termina: el árbol de cualquier red es finito.'],
+['¿Cómo muestra la máquina de testigos que hay un bloqueo (deadlock)?',['Aparece un estado del que no sale ninguna flecha: ninguna transición puede dispararse','Aparece un estado con dos flechas de salida','Aparece una flecha que vuelve al estado inicial','Aparece un estado con el nombre de una plaza repetido'],0,'Un estado sin flechas de salida es un marcado muerto: el sistema queda bloqueado.'],
+['¿Por qué un marcado duplicado no se sigue expandiendo?',['Porque lo que sale de ese marcado ya se expande donde apareció por primera vez','Porque los duplicados siempre son marcados muertos','Porque la regla del disparo no permite repetir marcados','Porque así se evita usar ω'],0,'Expandirlo otra vez repetiría exactamente el mismo subárbol.'],
+['¿Qué significa ω en una posición de un marcado?',['Que esa plaza puede llegar a tener tantas fichas como se quiera','Que la plaza está vacía','Que la plaza tiene exactamente una ficha','Que el marcado está muerto'],0,'ω representa una cantidad de fichas que puede crecer sin límite.'],
+['Verdadero o falso: «Si en el árbol aparece ω, la red no es limitada».',['Verdadero, porque ω indica una plaza que puede crecer sin límite','Falso, porque ω solo indica que el árbol se cortó','Falso, porque ω también aparece en redes 1-limitadas'],0,'Si una plaza puede tener tantas fichas como se quiera, no hay un k que la limite.'],
+['Verdadero o falso: «Si todas las transiciones aparecen en el árbol, la red es viva».',['Falso, porque además tienen que poder volver a habilitarse desde cualquier marcado alcanzable','Verdadero, porque si aparecen es que se pueden disparar','Verdadero, porque el árbol muestra todo lo que puede pasar'],0,'Aparecer una vez no alcanza: una red puede disparar todo y después quedar bloqueada.'],
+['Verdadero o falso: «Una red con un marcado muerto alcanzable no puede ser viva».',['Verdadero, porque desde el marcado muerto ninguna transición vuelve a habilitarse','Falso, porque solo importa que M0 habilite alguna transición','Falso, porque los marcados muertos no cuentan para la vivacidad'],0,'Desde un marcado muerto ya no se puede habilitar nada.'],
+['Verdadero o falso: «Si M0 aparece como duplicado en el árbol, la red es cíclica».',['Falso, porque tiene que poder volverse a M0 desde todos los marcados alcanzables','Verdadero, porque alcanza con volver una vez a M0','Verdadero, porque los duplicados siempre son M0'],0,'Volver desde un marcado no garantiza volver desde todos.'],
+['Verdadero o falso: «Toda red estrictamente conservativa es limitada».',['Verdadero, porque si el total de fichas no cambia, ninguna plaza puede superar ese total','Falso, porque puede aparecer ω','Falso, porque la conservación no tiene relación con la limitación'],0,'Con un total fijo de fichas, ninguna plaza puede tener más que ese total.'],
+['Verdadero o falso: «Toda red limitada es conservativa».',['Falso, porque el total puede cambiar sin crecer sin límite, como en la impresora: 3, 2, 3, 2, 3','Verdadero, porque si no crece sin límite, se conserva','Verdadero, porque limitada y conservativa son sinónimos'],0,'Limitada pone un tope; conservativa exige que el total no cambie.'],
+['Verdadero o falso: «Si una plaza tiene dos transiciones de salida, hay conflicto efectivo».',['Falso, porque eso es conflicto estructural: el efectivo exige un marcado que habilite a las dos y que disparar una deshabilite a la otra','Verdadero, porque dos salidas siempre compiten','Verdadero, porque estructural y efectivo son lo mismo'],0,'El conflicto efectivo depende del marcado.'],
+['Verdadero o falso: «Dos transiciones habilitadas a la vez siempre están en conflicto».',['Falso, porque si no comparten entradas son concurrentes','Verdadero, porque solo se puede disparar una por vez','Verdadero, porque usan el mismo marcado'],0,'Sin entradas compartidas, disparar una no afecta a la otra.'],
+['¿Qué diferencia hay entre concurrencia y conflicto?',['En la concurrencia las transiciones no se disputan fichas; en el conflicto, disparar una le quita la ficha a la otra','La concurrencia necesita arcos con peso','El conflicto solo existe en redes no limitadas','Son dos nombres de lo mismo'],0,'Concurrencia: pueden ocurrir ambas en cualquier orden. Conflicto: ocurre una u otra.'],
+['¿Por qué la matriz C sola no describe toda la red?',['Porque si una plaza es entrada y salida de la misma transición, en C se cancela y da 0','Porque C no incluye las transiciones fuente','Porque C solo tiene números positivos','Porque C cambia con el marcado'],0,'Por eso la habilitación se controla con C<sup>−</sup>.'],
+['¿Por qué para saber si una transición está habilitada se usa C<sup>−</sup> y no C?',['Porque C<sup>−</sup> dice exactamente cuántas fichas pide cada entrada, y C puede ocultarlo','Porque C<sup>−</sup> tiene menos filas','Porque C solo se usa en el árbol','Porque C<sup>−</sup> incluye el marcado inicial'],0,'La condición es M ≥ ej·C<sup>−</sup>.'],
+['Si M0 + f·C da un número negativo en alguna plaza, ¿qué concluís?',['Que esa secuencia no se puede disparar','Que el marcado tiene ω','Que la red no es limitada','Que el negativo se toma como 0'],0,'Ninguna plaza puede quedar con fichas negativas.'],
+['Verdadero o falso: «Si M0 + f·C no da ningún negativo, la secuencia se puede disparar».',['Falso, porque además cada transición tiene que estar habilitada en el orden dado','Verdadero, porque la ecuación lo garantiza','Verdadero, porque f indica el orden'],0,'f no guarda el orden: la ecuación es necesaria, no suficiente.'],
+['¿Qué indica la componente i del vector de disparo f(σ)?',['Cuántas veces se dispara la transición ti en la secuencia','En qué momento se dispara ti','Cuántas fichas tiene pi','Si ti está habilitada'],0,'f cuenta disparos, no dice nada del orden.'],
+['¿Qué tamaño tiene la matriz C en una red con n plazas y m transiciones?',['m × n: una fila por transición y una columna por plaza','n × n','n × m, con una fila por plaza','m × m'],0,'Así se define en el curso: C(j,i) corresponde a la transición j y la plaza i.'],
+['¿Qué representa el vector ej?',['A la transición tj: tiene un 1 en la posición j y 0 en el resto','Al marcado de la plaza j','Las fichas que pone tj','El marcado inicial'],0,'Multiplicarlo por una matriz es tomar la fila j.'],
+['¿Cuándo está habilitada una transición?',['Cuando cada plaza de entrada tiene al menos tantas fichas como el peso de su arco','Cuando todas sus plazas de salida están vacías','Cuando alguna de sus entradas tiene fichas','Cuando es la única transición de la red'],0,'Las salidas no importan para habilitar.'],
+['¿Qué pasa al disparar una transición?',['Se saca de cada entrada el peso de su arco y se pone en cada salida el peso del suyo','Las fichas viajan de la entrada a la salida, siempre la misma cantidad','Se saca una ficha de cada plaza de la red','Se duplican las fichas de las entradas'],0,'M\'(p) = M(p) + O(t,p) − I(p,t).'],
+['Verdadero o falso: «Al disparar una transición, la cantidad total de fichas siempre se mantiene».',['Falso, porque depende de cuántas entradas y salidas tiene y de sus pesos','Verdadero, porque las fichas solo se mueven','Verdadero, porque es la regla del disparo'],0,'Por ejemplo, t1 en la impresora saca 2 fichas y pone 1.'],
+['Un marcado Mj es inmediatamente alcanzable desde Mi cuando:',['Se llega con un solo disparo','Se llega con cualquier secuencia','Tienen la misma cantidad de fichas','Es un duplicado de Mi'],0,'Con una secuencia de cualquier largo, es simplemente alcanzable.'],
+['¿Qué es el conjunto de alcanzabilidad R(M0)?',['Todos los marcados a los que se puede llegar desde M0','Los marcados muertos','Las transiciones habilitadas en M0','Las filas de C'],0,'El árbol de alcanzabilidad lo representa.'],
+['Una red es k-limitada cuando:',['Ninguna plaza supera k fichas en ningún marcado alcanzable','Tiene k plazas','M0 tiene k fichas','Tiene k transiciones'],0,'Se mira el máximo en todos los marcados alcanzables.'],
+['¿Qué es una red 1-limitada?',['Una red en la que cada plaza tiene 0 o 1 ficha en todos los marcados alcanzables','Una red sin conflictos','Una red viva','Una red con todos los arcos de peso 1'],0,'También se la llama binaria o segura.'],
+['¿Cuándo es viva una transición?',['Cuando, desde cualquier marcado alcanzable, se puede llegar a uno que la habilite','Cuando está habilitada en M0','Cuando se dispara una sola vez','Cuando no tiene entradas'],0,'Una red es viva si todas sus transiciones lo son.'],
+['¿Cuándo es cíclica una red marcada?',['Cuando desde cualquier marcado sucesor de M0 existe una secuencia que vuelve a M0','Cuando su dibujo tiene un ciclo','Cuando es viva','Cuando M0 aparece repetido en el árbol'],0,'Es un comportamiento globalmente cíclico.'],
+['¿Qué significa conservación respecto de un vector de pesos w?',['Que la suma de las fichas de cada plaza multiplicadas por su peso no cambia al disparar','Que todos los arcos pesan lo mismo','Que el total de fichas no cambia','Que w es el marcado inicial'],0,'La conservación estricta es el caso en que todos los pesos valen 1.'],
+['¿Cuándo están dos plazas en exclusión mutua?',['Cuando nunca están marcadas a la vez en los marcados alcanzables desde M0','Cuando comparten una transición de salida','Cuando tienen la misma cantidad de fichas','Cuando una es entrada y la otra salida de la misma transición'],0,'Es lo que se busca, por ejemplo, con una zona crítica.'],
+['¿Cuándo es mutuamente exclusivo un conjunto de transiciones?',['Cuando disparar cualquiera de ellas deshabilita a todas las demás','Cuando nunca están habilitadas','Cuando tienen las mismas salidas','Cuando se disparan siempre juntas'],0,'Como Ana y Beto con una sola porción de torta.'],
+['¿Qué cumple una red de libre elección?',['Si una plaza alimenta a varias transiciones, es la única entrada de todas ellas','Cada transición tiene una entrada y una salida','No tiene conflictos','Cada plaza tiene una entrada y una salida'],0,'Así, las transiciones en conflicto están todas habilitadas o ninguna.'],
+['¿Qué cumple una red simple?',['Cada transición tiene como máximo una plaza de entrada compartida con otra transición','No tiene arcos con peso','Tiene una sola transición','Ninguna plaza tiene salida'],0,'Es más general que la de libre elección.'],
+['¿Por qué una máquina de estados no puede representar paralelismo?',['Porque cada transición tiene una sola salida, así que nunca crea dos fichas que avancen a la vez','Porque no admite ciclos','Porque no tiene plazas','Porque todas sus transiciones están en conflicto'],0,'Sí puede representar conflictos o alternativas.'],
+['¿Por qué un grafo marcado no puede representar conflicto?',['Porque cada plaza tiene una sola transición de salida, así que ninguna ficha se disputa','Porque no tiene arcos','Porque siempre es viva','Porque no admite fichas'],0,'Sí puede representar paralelismo y sincronización.'],
+['¿Qué se dibuja en la máquina de testigos?',['Los estados, escritos con los nombres de las plazas marcadas, y las transiciones entre ellos','Solo los marcados muertos','Las matrices de incidencia','El árbol sin las flechas'],0,'Es una versión más compacta del árbol.'],
+['En la máquina de testigos, ¿cómo se escribe el marcado (2 0 1)?',['p1 p1 p3','p1 p3','2 p1 p3','p2 p1'],0,'El nombre de una plaza se repite tantas veces como fichas tiene.'],
+['En la máquina de testigos, ¿qué pasa con un marcado que en el árbol aparece duplicado?',['Se dibuja una sola vez, y la flecha vuelve al estado que ya existe','Se dibuja dos veces','Se elimina junto con sus flechas','Se marca con ω'],0,'Por eso la máquina es más compacta que el árbol.'],
+['Verdadero o falso: «Una red con una transición fuente que tiene salidas no es limitada».',['Verdadero, porque la fuente siempre está habilitada y puede agregar fichas sin fin','Falso, porque las fuentes no agregan fichas','Falso, porque solo depende de M0'],0,'Como en la cola del banco.'],
+['En el árbol, ¿cuándo se pone ω en lugar de seguir?',['Cuando el marcado nuevo tiene lo mismo o más que un antepasado de su rama, con alguna plaza mayor, y habilita las mismas transiciones','Cuando el marcado ya apareció','Cuando no habilita ninguna transición','Cuando tiene más de dos fichas'],0,'Ese ciclo se puede repetir y la plaza crece sin límite.'],
+['¿Por qué conviene armar el árbol por niveles?',['Para no perder ramas y saber qué marcado apareció primero al marcar duplicados','Porque lo exige la definición','Porque así no aparece ω','Porque reduce la cantidad de marcados'],0,'El resultado es el mismo, pero es más difícil equivocarse.'],
+['¿Qué es un marcado frontera?',['Una hoja del árbol: un marcado muerto, duplicado o que se marca con ω','El último marcado de la primera rama','El marcado inicial','Un marcado con ω en todas las plazas'],0,'En un marcado frontera se deja de expandir.'],
+['¿Para qué se usan las redes de Petri temporizadas?',['Para analizar cuantitativamente las prestaciones del sistema','Para eliminar los conflictos','Para reemplazar el árbol','Para modelar solo redes no limitadas'],0,'Son una de las extensiones del modelo original.'],
+['En programación concurrente, ¿qué representan las plazas?',['Las condiciones necesarias para que un proceso se ejecute','Los procesos','Los mensajes entre procesos','Los errores del programa'],0,'Las transiciones representan los procesos.'],
+['En programación concurrente, ¿qué indica un testigo en una plaza?',['Que se verifica la condición que representa esa plaza','Que el proceso terminó con error','Que la transición está en conflicto','Que la plaza está bloqueada'],0,'Sin testigo, la condición no se cumple.'],
+['¿Cuál es una ventaja de las redes de Petri?',['Permiten modelar procesos concurrentes y recursos compartidos','Modelan cualquier prioridad sin extensiones','Su análisis no crece con el tamaño del sistema','No necesitan marcado inicial'],0,'Además son gráficas y se pueden construir bottom-up o top-down.'],
+['¿Qué es una red generalizada?',['Una red cuyos arcos pueden tener cualquier peso entero mayor o igual que cero','Una red cuyos arcos pesan 0 o 1','Una red sin plazas de salida','Una red con arcos entre dos plazas'],0,'Si todos los pesos son 0 o 1, es ordinaria.'],
+['Verdadero o falso: «En una red que no es pura, la matriz C alcanza para saber si una transición está habilitada».',['Falso, porque una plaza que es entrada y salida a la vez da 0 en C, aunque haga falta','Verdadero, porque C tiene toda la información','Verdadero, porque el signo negativo indica la entrada'],0,'La enzima es un ejemplo: hace falta, pero en C da 0.']
 ];
 async function teoria(){
  exitRun();
@@ -1119,10 +1135,7 @@ async function teoria(){
  RUN={n,an:null,mode:'teoria',list:['teoria'],st:'teoria',pts:0,streak:0,total:0,first:0,t0:Date.now(),again:teoria};
  renderPlay();RUN.title='Teoría';$('.play').classList.add('solo');$('.car .ancho b').textContent='Definiciones';
  NOTA.teoria='Elegí la opción correcta.';
- for(const [q,o,c,w] of shuffle(TEO).slice(0,12)){
-  const opts=shuffle(o.map((l,i)=>({v:i,l})));
-  await ask({kind:'single',q,opts,sol:c,why:w,ok:w});
- }
+ for(const i of shuffle(TEO.map((_,i)=>i)).slice(0,12))await ask(teoItem(i));
  finish();
 }
 function finish(){
@@ -1150,20 +1163,20 @@ function finish(){
  $('#menu').onclick=()=>ir('inicio');$('#sec').onclick=()=>ir('practicar');
  if($('#misma'))$('#misma').onclick=()=>start(n,mode);
  document.querySelectorAll('[data-rep]').forEach(b=>b.onclick=()=>lesson(LECS.findIndex(l=>l.id===b.dataset.rep)));
- $('#otra').onclick=()=>{if(mode==='nivel')start(mkNet(NETS.find(d=>d.id===n.id)),'nivel');else if(mode==='teoria')teoria();else if(mode==='examen')start(randNet(8),'examen');else start(randNet(),'azar');};
+ $('#otra').onclick=()=>{if(mode==='nivel')start(mkNet(NETS.find(d=>d.id===n.id)),'nivel');else if(mode==='teoria')teoria();else if(mode==='examen')start(randNet(9,{bounded:true}),'examen');else start(randNet(),'azar');};
 }
 const Q={
- en:M=>n=>({kind:'multi',q:`Con ${cv(M)}, ¿qué transiciones están habilitadas?`,d:'Si no hay ninguna, no marques nada.',opts:tOpts(n),sol:enabled(n,M),why:whyEn(n,M),hint:HINT_EN}),
- fire:(j,M)=>n=>({kind:'vector',q:`Disparás <code>${tid(n,j)}</code> desde ${cv(M)}. ¿Qué marcado queda?`,labels:plab(n),sol:fire(n,M,j),why:whyFire(n,M,j),hint:HINT_FIRE}),
+ en:M=>n=>habItem(n,M),
+ fire:(j,M)=>n=>dispItem(n,M,j),
  one:(q,labels,idx,why,hint)=>()=>({kind:'single',q,opts:labels.map((l,i)=>({v:i,l})),sol:idx,why,hint,ok:why}),
  yn:(q,sol,why,hint)=>()=>({kind:'single',q,opts:YN,sol,why,hint,ok:why}),
  pl:(q,sol,why,hint)=>n=>({kind:'multi',q,d:'Si no hay ninguna, no marques nada.',opts:pOpts(n),sol,why,hint}),
  tr:(q,sol,why,hint)=>n=>({kind:'multi',q,d:'Si no hay ninguna, no marques nada.',opts:tOpts(n),sol,why,hint}),
  vec:(q,sol,why,hint,lab)=>n=>({kind:'vector',q,labels:lab==='t'?tlab(n):plab(n),sol,why,hint}),
- cut:(M,kind,why)=>()=>({kind:'single',q:`Te salió ${cv(M)}. ¿Qué hacés?`,opts:[{v:'new',l:'Sigo expandiendo'},{v:'dup',l:'Corto: duplicado'},{v:'dead',l:'Corto: muerto'},{v:'omega',l:'Pongo ω'}],sol:kind,why,ok:why}),
+ cut:(M,kind,why)=>()=>({kind:'single',q:`Te salió ${cv(M)}. ¿Qué hacés?`,opts:[{v:'new',l:'Sigo expandiendo'},{v:'dup',l:'Corto: duplicado'},{v:'dead',l:'Corto: muerto'},{v:'omega',l:'Pongo ω'}],sol:kind,why,ok:why,tipo:'corte'}),
  bag:(j,M)=>n=>{const nm=m=>{const a=[];m.forEach((v,i)=>{for(let k=0;k<v;k++)a.push(i);});return a;},to=nm(fire(n,M,j)),o=nm(M).map(i=>pid(n,i)).join(' ');
-  return {kind:'bag',q:`Desde <code>${o}</code> se dispara <code>${tid(n,j)}</code>. ¿A qué estado llegás?`,d:'Tocá las plazas para escribir el estado. El orden no importa.',sol:to,check:v=>eq(v,to),why:whyFire(n,M,j),hint:`En números, el marcado de salida es ${cv(M)}.`};},
- mat:(f,q,why,hint,signed)=>n=>({kind:'matrix',signed:!!signed,q,sol:n[f],why,hint}),
+  return {kind:'bag',q:`Desde <code>${o}</code> se dispara <code>${tid(n,j)}</code>. ¿A qué estado llegás?`,d:'Tocá las plazas para escribir el estado. El orden no importa.',sol:to,check:v=>eq(v,to),why:whyFire(n,M,j),hint:`En números, el marcado de salida es ${cv(M)}.`,tipo:'mt'};},
+ mat:(f,q,why,hint,signed)=>n=>({kind:'matrix',signed:!!signed,q,sol:n[f],why,hint,tipo:{pre:'cmenos',post:'cmas',C:'c'}[f]}),
  nums:(q,sol,why,hint)=>()=>({kind:'single',q,opts:numOpts(sol),sol,why,hint,show:v=>'<code>'+v+'</code>',ok:why})
 };
 const mx=(n,rows)=>`<table class="mini"><tr><th></th>${n.P.map(p=>`<th>${p.id}</th>`).join('')}</tr>${rows.map((r,j)=>`<tr><th>${n.T[j].id}</th>${r.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')}</table>`;
@@ -1350,7 +1363,9 @@ const CURSO=[
  {h:'Cómo se hace f·C',net:'impresora',M:IMP,t:`<p>Tomás cada fila de C tantas veces como diga f, y sumás.</p><p><code>2·(−1 1 −1 0) + 1·(0 −1 1 1) = (−2 1 −1 1)</code></p><p>Después: <code>(2 0 1 0) + (−2 1 −1 1) = (0 1 0 1)</code>.</p><p>Es el mismo <code>0101</code> que da el árbol.</p>`},
  {net:'impresora',M:IMP,ask:Q.vec('Para la secuencia t1 t2, ¿cuánto vale f?',[1,1],'t1 aparece una vez y t2 una vez.','Contá las apariciones.','t')},
  {net:'impresora',M:IMP,ask:Q.vec('Con f = (2 2), calculá M0 + f·C.',[0,0,1,2],'f·C = (−2 0 0 2). Sumado a (2 0 1 0) da (0 0 1 2).','Primero calculá f·C.')},
- {h:'f no guarda el orden',net:'impresora',M:IMP,t:`<p><code>f</code> dice cuántas veces, pero no en qué orden. Antes de usar la fórmula, comprobá que cada disparo esté habilitado cuando le toca.</p><p>Por ejemplo, <code>t2 t1 t1</code> también tiene <code>f = (2 1)</code>, pero no se puede hacer: <code>t2</code> no está habilitada en M0.</p>`}
+ {h:'f no guarda el orden',net:'impresora',M:IMP,t:`<p><code>f</code> dice cuántas veces, pero no en qué orden. Antes de usar la fórmula, comprobá que cada disparo esté habilitado cuando le toca.</p><p>Por ejemplo, <code>t2 t1 t1</code> también tiene <code>f = (2 1)</code>, pero no se puede hacer: <code>t2</code> no está habilitada en M0.</p>`},
+ {h:'Si da negativo',net:'impresora',M:IMP,t:`<p>Si <code>M0 + f·C</code> da un número negativo en alguna plaza, <b>la secuencia no se puede disparar</b>: ninguna plaza puede quedar con fichas negativas.</p><p>Ejemplo: <code>t2 t2</code> tiene <code>f = (0 2)</code> y da <code>(2 −2 3 2)</code>. Negativo en p2: imposible.</p><p>Que no dé negativo tampoco alcanza: <code>t2 t1</code> da <code>(1 0 1 1)</code>, pero t2 no está habilitada en M0. Siempre revisá el orden.</p>`},
+ {net:'impresora',M:IMP,ask:Q.one('Para una secuencia, M0 + f·C da (2 −2 3 2). ¿Qué concluís?',['Que esa secuencia no se puede disparar','Que el marcado alcanzado es (2 0 3 2)','Que la red no es limitada','Que hay que cambiar el orden y listo'],0,'Un número negativo en M0 + f·C prueba que la secuencia no se puede disparar.')}
 ]},
 {id:'f6',t:'¿Se puede llegar a un marcado?',pr:{net:'cinco',st:'matriz'},s:[
  {h:'La pregunta al revés',net:'impresora',M:IMP,t:`<p>Te dan un marcado M y te preguntan si se puede llegar. Planteás <code>f = (a b)</code> y resolvés <code>M0 + f·C = M</code>.</p><p>Cada <b>columna</b> de C da una ecuación:</p><ul><li>p1: <code>2 − a</code></li><li>p2: <code>a − b</code></li><li>p3: <code>1 − a + b</code></li><li>p4: <code>b</code></li></ul>`},
@@ -1362,11 +1377,25 @@ const CURSO=[
 ]}
 ]},
 {b:'Listo para el parcial',l:[
+{id:'x0',t:'Un parcial resuelto, paso a paso',pr:{papel:'r1'},s:[
+ {h:'La consigna',net:'r1',M:[1,0,0,0,0],t:`<p>Este es el ejercicio práctico de un parcial real. Para la red R1, pide:</p><ol type="a"><li>Obtener su árbol de alcanzabilidad.</li><li>A partir del árbol, obtener la máquina de testigos.</li><li>Obtener las matrices C<sup>−</sup>, C<sup>+</sup> y C.</li><li>Con las matrices, obtener los marcados de dos secuencias de disparo.</li><li>Determinar sus propiedades y justificar.</li></ol>`},
+ {h:'Primero, traducí los nombres',net:'r1',t:`<p>En el enunciado, las plazas se llaman 1 a 5 y las transiciones a, b, c, d, e. Acá usamos siempre p y t, así que traducí antes de empezar:</p><table class="mini"><tr><th>Enunciado</th><td>a</td><td>b</td><td>c</td><td>d</td><td>e</td></tr><tr><th>Acá</th><td>t1</td><td>t2</td><td>t3</td><td>t4</td><td>t5</td></tr></table><p>Las plazas 1 a 5 son p1 a p5. Después armá la tabla de siempre:</p><table class="mini"><tr><th></th><th>saca</th><th>pone</th></tr><tr><th>t1</th><td>p1</td><td>p2 p3</td></tr><tr><th>t2</th><td>p2</td><td>p4</td></tr><tr><th>t3</th><td>p3</td><td>p5</td></tr><tr><th>t4</th><td>p4 p5</td><td>p1</td></tr><tr><th>t5</th><td>p5</td><td>p3</td></tr></table>`},
+ {h:'a) El árbol',net:'r1',tree:9,t:`<ul><li><code>10000</code> habilita t1 y da <code>01100</code>.</li><li><code>01100</code> habilita t2 y t3: dan <code>00110</code> y <code>01001</code>.</li><li><code>00110</code> habilita solo t3, que da <code>00011</code>.</li><li><code>01001</code> habilita t2 y t5: dan <code>00011</code> y <code>01100</code>, los dos duplicados.</li><li><code>00011</code> habilita t4 y t5: dan <code>10000</code> y <code>00110</code>, también duplicados.</li></ul><p>Son <b>5 marcados distintos</b>, ninguno muerto y sin ω.</p>`},
+ {net:'r1',M:[0,1,0,0,1],tree:9,ask:Q.en([0,1,0,0,1])},
+ {h:'b) La máquina de testigos',net:'r1',mt:9,t:`<p>Un óvalo por cada marcado distinto: <code>p1</code>, <code>p2 p3</code>, <code>p3 p4</code>, <code>p2 p5</code> y <code>p4 p5</code>.</p><p>Una flecha por cada flecha del árbol: son <b>8</b>. Los duplicados del árbol son las flechas que vuelven a un óvalo que ya existe.</p>`},
+ {net:'r1',M:[0,0,0,1,1],mt:9,ask:Q.bag(4,[0,0,0,1,1])},
+ {h:'c) Las matrices',net:'r1',t:n=>`<p>C<sup>−</sup>:</p>${mx(n,n.pre)}<p>C<sup>+</sup>:</p>${mx(n,n.post)}<p>C = C<sup>+</sup> − C<sup>−</sup>:</p>${mx(n,n.C)}`},
+ {h:'d) Primera secuencia: a-b-c',net:'r1',M:[1,0,0,0,0],t:`<p>Traducida es <code>t1 t2 t3</code>, así que <code>f = (1 1 1 0 0)</code>.</p><p><code>f·C = (−1 0 0 1 1)</code> y <code>M0 + f·C = (0 0 0 1 1)</code>.</p><p>Revisá el orden: t1 en <code>10000</code>, t2 en <code>01100</code> y t3 en <code>00110</code> están habilitadas. El marcado es <code>(0 0 0 1 1)</code>, que está en el árbol.</p>`},
+ {h:'d) Segunda secuencia: la trampa',net:'r1',M:[1,0,0,0,0],t:`<p><code>a-b-c-d-a-b-c-e-a-b</code> se traduce a <code>t1 t2 t3 t4 t1 t2 t3 t5 t1 t2</code>, así que <code>f = (3 3 2 1 1)</code>.</p><p><code>f·C = (−2 0 2 2 0)</code> y <code>M0 + f·C = (−1 0 2 2 0)</code>.</p><p>Da <b>−1 en p1</b>, y una plaza no puede tener fichas negativas: <b>la secuencia no se puede disparar</b>. Recorriéndola en orden, falla en el disparo 9: después de t5 el marcado es <code>00110</code>, y t1 necesita una ficha en p1.</p>`},
+ {net:'r1',ask:Q.one('Si M0 + f·C da (−1 0 2 2 0), ¿qué respondés?',['La secuencia no se puede disparar: ninguna plaza puede quedar con fichas negativas','El marcado es (0 0 2 2 0): los negativos se toman como 0','Se puede disparar, pero la red no es limitada','Hay que reordenar la secuencia hasta que funcione'],0,'Un negativo en M0 + f·C prueba que la secuencia no se puede disparar.')},
+ {h:'e) Propiedades, con su justificación',net:'r1',mt:9,t:`<ul><li><b>1-limitada:</b> ninguna plaza tiene más de 1 ficha en los 5 marcados.</li><li><b>Sin bloqueo:</b> todos los marcados habilitan alguna transición.</li><li><b>Viva:</b> desde cualquier marcado se vuelve a M0, y desde ahí se pueden disparar todas.</li><li><b>Cíclica:</b> todo marcado llega a <code>00011</code>, y t4 vuelve a M0.</li><li><b>No es conservativa estricta:</b> los totales son 1, 2, 2, 2, 2. Con pesos <code>w = (2 1 1 1 1)</code>, sí.</li><li><b>Conflicto:</b> estructural en p5 (t4 y t5), y efectivo en <code>00011</code>.</li><li><b>Exclusión mutua:</b> p2 con p4, y p3 con p5.</li><li><b>Ordinaria y pura.</b> Es simple, pero no de libre elección: t4 usa p5 y también p4.</li></ul>`},
+ {net:'r1',mt:9,ask:Q.one('¿Por qué R1 es viva?',['Porque desde cualquier marcado alcanzable se puede volver a habilitar cada transición','Porque todas las transiciones aparecen al menos una vez en el árbol','Porque M0 habilita una transición','Porque es 1-limitada'],0,'Que aparezcan en el árbol no alcanza: tienen que poder volver a habilitarse desde cualquier marcado.')}
+]},
 {id:'x1',t:'Cómo resolver un ejercicio completo',pr:{ex:1},s:[
  {h:'El orden',net:'cinco',M:[1,0,0,0,0],t:`<ol><li>Hacé la tabla de qué saca y qué pone cada transición.</li><li>Armá el árbol por niveles, marcando duplicados, muertos y ω.</li><li>Pasalo a máquina de testigos, si la red es limitada.</li><li>Respondé las propiedades mirando el árbol o la máquina.</li><li>Armá C<sup>−</sup>, C<sup>+</sup> y C.</li><li>Calculá lo que pidan con matrices y comparalo con un marcado del árbol.</li></ol>`},
  {h:'Propiedades de esta red',net:'cinco',mt:9,t:`<ul><li><b>Limitación:</b> 1-limitada, sin ω.</li><li><b>Viva:</b> sí, no hay muertos y se puede disparar todo.</li><li><b>Cíclica:</b> sí.</li><li><b>Conservación estricta:</b> no, los totales son 1, 2, 2, 2, 2.</li><li><b>Con pesos:</b> sí, con <code>w = (2 1 1 1 1)</code>.</li><li><b>Conflicto estructural:</b> en p4.</li><li><b>Conflicto efectivo:</b> t4 y t5 en <code>00011</code>.</li><li><b>Exclusión mutua:</b> p2 con p4, y p3 con p5.</li></ul>`},
  {h:'Matrices de esta red',net:'cinco',t:n=>`<p>Matriz de incidencia C:</p>${mx(n,n.C)}<p>Control final: <code>t1 t2 t3</code> tiene <code>f = (1 1 1 0 0)</code>, y <code>M0 + f·C = (0 0 0 1 1)</code>, que está en el árbol.</p>`},
- {h:'Errores comunes',t:`<ul><li>Sacar las ramas de un marcado encadenadas, en vez de desde el mismo marcado.</li><li>Olvidarse el peso de una flecha.</li><li>Cortar por duplicado solo si está arriba en la misma rama: vale en cualquier parte del árbol.</li><li>Poner ω sin comprobar que habilita lo mismo.</li><li>Invertir filas y columnas de las matrices.</li><li>Confundir conflicto con concurrencia.</li><li>Creer que tener solución en la ecuación ya prueba que se puede llegar.</li></ul>`}
+ {h:'Errores comunes',t:`<ul><li>Sacar las ramas de un marcado encadenadas, en vez de desde el mismo marcado.</li><li>Olvidarse el peso de una flecha.</li><li>Cortar por duplicado solo si está arriba en la misma rama: vale en cualquier parte del árbol.</li><li>Poner ω sin comprobar que habilita lo mismo.</li><li>Invertir filas y columnas de las matrices.</li><li>Confundir conflicto con concurrencia.</li><li>Creer que tener solución en la ecuación ya prueba que se puede llegar.</li><li>Dar un marcado para una secuencia sin revisar si M0 + f·C da negativo.</li><li>Dar una propiedad sin justificarla.</li></ul>`}
 ]},
 {id:'x2',t:'La teoría que puede caer',pr:{teo:1},s:[
  {h:'Origen',t:`<p>Las redes de Petri surgen en 1962 con el trabajo doctoral de <b>Carl Adam Petri</b>, "Kommunikation mit Automaten". En 1970, Holt y Commoner, en "Events and Conditions", muestran cómo aplicarlas a sistemas con componentes concurrentes.</p><p>Son representaciones gráficas para modelar sistemas con flujo de información, y permiten representar concurrencia y hacer modelado matemático.</p>`},
@@ -1453,12 +1482,383 @@ function lessonEnd(i){
  CUR=null;EPOCH++;RUN=null;window.scrollTo(0,0);
  $('#app').innerHTML=`<section class="fin"><h2>Lección terminada</h2><p>Terminaste <b>${L.t}</b>.</p>
  ${R.total?`<dl><dt>Aciertos a la primera</dt><dd>${R.first} de ${R.total}</dd><dt>Puntos</dt><dd>${R.pts}</dd></dl>`:''}
- <div class="acc">${nx?`<button class="pri" id="nx">Seguir con: ${nx.t}</button>`:''}${L.pr?`<button class="${nx?'sec':'pri'}" id="pr">${L.pr.ex?'Hacer un simulacro':L.pr.teo?'Practicar teoría':'Practicar lo que aprendiste'}</button>`:''}</div>
+ <div class="acc">${nx?`<button class="pri" id="nx">Seguir con: ${nx.t}</button>`:''}${L.pr?`<button class="${nx?'sec':'pri'}" id="pr">${L.pr.papel?'Resolverla como en el parcial':L.pr.ex?'Hacer un simulacro':L.pr.teo?'Practicar teoría':'Practicar lo que aprendiste'}</button>`:''}</div>
  <div class="acc vuelta"><button class="sec" id="rep">Repetir la lección</button><button class="sec" id="sec">Volver al Curso</button><button class="sec" id="menu">Ir al inicio</button></div></section>`;
  $('#menu').onclick=()=>ir('inicio');$('#sec').onclick=()=>ir('curso');$('#rep').onclick=()=>lesson(i);
  if(nx)$('#nx').onclick=()=>lesson(i+1);
- if(L.pr)$('#pr').onclick=()=>{if(L.pr.ex)start(randNet(8),'examen');else if(L.pr.teo)teoria();else{FOCO=L.pr.st;start(mkNet(NETS.find(d=>d.id===L.pr.net)),'nivel');}};
+ if(L.pr)$('#pr').onclick=()=>{if(L.pr.papel)papel(mkNet(NETS.find(d=>d.id===L.pr.papel)));else if(L.pr.ex)start(randNet(9,{bounded:true}),'examen');else if(L.pr.teo)teoria();else{FOCO=L.pr.st;start(mkNet(NETS.find(d=>d.id===L.pr.net)),'nivel');}};
 }
+
+function porque(tipo,d,ok,contra,malas){
+ const opts=shuffle([{v:0,l:ok},{v:1,l:contra},...shuffle(malas).slice(0,2).map((l,i)=>({v:i+2,l}))]);
+ return {kind:'single',q:'¿Por qué?',d,opts,sol:0,tipo,pq:1};
+}
+function cutItem(n,c){
+ const why={dup:`${cv(c.raw)} ya está en el árbol: es un duplicado y la rama se corta.`,
+  dead:`Con ${cv(c.raw)} ninguna transición queda habilitada: es un marcado muerto.`,
+  new:`Es un marcado nuevo y habilita ${enabled(n,c.raw).map(k=>tid(n,k)).join(', ')}: hay que seguir.`,
+  omega:c.anc?`Arriba en su rama está ${cv(c.anc.m)}: ${cv(c.raw)} tiene lo mismo o más en todas las plazas y habilita las mismas transiciones.`:''}[c.kind];
+ return {kind:'single',q:`¿Qué hacés con ${cv(c.raw)}?`,opts:[{v:'new',l:'Sigo expandiendo'},{v:'dup',l:'Corto: duplicado'},{v:'dead',l:'Corto: muerto'},{v:'omega',l:'Pongo ω'}],sol:c.kind,why,tipo:'corte',
+  hint:'Revisá en este orden: ¿ya apareció en el árbol? ¿Tiene más fichas que un antepasado de su rama y habilita lo mismo? ¿No habilita nada? Si no es ninguno, seguís.'};
+}
+function omegaItem(n,c){
+ return {kind:'multi',q:`¿Qué plazas pasan a ω?`,d:`Compará ${cv(c.raw)} con su antepasado ${cv(c.anc.m)}.`,opts:pOpts(n),sol:c.omega,tipo:'omega',why:'Pasan a ω las plazas donde el marcado nuevo tiene más fichas que su antepasado.',hint:'Buscá las plazas donde el número creció respecto del antepasado.',
+  ok:c.dupAfter?`Queda ${cv(c.m)}, que ya estaba en el árbol: se corta como duplicado.`:''};
+}
+const habItem=(n,M)=>({kind:'multi',q:`Con ${cv(M)}, ¿qué transiciones están habilitadas?`,d:'Si no hay ninguna, no marques nada.',opts:tOpts(n),sol:enabled(n,M),why:whyEn(n,M),hint:HINT_EN,tipo:'hab'});
+const dispItem=(n,M,j)=>({kind:'vector',q:`Disparás <code>${tid(n,j)}</code> desde ${cv(M)}. ¿Qué marcado queda?`,labels:plab(n),sol:fire(n,M,j),why:whyFire(n,M,j),hint:HINT_FIRE,pos:true,tipo:'disp'});
+const nombreMT=m=>{const a=[];m.forEach((v,i)=>{for(let k=0;k<v;k++)a.push(i);});return a;};
+function bagItem(n,A,j){
+ const B=fire(n,A,j),sol=nombreMT(B),o=nombreMT(A).map(i=>pid(n,i)).join(' ')||'estado vacío';
+ return {kind:'bag',q:`Desde <code>${o}</code> se dispara <code>${tid(n,j)}</code>. ¿A qué estado llegás?`,d:'Tocá las plazas para escribir el estado. El orden no importa.',sol,check:v=>eq(v,sol),why:whyFire(n,A,j),hint:`En números, el marcado de salida es ${cv(A)}. Calculá el nuevo y escribí una vez cada plaza por cada ficha.`,tipo:'mt'};
+}
+const conteoItem=(n,an)=>({kind:'single',q:'¿Cuántos marcados distintos tiene el árbol?',opts:numOpts(an.states.length),sol:an.states.length,why:'Contá los nodos sin repetir los duplicados.',hint:'Los nodos punteados son duplicados de otros: no cuentan.',show:v=>'<code>'+v+'</code>',tipo:'conteo'});
+
+function propsItems(n,an){
+ const I=[],bnd=an.bounded,sum0=n.m0.reduce((a,b)=>a+b,0);
+ const nums=[...new Set([1,2,3,4,Math.min(an.maxTok,9)])].filter(x=>x!==Infinity).sort((a,b)=>a-b);
+ I.push({kind:'single',q:'Limitación: ¿qué tan limitada es esta red?',opts:[...nums.map(k=>({v:k,l:k+'-limitada'})),{v:Infinity,l:'No es limitada'}],sol:an.maxTok,show:v=>v===Infinity?'no limitada':'<code>'+v+'-limitada</code>',tipo:'lim',
+  why:bnd?`La plaza más cargada llega a ${an.maxTok} ${an.maxTok===1?'ficha':'fichas'} en algún marcado alcanzable.`:'En el árbol aparece ω: alguna plaza puede crecer sin fin.',hint:'Buscá el número más grande en todos los marcados del árbol. Si aparece ω, no es limitada.'});
+ const OMEGA='Porque en el árbol aparece ω: hay una plaza que puede acumular fichas sin límite.';
+ I.push(porque('pq-lim',bnd?`La red es ${an.maxTok}-limitada.`:'La red no es limitada.',
+  bnd?`Porque el máximo de fichas en una plaza, entre todos los marcados alcanzables, es ${an.maxTok}.`:OMEGA,
+  bnd?OMEGA:'Porque ninguna plaza supera una cantidad fija de fichas en los marcados alcanzables.',
+  [n.P.length!==an.maxTok?`Porque la red tiene ${n.P.length} plazas.`:'Porque la red tiene la misma cantidad de plazas que de transiciones.',sum0!==an.maxTok?`Porque M0 tiene ${sum0} ${sum0===1?'ficha':'fichas'} en total.`:'Porque M0 habilita una sola transición.','Porque todos sus arcos pesan 1.']));
+ const dead=an.dead.length>0;
+ I.push({kind:'single',q:'¿Tiene algún marcado muerto (bloqueo)?',opts:YN,sol:dead,why:dead?`${cv(an.dead[0])} no habilita ninguna transición.`:'Todos los marcados habilitan al menos una transición.',hint:'Un marcado muerto es una hoja del árbol sin transiciones habilitadas.',tipo:'muerto'});
+ const SIN='Porque todo marcado alcanzable habilita al menos una transición.';
+ I.push(porque('pq-muerto',dead?'Tiene un marcado muerto.':'No tiene marcados muertos.',
+  dead?`Porque en ${cv(an.dead[0])} ninguna transición está habilitada.`:SIN,
+  dead?SIN:'Porque hay un marcado alcanzable en el que ninguna transición está habilitada.',
+  ['Porque M0 habilita al menos una transición.','Porque el árbol tiene marcados duplicados.','Porque alguna transición tiene dos entradas.']));
+ if(bnd){
+  const VIVA='Porque desde cualquier marcado alcanzable siempre se puede volver a habilitar cada transición.';
+  I.push({kind:'single',q:'Vivacidad: ¿la red es viva?',opts:YN,sol:an.live,why:an.live?'Desde cualquier estado alcanzable siempre podés llegar a habilitar cada transición.':`Desde ${cv(an.liveW.m)} ya no hay forma de habilitar <code>${tid(n,an.liveW.t)}</code>.`,hint:'Viva: desde cualquier marcado alcanzable, cada transición puede volver a habilitarse.',tipo:'viva'});
+  I.push(porque('pq-viva',an.live?'La red es viva.':'La red no es viva.',
+   an.live?VIVA:dead?`Porque alcanza ${cv(an.dead[0])}, un marcado muerto: desde ahí ninguna transición se vuelve a habilitar.`:`Porque desde ${cv(an.liveW.m)} la transición ${tid(n,an.liveW.t)} ya no se puede volver a habilitar.`,
+   an.live?'Porque alcanza un marcado desde el que alguna transición ya no se puede volver a habilitar.':VIVA,
+   ['Porque todas las transiciones aparecen al menos una vez en el árbol.','Porque M0 habilita alguna transición.','Porque tiene conflicto estructural.']));
+  const CIC='Porque desde todo marcado alcanzable existe una secuencia de disparos que vuelve a M0.';
+  I.push({kind:'single',q:'Ciclicidad: ¿desde todo marcado se puede volver a M0?',opts:YN,sol:an.cyc,why:an.cyc?'Todo estado tiene un camino de regreso a M0.':`Desde ${cv(an.cycW)} no hay camino de regreso a M0.`,hint:'Mirá la máquina de testigos: ¿desde cada óvalo hay un camino hasta el inicial?',tipo:'ciclica'});
+  I.push(porque('pq-ciclica',an.cyc?'La red es cíclica.':'La red no es cíclica.',
+   an.cyc?CIC:`Porque desde ${cv(an.cycW)} no existe ninguna secuencia que vuelva a M0.`,
+   an.cyc?'Porque hay un marcado alcanzable desde el que no se puede volver a M0.':CIC,
+   ['Porque M0 aparece como duplicado en el árbol.','Porque la suma de fichas es constante.','Porque tiene conflicto efectivo.']));
+  const distintas=[...new Set(an.sums)].join(', ');
+  I.push({kind:'single',q:'Conservación estricta: ¿el total de fichas se mantiene siempre igual?',opts:YN,sol:an.strict,why:`Los totales son: ${an.sums.join(', ')}.`,hint:'Sumá las fichas de cada marcado.',tipo:'cons'});
+  I.push(porque('pq-cons',an.strict?'Es estrictamente conservativa.':'No es estrictamente conservativa.',
+   an.strict?`Porque la suma de fichas es ${an.sums[0]} en todos los marcados alcanzables.`:`Porque la suma de fichas cambia de un marcado a otro: ${distintas}.`,
+   an.strict?'Porque la suma de fichas cambia de un marcado a otro.':'Porque la suma de fichas es la misma en todos los marcados alcanzables.',
+   ['Porque es limitada.','Porque es viva.','Porque tiene más plazas que transiciones.']));
+  if(an.w)I.push({kind:'vector',q:'Conservación con pesos: encontrá un vector w, con todos sus valores positivos, que mantenga constante el valor de la red.',labels:plab(n),pos:true,sol:an.w,check:v=>Array.isArray(v)&&v.every(x=>x>0&&x!==Infinity)&&n.C.every(r=>r.reduce((a,c,i)=>a+c*v[i],0)===0),show:v=>'por ejemplo '+cv(v),why:'En cada transición, el valor de lo que entra tiene que ser igual al valor de lo que sale.',hint:'Escribí una ecuación por transición: suma de w × peso en las entradas = suma de w × peso en las salidas. Asigná 1 a una plaza y despejá.',tipo:'pesos'});
+ }
+ I.push({kind:'multi',q:'Conflicto estructural: ¿qué plazas alimentan a más de una transición?',d:'Si no hay ninguna, no marques nada.',opts:pOpts(n),sol:an.structural,why:an.structural.length?'Son las plazas de las que salen flechas hacia dos o más transiciones.':'Ninguna plaza tiene más de una transición de salida.',hint:'Contá cuántas flechas salen de cada círculo.',tipo:'confest'});
+ const ef=an.effective,NOEF='Porque nunca hay dos transiciones habilitadas a la vez que se quiten la ficha entre sí.';
+ I.push({kind:'single',q:'Conflicto efectivo: ¿hay algún marcado donde dos transiciones estén habilitadas y disparar una deshabilite a la otra?',opts:YN,sol:!!ef,why:ef?`En ${cv(ef.m)}, <code>${tid(n,ef.a)}</code> y <code>${tid(n,ef.b)}</code> se quitan la ficha entre sí.`:'Cuando dos transiciones están habilitadas a la vez, una no le quita la posibilidad a la otra.',hint:'Buscá en el árbol marcados con dos ramas y fijate si comparten una ficha necesaria.',tipo:'confef'});
+ I.push(porque('pq-confef',ef?'Tiene conflicto efectivo.':'No tiene conflicto efectivo.',
+  ef?`Porque en ${cv(ef.m)} están habilitadas ${tid(n,ef.a)} y ${tid(n,ef.b)}, y disparar una deshabilita a la otra.`:NOEF,
+  ef?NOEF:'Porque hay un marcado que habilita dos transiciones y disparar una deshabilita a la otra.',
+  ['Porque M0 habilita más de una transición.','Porque la red es viva.','Porque todos los arcos pesan 1.']));
+ if(bnd&&n.P.length>=2){
+  const pairs=[];for(let a=0;a<n.P.length;a++)for(let b=a+1;b<n.P.length;b++)pairs.push([a,b,!an.states.some(m=>m[a]>0&&m[b]>0)]);
+  const yes=pairs.filter(x=>x[2]),no=pairs.filter(x=>!x[2]);
+  [yes.length?pick(yes):null,no.length?pick(no):null].filter(Boolean).forEach(([a,b,v])=>{
+   const w=an.states.find(m=>m[a]>0&&m[b]>0);
+   I.push({kind:'single',q:`Exclusión mutua: ¿<code>${pid(n,a)}</code> y <code>${pid(n,b)}</code> nunca tienen fichas al mismo tiempo?`,opts:YN,sol:v,why:v?'En ningún marcado alcanzable aparecen las dos con fichas.':`En ${cv(w)} las dos tienen fichas.`,hint:'Recorré los marcados y buscá uno con fichas en las dos plazas.',tipo:'excl'});
+  });
+ }
+ const ord=n.pre.flat().concat(n.post.flat()).every(v=>v<=1);
+ I.push({kind:'single',q:'¿La red es ordinaria o generalizada?',opts:[{v:true,l:'Ordinaria'},{v:false,l:'Generalizada'}],sol:ord,why:ord?'Todos los arcos pesan 1.':'Tiene al menos un arco con peso mayor que 1.',hint:'Ordinaria: todos los arcos pesan 1.',tipo:'ord'});
+ const imp=n.T.findIndex((_,j)=>n.P.some((_,i)=>n.pre[j][i]&&n.post[j][i]));
+ I.push({kind:'single',q:'¿La red es pura?',opts:YN,sol:imp<0,why:imp<0?'Ninguna plaza es a la vez entrada y salida de la misma transición.':`<code>${tid(n,imp)}</code> tiene una plaza que es entrada y salida a la vez.`,hint:'Buscá plazas con una flecha de ida y otra de vuelta hacia la misma transición.',tipo:'pura'});
+ const sc=subclases(n),scO=[{v:0,l:'Máquina de estados'},{v:1,l:'Grafo marcado'},{v:2,l:'Libre elección'},{v:3,l:'Simple'}];
+ I.push({kind:'multi',q:'¿A qué subclases pertenece?',d:'Puede ser más de una, o ninguna.',opts:scO,sol:[sc.me&&0,sc.gm&&1,sc.rle&&2,sc.rs&&3].filter(x=>x!==false),tipo:'sub',
+  why:'Máquina de estados: cada transición tiene 1 entrada y 1 salida. Grafo marcado: cada plaza tiene 1 entrada y 1 salida. Libre elección: una plaza compartida es la única entrada de sus transiciones. Simple: cada transición tiene como máximo 1 entrada compartida.',
+  hint:'Máquina de estados mira las transiciones; grafo marcado mira las plazas; libre elección y simple miran las plazas compartidas.'});
+ return I;
+}
+
+function simular(n,seq){let M=n.m0.slice();for(let k=0;k<seq.length;k++){if(!enOne(n,M,seq[k]))return {ok:false,k,M};M=fire(n,M,seq[k]);}return {ok:true,M};}
+const vecF=(n,seq)=>n.T.map((_,k)=>seq.filter(x=>x===k).length);
+const mulFC=(n,f)=>n.P.map((_,i)=>f.reduce((a,v,k)=>a+v*n.C[k][i],0));
+function secImposible(n){
+ for(let g=0;g<120;g++){
+  const base=walk(n,ri(2,5)).seq;if(base.length<2)continue;
+  const extra=[...Array(ri(1,2))].map(()=>ri(0,n.T.length-1));
+  const seq=(Math.random()<.5?base.concat(base):base).concat(extra).slice(0,10);
+  const s=simular(n,seq);if(!s.ok&&s.k>=2)return seq;
+ }
+ return null;
+}
+function secLarga(n){let b=null;for(let g=0;g<40;g++){const w=walk(n,ri(5,8));if(!b||w.seq.length>b.length)b=w.seq;if(b.length>=5)break;}return b;}
+function secItem(n,seq,tipo){
+ const f=vecF(n,seq),fC=mulFC(n,f),R=n.m0.map((v,i)=>v+fC[i]),s=simular(n,seq),neg=R.findIndex(v=>v<0),seqT=seq.map(x=>tid(n,x)).join(' ');
+ const why=s.ok?`f = ${vs(f)}, f·C = ${vs(fC)} y M0 + f·C = ${vs(R)}. Además, en orden, cada disparo está habilitado.`
+  :neg>=0?`f = ${vs(f)} y M0 + f·C = ${vs(R)}: da negativo en ${pid(n,neg)}, así que no se puede disparar. En orden, falla en el disparo ${s.k+1} (${tid(n,seq[s.k])}).`
+  :`M0 + f·C = ${vs(R)} no da negativo, pero en orden falla en el disparo ${s.k+1}: ${tid(n,seq[s.k])} no está habilitada.`;
+ return {kind:'vector',q:`Obtené el marcado que se alcanza con la secuencia <code>${seqT}</code>.`,d:'Usá M0 + f·C y revisá el orden. Si no se puede disparar, elegí esa opción.',labels:plab(n),sol:s.ok?R:'none',ok:s.ok?'':why,
+  check:v=>s.ok?(Array.isArray(v)&&eq(v,R)):v==='none',alt:{l:'No se puede disparar',v:'none'},show:v=>v==='none'?'que no se puede disparar':cv(v),why,tipo,seq,
+  hint:'Contá f, calculá M0 + f·C y después recorré la secuencia en orden: cada transición tiene que estar habilitada cuando le toca.'};
+}
+function secPorque(n,seq){
+ const R=n.m0.map((v,i)=>v+mulFC(n,vecF(n,seq))[i]),s=simular(n,seq),neg=R.findIndex(v=>v<0);
+ const NEG='Porque M0 + f·C da un número negativo: ninguna plaza puede quedar con fichas negativas.',ORD='Porque en ese orden alguna transición no está habilitada cuando le toca, aunque M0 + f·C no dé negativo.';
+ return porque('pq-sec','La secuencia no se puede disparar.',neg>=0?`Porque M0 + f·C da ${R[neg]} en ${pid(n,neg)}: ninguna plaza puede quedar con fichas negativas.`:`Porque en ese orden ${tid(n,seq[s.k])} no está habilitada cuando le toca, aunque M0 + f·C no dé negativo.`,
+  neg>=0?ORD:NEG,['Porque f tiene valores mayores que 1.','Porque la secuencia es más larga que la cantidad de transiciones.','Porque la red no es viva.']);
+}
+function matrizSteps(n){
+ const S=[],m0=n.m0,L0='Marcado inicial M0';
+ S.push({M:m0,lbl:L0,item:{kind:'matrix',q:'Completá C<sup>−</sup>, la incidencia previa: cuántas fichas saca cada transición de cada plaza.',sol:n.pre,why:'Las celdas en rojo no coinciden. Mirá las flechas que entran a cada transición y su peso.',hint:'Fila t, columna p: el peso de la flecha que va de p hacia t. Si no hay flecha, 0.',tipo:'cmenos'}});
+ S.push({M:m0,lbl:L0,item:{kind:'matrix',q:'Completá C<sup>+</sup>, la incidencia posterior: cuántas fichas pone cada transición en cada plaza.',sol:n.post,why:'Las celdas en rojo no coinciden. Mirá las flechas que salen de cada transición y su peso.',hint:'Fila t, columna p: el peso de la flecha que va de t hacia p. Si no hay flecha, 0.',tipo:'cmas'}});
+ S.push({M:m0,lbl:L0,item:{kind:'matrix',signed:true,q:'Completá C = C<sup>+</sup> − C<sup>−</sup>.',sol:n.C,why:'Las celdas en rojo no coinciden. Restá casillero por casillero.',hint:'En cada celda: lo que pone menos lo que saca. Tocar la celda alterna 0, 1, −1, 2, −2.',tipo:'c'}});
+ let tr=walk(n,ri(0,3));for(let g=0;g<30&&!enabled(n,tr.M).length;g++)tr=walk(n,ri(0,2));
+ if(enabled(n,tr.M).length){
+  const M=tr.M,j=pick(enabled(n,M)),LW='Marcado de trabajo',ej=n.T.map((_,k)=>k===j?1:0);
+  S.push({M,lbl:LW,item:{kind:'vector',q:`Calculá <code>e${j+1}·C<sup>−</sup></code>, con <code>e${j+1} = (${ej.join(' ')})</code>.`,labels:plab(n),sol:n.pre[j],pos:true,why:`Multiplicar por e${j+1} es copiar la fila ${tid(n,j)} de C<sup>−</sup>.`,hint:'El vector ej tiene un solo 1, así que el resultado es la fila j de la matriz.',tipo:'ejc'}});
+  S.push({M,lbl:LW,item:{kind:'single',q:`Con <code>M = ${vs(M)}</code>, ¿se cumple <code>M ≥ e${j+1}·C<sup>−</sup></code>?`,opts:YN,sol:true,why:'Compará posición por posición: cada número de M tiene que ser mayor o igual.',hint:'Compará posición por posición.',tipo:'habm'}});
+  const dis=n.T.map((_,k)=>k).filter(k=>!enOne(n,M,k));
+  if(dis.length){const k=pick(dis),bad=n.pre[k].findIndex((v,i)=>M[i]<v);
+   S.push({M,lbl:LW,item:{kind:'single',q:`Con <code>M = ${vs(M)}</code> y <code>e${k+1}·C<sup>−</sup> = ${vs(n.pre[k])}</code>, ¿está habilitada <code>${tid(n,k)}</code>?`,opts:YN,sol:false,why:`Falla en ${pid(n,bad)}: ${M[bad]} no es mayor o igual que ${n.pre[k][bad]}.`,hint:'Alcanza con que una posición falle para que no esté habilitada.',tipo:'nohabm'}});}
+  const to=fire(n,M,j);
+  S.push({M,lbl:LW,item:{kind:'vector',q:`Calculá <code>M' = M + e${j+1}·C</code>, con <code>M = ${vs(M)}</code>.`,labels:plab(n),sol:to,pos:true,why:`Sumá la fila ${tid(n,j)} de C, que es ${vs(n.C[j])}, a M.`,hint:'Sumá posición por posición la fila de C.',tipo:'dispm'},anim:{j,from:M,to}});
+ }
+ let s=walk(n,4);for(let g=0;g<20&&s.seq.length<2;g++)s=walk(n,4);
+ if(s.seq.length){
+  const f=vecF(n,s.seq),seqT=s.seq.map(x=>tid(n,x)).join(' '),fC=mulFC(n,f);
+  S.push({M:m0,lbl:L0,item:{kind:'vector',q:`Para la secuencia <code>${seqT}</code>, escribí el vector de disparo <code>f</code>.`,labels:tlab(n),sol:f,pos:true,why:'Cada posición de f cuenta cuántas veces aparece esa transición en la secuencia.',hint:'Contá las apariciones de cada transición.',tipo:'f'}});
+  S.push({M:m0,lbl:L0,item:{kind:'vector',q:`Calculá <code>f·C</code>, con <code>f = ${vs(f)}</code>.`,labels:plab(n),sol:fC,pos:false,why:'Tomá cada fila de C tantas veces como diga f, y sumá.',hint:'f·C es la suma de las filas de C, cada una repetida según f.',tipo:'fc'}});
+  S.push({M:m0,lbl:L0,item:{kind:'vector',q:`Calculá <code>M0 + f·C</code>.`,d:`<code>M0 = ${vs(m0)}</code>, <code>f·C = ${vs(fC)}</code>`,labels:plab(n),sol:s.M,pos:true,why:'Sumá posición por posición.',hint:'Sumá las dos listas.',tipo:'m0fc'}});
+ }
+ const sec=secImposible(n);
+ if(sec){S.push({M:m0,lbl:L0,item:secItem(n,sec,'secno')});S.push({M:m0,lbl:L0,item:secPorque(n,sec)});}
+ const q2='Resolvé <code>M0 + f·C = M</code>. Si hay solución, escribí un <code>f</code> con valores enteros no negativos.';
+ const tg=walk(n,ri(1,4)).M,tgt=eq(tg,m0)?walk(n,1).M:tg,solv=solveF(n,tgt);
+ const okF=v=>v!=='none'&&Array.isArray(v)&&v.every(x=>x>=0&&x!==Infinity)&&n.P.every((_,i)=>v.reduce((a,c,k)=>a+c*n.C[k][i],m0[i])===tgt[i]);
+ if(solv&&!eq(tgt,m0))S.push({M:m0,lbl:L0,item:{kind:'vector',q:q2,d:`<code>M = ${vs(tgt)}</code>`,labels:tlab(n),pos:true,sol:solv,check:okF,show:v=>'por ejemplo '+cv(v),alt:{l:'No tiene solución',v:'none'},why:'Escribí una ecuación por plaza: fichas iniciales + suma de (f × columna de C) = objetivo.',hint:'Cada columna de C da una ecuación. Elegí 0 para las variables libres y despejá las otras.',tipo:'alcsi'}});
+ let nope=null;
+ for(let g=0;g<40&&!nope;g++){const b=walk(n,ri(0,3)).M.slice(),i=ri(0,b.length-1);b[i]+=pick([1,-1,2]);if(b[i]>=0&&!solveF(n,b))nope=b;}
+ if(nope)S.push({M:m0,lbl:L0,item:{kind:'vector',q:q2,d:`<code>M = ${vs(nope)}</code>`,labels:tlab(n),pos:true,sol:'none',check:v=>v==='none',show:()=>'que no tiene solución',alt:{l:'No tiene solución',v:'none'},why:'Las ecuaciones por plaza se contradicen: ningún f cumple todas a la vez.',hint:'Escribí las ecuaciones por plaza y buscá una contradicción, como 0 = 1.',markErr(){},fillSol(){},tipo:'alcno'}});
+ return S;
+}
+
+const PATRONES=[['impresora','recurso compartido'],['llave','exclusión mutua'],['buffer','productor y consumidor'],['cruzadas','bloqueo por recursos'],['cinco','bifurcación y unión'],['r1','modelo de parcial'],['alcancia','acumulación'],['canje','canje con pesos'],['torta','elección']];
+function variante(d0){
+ const c=JSON.parse(JSON.stringify(d0));c.p.forEach(x=>{x[1]='';});c.tr.forEach(x=>{x[1]='';});
+ const N=c.p.length;let cambio=false;const r=Math.random();
+ if(r<.45){const i=ri(0,N-1);c.p[i][4]=(c.p[i][4]||0)+1;cambio=true;}
+ else if(r<.85){const con=c.p.map((x,i)=>x[4]?i:-1).filter(i=>i>=0),a=con.length?pick(con):-1,b=ri(0,N-1);if(a>=0&&a!==b){c.p[a][4]--;c.p[b][4]=(c.p[b][4]||0)+1;cambio=true;}}
+ if(Math.random()<.22){const k=ri(0,c.a.length-1);if(!/\*\d/.test(c.a[k])){c.a[k]=c.a[k].replace(/^(\w+>\w+)/,'$1*2');cambio=true;}}
+ if(Math.random()<.55){
+  const pm=shuffle([...Array(N).keys()]),tm=shuffle([...Array(c.tr.length).keys()]),mp={},mt={};
+  c.p.forEach((x,i)=>{mp[x[0]]='p'+(pm[i]+1);});c.tr.forEach((x,j)=>{mt[x[0]]='t'+(tm[j]+1);});
+  c.p.forEach(x=>{x[0]=mp[x[0]];});c.tr.forEach(x=>{x[0]=mt[x[0]];});
+  c.a=c.a.map(s=>s.replace(/^(\w+)>(\w+)/,(_,a,b)=>(a[0]==='p'?mp:mt)[a]+'>'+(b[0]==='p'?mp:mt)[b]));
+  const num=x=>+x[0].slice(1);c.p.sort((x,y)=>num(x)-num(y));c.tr.sort((x,y)=>num(x)-num(y));
+ }
+ return {c,cambio};
+}
+function randNet(maxE=11,opt={}){
+ for(let tr=0;tr<400;tr++){
+  const [id,nom]=pick(PATRONES),d0=NETS.find(x=>x.id===id);
+  const {c,cambio}=variante(d0);if(!cambio)continue;
+  if(!c.p.some(x=>x[4]))continue;
+  c.id='azar';c.t='Red al azar';c.s=`Variante del patrón «${nom}».`;
+  const n=mkNet(c),an=analyze(n);
+  if(!an||an.edgesCount<3||an.edgesCount>maxE)continue;
+  if(opt.bounded&&!an.bounded)continue;
+  if(opt.unbounded&&an.bounded)continue;
+  const used=new Set();(function w(x){x.kids.forEach(k=>{used.add(k.t);w(k);});})(an.tree);
+  if(used.size<n.T.length)continue;
+  n.an=an;return n;
+ }
+ const f=mkNet(NETS.find(x=>x.id==='r1'));f.an=analyze(f);return f;
+}
+
+const TIPO_ST={hab:'disparo',disp:'disparo',muertodef:'disparo',corte:'arbol',omega:'arbol',conteo:'arbol',mt:'mt',
+ lim:'props','pq-lim':'props',muerto:'props','pq-muerto':'props',viva:'props','pq-viva':'props',ciclica:'props','pq-ciclica':'props',cons:'props','pq-cons':'props',pesos:'props',confest:'props',confef:'props','pq-confef':'props',excl:'props',ord:'props',pura:'props',sub:'props',
+ cmenos:'matriz',cmas:'matriz',c:'matriz',ejc:'matriz',habm:'matriz',nohabm:'matriz',dispm:'matriz',f:'matriz',fc:'matriz',m0fc:'matriz',alcsi:'matriz',alcno:'matriz',secno:'matriz','pq-sec':'matriz'};
+function bfsNodes(root){const o=[],q=[root];while(q.length){const x=q.shift();o.push(x);x.kids.forEach(k=>q.push(k));}return o;}
+function teoItem(i){const [q,o,c,w]=TEO[i];return {kind:'single',q,opts:shuffle(o.map((l,k)=>({v:k,l}))),sol:c,why:w,ok:w,tipo:'teo:'+i};}
+function genErr1(t){
+ if(t.startsWith('teo:')){const i=+t.slice(4);return TEO[i]?{item:teoItem(i)}:null;}
+ const st=TIPO_ST[t];if(!st)return null;
+ if(t==='muertodef'){const n=mkNet(NETS.find(d=>d.id==='impresora'));n.an=analyze(n);const M=[0,0,1,2];
+  return {n,M,item:{kind:'single',q:`¿Cómo se llama un marcado como ${cv(M)}, donde no se puede disparar nada?`,opts:[{v:'m',l:'Marcado muerto'},{v:'d',l:'Marcado duplicado'},{v:'i',l:'Marcado inicial'}],sol:'m',why:'Sin transiciones habilitadas, el marcado está muerto.',tipo:t}};}
+ if(t==='omega'){const oid=pick(['alcancia','cola']),n=Math.random()<.5?mkNet(NETS.find(d=>d.id===oid)):randNet(14,{unbounded:true});n.an=n.an||analyze(n);
+  const c=bfsNodes(n.an.tree).find(x=>x.kind==='omega');if(!c)return null;return {n,M:c.parent.m,tree:c,item:omegaItem(n,c)};}
+ const n=randNet(10,{bounded:true}),an=n.an;
+ if(t==='hab')return {n,M:null,item:null,mk:()=>{const M=pick(an.states);return [M,habItem(n,M)];}};
+ if(t==='disp'){const S=an.states.filter(m=>enabled(n,m).length);if(!S.length)return null;const M=pick(S);return {n,M,item:dispItem(n,M,pick(enabled(n,M)))};}
+ if(t==='corte'){const N=bfsNodes(an.tree).slice(1);if(!N.length)return null;const c=pick(N);return {n,M:c.parent.m,tree:c,item:cutItem(n,c)};}
+ if(t==='conteo')return {n,M:n.m0,tree:'all',item:conteoItem(n,an)};
+ if(t==='mt'){const e=pick(an.edges);return {n,M:an.states[e.from],item:bagItem(n,an.states[e.from],e.t)};}
+ if(st==='props'){const it=propsItems(n,an).find(x=>x.tipo===t);return it?{n,M:n.m0,tree:'all',item:it}:null;}
+ if(st==='matriz'){const s=matrizSteps(n).find(x=>x.item.tipo===t);return s?{n,M:s.M,item:s.item}:null;}
+ return null;
+}
+function genErr(t){for(let g=0;g<25;g++){const r=genErr1(t);if(r){if(r.mk){const [M,it]=r.mk();r.M=M;r.item=it;}return r;}}return null;}
+const nErr=()=>Object.values(SAVE.err||{}).reduce((a,b)=>a+b,0);
+async function errores(){
+ const keys=Object.entries(SAVE.err||{}).sort((a,b)=>b[1]-a[1]);
+ if(!keys.length){home('practicar','No tenés errores guardados. Cuando falles una pregunta, va a aparecer acá.');return;}
+ exitRun();ruta('#errores');
+ const list=[];for(let r=0;r<4&&list.length<10;r++)for(const [t,c] of keys)if(list.length<10&&c>r)list.push(t);
+ const ph=mkNet(NETS[0]);ph.title='Mis errores';ph.story='';
+ RUN={n:ph,an:analyze(ph),mode:'errores',list,st:'disparo',idx:0,pts:0,streak:0,total:0,first:0,t0:Date.now(),again:errores,fixed:0};
+ renderPlay();$('.car .ancho small').textContent='Repaso';
+ for(let k=0;k<list.length;k++){
+  const R=RUN;if(!R||R.mode!=='errores')return;
+  R.idx=k;const t=list[k],g=genErr(t);if(!g)continue;
+  R.st=t.startsWith('teo:')?'teoria':TIPO_ST[t];
+  const play=$('.play');setExtra(false);
+  if(g.n){play.classList.remove('solo');R.n=g.n;R.an=g.n.an||analyze(g.n);R.view=drawNet(R.n,$('#net'));setM(g.M||R.n.m0,'Marcado');$('#st').textContent='';}
+  else play.classList.add('solo');
+  if(g.tree){const ex=setExtra(true,'Árbol de alcanzabilidad');
+   if(g.tree==='all'){RUN.an=R.an;revealTree(1e9);drawTree(ex,R.an.tree,null);}
+   else{const N=bfsNodes(R.an.tree),i=N.indexOf(g.tree);revealTree(i);g.tree.shown=true;g.tree.pending=true;drawTree(ex,R.an.tree,g.tree.parent);}}
+  updHud();
+  const antes=SAVE.err[t]||0;
+  await ask(g.item);
+  if(RUN!==R)return;
+  if((SAVE.err[t]||0)<antes)R.fixed++;
+ }
+ finErrores();
+}
+function finErrores(){
+ const R=RUN,quedan=nErr();SAVE.pts+=R.pts;store();CUR=null;EPOCH++;RUN=null;window.scrollTo(0,0);$('#app').className='';
+ $('#app').innerHTML=`<section class="fin"><h2>Repaso terminado</h2>
+ <p>${R.fixed?`Corregiste ${R.fixed} ${R.fixed===1?'error':'errores'}.`:'Esta vez no corregiste ninguno: conviene repasar la lección del tema.'} ${quedan?`Te quedan ${quedan} para repasar.`:'No te quedan errores guardados.'}</p>
+ <dl><dt>Aciertos a la primera</dt><dd>${R.first} de ${R.total}</dd><dt>Puntos</dt><dd>${R.pts}</dd></dl>
+ ${quedan?'<div class="acc"><button class="pri" id="otra">Seguir repasando</button></div>':''}
+ <div class="acc vuelta"><button class="sec" id="sec">Volver a Practicar</button><button class="sec" id="menu">Ir al inicio</button></div></section>`;
+ $('#menu').onclick=()=>ir('inicio');$('#sec').onclick=()=>ir('practicar');if($('#otra'))$('#otra').onclick=errores;
+}
+
+const txtPlano=h=>{const d=document.createElement('div');d.innerHTML=String(h);return d.textContent;};
+function vecInputs(labels){
+ const d=document.createElement('div');d.className='vec';
+ d.innerHTML=labels.map(l=>`<label>${l}<input aria-label="${l}" autocomplete="off" inputmode="text" maxlength="3"></label>`).join('');
+ const I=[...d.querySelectorAll('input')];
+ I.forEach((x,i)=>{x.oninput=()=>{x.value=x.value.replace(/w/i,'ω');if(/^(\d|ω)$/.test(x.value)&&I[i+1])I[i+1].focus();};x.onkeydown=e=>{if(e.key==='Backspace'&&!x.value&&I[i-1])I[i-1].focus();};});
+ return {el:d,I,read:()=>{if(I.some(x=>!/^(-?\d+|ω)$/.test(x.value.trim())))return null;return I.map(x=>x.value.trim()==='ω'?Infinity:parseInt(x.value,10));},vacio:()=>I.every(x=>!x.value.trim())};
+}
+function gridMat(n,signed){
+ const cyc=signed?[0,1,-1,2,-2]:[0,1,2,3],t=document.createElement('table');t.className='mat';
+ t.innerHTML=`<tr><th></th>${n.P.map(p=>`<th>${p.id}</th>`).join('')}</tr>`+n.T.map((tt,j)=>`<tr><th>${tt.id}</th>${n.P.map((_,i)=>`<td><button type="button" data-j="${j}" data-i="${i}" data-v="0" aria-label="Fila ${tt.id}, columna ${n.P[i].id}: 0">0</button></td>`).join('')}</tr>`).join('');
+ const B=[...t.querySelectorAll('button')],nc=n.P.length;
+ const set=(b,v)=>{b.textContent=v;b.dataset.v=v;b.classList.toggle('nz',v!==0);b.setAttribute('aria-label',`Fila ${n.T[+b.dataset.j].id}, columna ${n.P[+b.dataset.i].id}: ${v}`);};
+ B.forEach((b,k)=>{b.onclick=()=>set(b,cyc[(cyc.indexOf(+b.dataset.v)+1)%cyc.length]);
+  b.onkeydown=e=>{if(/^\d$/.test(e.key)){set(b,b.dataset.neg==='1'?-(+e.key):+e.key);b.dataset.neg='';if(B[k+1])B[k+1].focus();e.preventDefault();}
+   else if(e.key==='-'){b.dataset.neg='1';e.preventDefault();}
+   else if(e.key==='ArrowRight'&&B[k+1]){B[k+1].focus();e.preventDefault();}else if(e.key==='ArrowLeft'&&B[k-1]){B[k-1].focus();e.preventDefault();}
+   else if(e.key==='ArrowDown'&&B[k+nc]){B[k+nc].focus();e.preventDefault();}else if(e.key==='ArrowUp'&&B[k-nc]){B[k-nc].focus();e.preventDefault();}};});
+ return {el:t,read:()=>{const a=n.T.map(()=>[]);B.forEach(b=>{a[+b.dataset.j][+b.dataset.i]=+b.dataset.v;});return a;},marcar:sol=>B.forEach(b=>b.classList.toggle('err',+b.dataset.v!==sol[+b.dataset.j][+b.dataset.i]))};
+}
+function campo(it,n){
+ const w=document.createElement('div');w.className='campo';w.innerHTML=`<p class="cq">${it.q}</p>`;let read,marcar=()=>{};
+ if(it.kind==='single'){const s=document.createElement('select');s.setAttribute('aria-label',txtPlano(it.q));s.innerHTML='<option value="">Elegí una opción</option>'+it.opts.map((o,i)=>`<option value="${i}">${txtPlano(o.l)}</option>`).join('');w.appendChild(s);read=()=>s.value===''?null:it.opts[+s.value].v;}
+ else if(it.kind==='multi'){it.sol=it.sol.slice().sort((a,b)=>a-b);const d=document.createElement('div');d.className='chks';d.innerHTML=it.opts.map((o,i)=>`<label class="chk"><input type="checkbox" data-i="${i}"> ${o.l}</label>`).join('');w.appendChild(d);
+  read=()=>[...d.querySelectorAll('input:checked')].map(x=>it.opts[+x.dataset.i].v).sort((a,b)=>a-b);}
+ else if(it.kind==='vector'){const v=vecInputs(it.labels);w.appendChild(v.el);let c=null;
+  if(it.alt){const l=document.createElement('label');l.className='chk';l.innerHTML=`<input type="checkbox"> ${it.alt.l}`;w.appendChild(l);c=l.querySelector('input');}
+  read=()=>c&&c.checked?it.alt.v:v.read();marcar=()=>{if(Array.isArray(it.sol))v.I.forEach((x,i)=>x.classList.toggle('err',x.value.trim()!==sym(it.sol[i])));};}
+ else if(it.kind==='num'){const x=document.createElement('input');x.type='number';x.min='0';x.className='num';x.setAttribute('aria-label',txtPlano(it.q));w.appendChild(x);read=()=>x.value===''?null:+x.value;}
+ else if(it.kind==='matrix'){const g=gridMat(n,it.signed);w.appendChild(g.el);read=g.read;it.check=v=>v.every((r,j)=>eq(r,it.sol[j]));marcar=()=>g.marcar(it.sol);}
+ return {el:w,read,marcar,it};
+}
+function nota10(ok,tot){return Math.max(1,Math.round(10*ok/Math.max(1,tot)));}
+function evaluar(it,v){if(v===null||v===undefined)return false;try{return it.check?!!it.check(v):(Array.isArray(v)?(Array.isArray(it.sol)&&eq(v,it.sol)):v===it.sol);}catch(e){return false;}}
+function filasCampo(n){
+ const w=document.createElement('div');w.className='campo filas';
+ w.innerHTML='<p class="cq">Marcados del árbol</p>';
+ const list=document.createElement('div'),rows=[];w.appendChild(list);
+ const addRow=pref=>{const r=document.createElement('div');r.className='fila';const v=vecInputs(plab(n));v.el.classList.add('chico');if(pref)v.I.forEach((x,i)=>{x.value=sym(pref[i]);});
+  const l=document.createElement('label');l.className='chk';l.innerHTML='<input type="checkbox"> Muerto';
+  const q=document.createElement('button');q.type='button';q.className='sec quitar';q.textContent='Quitar';
+  r.append(v.el,l,q);list.appendChild(r);const o={v,c:l.querySelector('input'),r};rows.push(o);q.onclick=()=>{r.remove();rows.splice(rows.indexOf(o),1);};return o;};
+ addRow(n.m0);addRow();addRow();
+ const add=document.createElement('button');add.type='button';add.className='sec';add.textContent='Agregar marcado';add.onclick=()=>addRow().v.I[0].focus();w.appendChild(add);
+ return {el:w,read:()=>{const ms=[],dead=[];rows.forEach(o=>{const m=o.v.read();if(!m)return;ms.push(m);if(o.c.checked)dead.push(m);});return {ms,dead};}};
+}
+const conjunto=a=>[...new Set(a.map(key))].sort().join('|');
+async function papel(n){
+ n=n||randNet(9,{bounded:true});n.an=n.an||analyze(n);const an=n.an;
+ exitRun();ruta('#escrito');
+ RUN={n,an,mode:'papel',list:[],st:'papel',pts:0,streak:0,total:0,first:0,t0:Date.now(),again:()=>papel(n)};
+ renderPlay();$('.play').classList.add('papel');setM(n.m0,'Marcado inicial M0');
+ timer=setInterval(()=>{const e=$('#hud-r');if(e&&RUN&&RUN.mode==='papel'&&!RUN.graded)e.textContent=clock();},1000);
+ const secs=[['a','Árbol'],['b','Máquina'],['c','Matrices'],['d','Secuencias'],['e','Propiedades']];
+ $('#pasos').innerHTML=secs.map(([k,t])=>`<li><button type="button" class="ir-sec" data-s="${k}">${k}) ${t}</button></li>`).join('');
+ document.querySelectorAll('.ir-sec').forEach(b=>b.onclick=()=>{const s=$('#sec-'+b.dataset.s);if(s)s.scrollIntoView({behavior:REDUCED?'auto':'smooth',block:'start'});});
+ const box=$('#task');
+ box.innerHTML=`<p class="nota">Como en el parcial: resolvés todo y se corrige al final, sin pistas. Para las transiciones y plazas se usan siempre los nombres p y t.</p><div id="papel"></div><div class="acc"><button class="pri" id="entregar">Entregar y corregir</button></div><div id="res"></div>`;
+ const P=$('#papel'),F=[];
+ const sec=(k,h,d)=>{const s=document.createElement('section');s.className='psec';s.id='sec-'+k;s.innerHTML=`<h3>${k}) ${h}</h3>${d?`<p class="det">${d}</p>`:''}`;P.appendChild(s);return s;};
+ const meter=(s,c,extra={})=>{s.appendChild(c.el);F.push(Object.assign({c,it:c.it},extra));};
+ const sa=sec('a','Obtené su árbol de alcanzabilidad','Escribí todos los marcados distintos que aparecen en el árbol, uno por fila, y marcá los muertos. El orden no importa. Podés escribir w para ω.');
+ const fc=filasCampo(n);sa.appendChild(fc.el);
+ F.push({c:fc,tipo:'corte',nom:'Marcados alcanzables',test:v=>conjunto(v.ms)===conjunto(an.states),sol:an.states.map(m=>`<code>${compact(m)}</code>`).join(' ')});
+ F.push({c:fc,tipo:'muerto',nom:'Marcados muertos',test:v=>conjunto(v.dead)===conjunto(an.dead),sol:an.dead.length?an.dead.map(m=>`<code>${compact(m)}</code>`).join(' '):'ninguno'});
+ const sb=sec('b','A partir del árbol, obtené la máquina de testigos','Dibujala en papel y contestá:');
+ meter(sb,campo({kind:'num',q:'¿Cuántos estados tiene?',sol:an.states.length,tipo:'conteo'},n));
+ meter(sb,campo({kind:'num',q:'¿Cuántas flechas tiene?',sol:an.edges.length,tipo:'mt'},n));
+ const sc=sec('c','Obtené sus matrices de incidencia previa, posterior y de incidencia','Filas: transiciones. Columnas: plazas. Tocá una celda para cambiarla o escribí el número.');
+ matrizSteps(n).slice(0,3).forEach(s=>{const it=Object.assign({},s.item);it.q=it.tipo==='cmenos'?'C<sup>−</sup>':it.tipo==='cmas'?'C<sup>+</sup>':'C';meter(sc,campo(it,n));});
+ const sd=sec('d','A partir de la representación matricial, obtené los marcados que se alcanzan con estas secuencias','Si alguna no se puede disparar, marcá esa opción.');
+ let s1=walk(n,ri(3,4)).seq;for(let g=0;g<20&&s1.length<2;g++)s1=walk(n,4).seq;
+ const s2=(Math.random()<.6?secImposible(n):null)||secLarga(n);
+ [s1,s2].forEach((sq,i)=>{if(!sq||!sq.length)return;const it=secItem(n,sq,simular(n,sq).ok?'m0fc':'secno');it.q=`Secuencia ${i+1}: <code>${sq.map(x=>tid(n,x)).join(' ')}</code>`;meter(sd,campo(it,n));});
+ const se=sec('e','Determiná sus propiedades y justificá','Elegí la respuesta y su justificación en cada desplegable.');
+ const quiero=['lim','pq-lim','muerto','pq-muerto','viva','pq-viva','ciclica','pq-ciclica','cons','pq-cons','confest','confef','pq-confef','excl','ord','pura','sub'];
+ propsItems(n,an).filter(it=>quiero.includes(it.tipo)).forEach(it=>{const c=campo(it,n);if(it.pq)c.el.classList.add('pq');meter(se,c);});
+ box.addEventListener('input',()=>{if(RUN&&!RUN.total)RUN.total=1;},{once:true});
+ box.addEventListener('click',e=>{if(e.target.closest('#papel')&&RUN&&!RUN.total)RUN.total=1;});
+ $('#entregar').onclick=()=>corregirPapel(F);
+}
+function corregirPapel(F){
+ const R=RUN;if(!R||R.graded)return;R.graded=true;if(timer){clearInterval(timer);timer=null;}
+ let ok=0;const porSec={};
+ F.forEach(f=>{
+  const v=f.c.read(),bien=f.test?f.test(v):evaluar(f.it,v);if(bien)ok++;
+  const sec=f.c.el.closest('.psec').id.slice(4);(porSec[sec]=porSec[sec]||[0,0])[1]++;if(bien)porSec[sec][0]++;
+  const t=f.tipo||(f.it&&f.it.tipo);if(!bien&&t){SAVE.err=SAVE.err||{};SAVE.err[t]=Math.min(3,(SAVE.err[t]||0)+1);}
+  const el=f.c.el;if(!f.test){el.classList.add(bien?'ok':'mal');if(!bien)f.c.marcar();}
+  const corr=document.createElement('p');corr.className='corr '+(bien?'bien':'mal');
+  const sol=f.test?f.sol:f.it.kind==='matrix'?mx(R.n,f.it.sol):fmtSol(f.it,f.it.sol);
+  corr.innerHTML=f.test?`${f.nom}: ${bien?'correcto':'incorrecto'}. Respuesta: ${sol}`:(bien?'Correcto.':`Respuesta: ${sol}${f.it.why&&!f.it.pq?`<br>${f.it.why}`:''}`);
+  el.appendChild(corr);
+ });
+ const tot=F.length,nota=nota10(ok,tot);R.first=ok;R.total=tot;R.pts=ok*5;SAVE.pts+=R.pts;store();
+ document.querySelectorAll('#papel input,#papel select,#papel button').forEach(x=>{x.disabled=true;});
+ $('#entregar').remove();
+ const nombres={a:'a) Árbol',b:'b) Máquina de testigos',c:'c) Matrices',d:'d) Secuencias',e:'e) Propiedades'};
+ const res=$('#res'),filas=Object.entries(porSec).map(([k,[a,b]])=>`<tr><td>${nombres[k]}</td><td class="b"><span><i style="width:${Math.round(a/b*100)}%"></i></span></td><td class="n">${a}/${b}</td></tr>`).join('');
+ const top=document.createElement('div');top.className='resumen';
+ top.innerHTML=`<h3>Tu nota: <b>${nota}</b></h3><p>${ok} de ${tot} respuestas correctas, en ${clock()}. Las correcciones están debajo de cada respuesta.${ok<tot?' Lo que fallaste quedó guardado en Mis errores.':''}</p><table class="etapas">${filas}</table>
+  <div class="acc"><button class="pri" id="otro">Otro simulacro escrito</button>${ok<tot?'<button class="sec" id="rep-err">Repasar mis errores</button>':''}</div>
+  <div class="acc vuelta"><button class="sec" id="sec">Volver a Practicar</button><button class="sec" id="menu">Ir al inicio</button></div>`;
+ res.appendChild(top.cloneNode(true));$('#papel').before(top);
+ document.querySelectorAll('#otro').forEach(b=>b.onclick=()=>papel());document.querySelectorAll('#rep-err').forEach(b=>b.onclick=errores);
+ document.querySelectorAll('#sec').forEach(b=>b.onclick=()=>ir('practicar'));document.querySelectorAll('#menu').forEach(b=>b.onclick=()=>ir('inicio'));
+ updHud();$('#task').scrollIntoView({block:'start'});
+}
+
+const CODIGO='TESTIGOS1.';
+function exportar(){return CODIGO+btoa(unescape(encodeURIComponent(JSON.stringify(SAVE))));}
+function importar(s){
+ s=String(s||'').trim().replace(/\s/g,'');if(!s.startsWith(CODIGO))throw 0;
+ const o=JSON.parse(decodeURIComponent(escape(atob(s.slice(CODIGO.length)))));
+ if(!o||typeof o!=='object'||typeof o.done!=='object'||typeof o.best!=='object')throw 0;
+ return Object.assign({best:{},pts:0,done:{},seen:{},bs:{},err:{}},o);
+}
+function syncPanel(){
+ const b=$('#sbox');if(!b)return;
+ $('#sx').onclick=()=>{const c=exportar();b.innerHTML=`<textarea readonly rows="3" aria-label="Tu código de progreso">${c}</textarea><p id="smsg" role="status"></p>`;const t=b.querySelector('textarea');t.focus();t.select();
+  const m=$('#smsg');if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(c).then(()=>{m.textContent='Código copiado. Pegalo en la otra PC con «Pegar un código».';},()=>{m.textContent='Seleccioná el texto y copialo con Ctrl + C.';});else m.textContent='Seleccioná el texto y copialo con Ctrl + C.';};
+ $('#si').onclick=()=>{b.innerHTML=`<textarea rows="3" aria-label="Pegá tu código de progreso" placeholder="Pegá acá el código que empieza con TESTIGOS1."></textarea><div class="acc"><button id="scargar">Cargar progreso</button></div><p id="smsg" role="status"></p>`;b.querySelector('textarea').focus();
+  $('#scargar').onclick=()=>{try{SAVE=importar(b.querySelector('textarea').value);store();home('inicio');const m=$('#sbox');if(m)m.innerHTML='<p role="status">Progreso cargado. Este navegador ahora tiene el mismo avance que la otra PC.</p>';}catch(e){$('#smsg').textContent='Ese código no es válido. Copialo completo, desde TESTIGOS1. hasta el final.';}};};
+}
+(function(){try{if(location.protocol==='https:'&&!/^(localhost|127\.|192\.168\.|10\.)/.test(location.hostname)){window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};const s=document.createElement('script');s.defer=true;s.src='/_vercel/insights/script.js';document.head.appendChild(s);}}catch(e){}})();
 
 enrutar();
 </script>

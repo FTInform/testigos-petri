@@ -9,8 +9,8 @@
 <meta name="theme-color" content="#143a78">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Testigos: aprendé redes de Petri">
-<meta property="og:url" content="https://testigos-petri.vercel.app/">
-<meta property="og:image" content="https://testigos-petri.vercel.app/og.png">
+<meta property="og:url" content="https://testigos-petri-testigos-petri.vercel.app/">
+<meta property="og:image" content="https://testigos-petri-testigos-petri.vercel.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -189,6 +189,74 @@ h2{font:400 1.8rem/1.2 var(--disp);margin:0 0 10px}
 .resumen h3 b{font-size:1.6em}
 .resumen .acc+.acc{margin-top:8px}
 #res .resumen{margin:18px 0 0}
+.vista{animation:entra .2s ease-out}
+@keyframes entra{from{opacity:0}}
+.lec{max-width:66ch;font-size:1.03rem;line-height:1.66}
+.clave,.ojo,.ej{margin:.9em 0;padding:10px 14px 11px;border-left:4px solid #e9b500;background:#fff6d1;border-radius:0}
+.clave b,.ojo b,.ej b{display:block;font:500 1.06rem/1.3 var(--disp);margin-bottom:3px}
+.ojo{background:#fdecea;border-color:var(--mal)}
+.ej{background:#e6edfb;border-color:#1f5fd6}
+ol.metodo{counter-reset:m;list-style:none;padding:0;margin:.5em 0 .9em}
+ol.metodo li{counter-increment:m;position:relative;padding:1px 0 8px 36px}
+ol.metodo li::before{content:counter(m);position:absolute;left:0;top:1px;width:25px;height:25px;border-radius:50%;background:var(--tinta);color:#fff;font:700 .8rem/25px var(--num);text-align:center}
+.tabla-l{width:100%;font-size:.94rem}
+.tabla-l th,.tabla-l td{text-align:left;font-family:var(--txt);padding:4px 10px}
+.tabla-l td{font-weight:400}
+.tabla-l tr.mov td{background:#fff6d1}
+.tabla-l td.si{color:var(--bien);font-weight:700}.tabla-l td.no{color:var(--mal);font-weight:700}
+.mini td.hl{background:var(--ficha);color:var(--tinta)}
+.mini tr.tot td,.mini tr.tot th{border-top:2px solid var(--tinta)}
+.lec .mini{display:block;overflow-x:auto;max-width:100%}
+.lec .tabla-l{display:table}
+.camino{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-family:var(--num)}
+.camino .paso-t{font-size:.84rem;color:var(--tinta2)}
+.leyenda{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 14px;padding:10px 12px;background:#fff;border:1px solid var(--linea)}
+.leyenda span{display:inline-flex;align-items:center;gap:8px;font-size:.95rem}
+.leyenda svg{width:30px;height:30px;fill:none;stroke:var(--tinta);stroke-width:2}
+.leyenda svg .f{fill:var(--tinta);stroke:none}
+.leyenda svg circle.f{fill:#e9b500}
+.flujo{list-style:none;margin:.5em 0 1em;padding:0;counter-reset:f;border-bottom:1px solid var(--linea)}
+.flujo li{counter-increment:f;display:grid;grid-template-columns:30px 1fr;column-gap:10px;padding:10px 0;border-top:1px solid var(--linea)}
+.flujo li::before{content:counter(f);grid-row:span 2;width:26px;height:26px;border-radius:50%;border:2px solid var(--tinta);font:700 .82rem/22px var(--num);text-align:center}
+.flujo li span{color:var(--tinta2);font-size:.95rem}
+.curso h3{display:flex;justify-content:space-between;align-items:baseline}
+.curso h3 span{font:400 .82rem var(--num);color:var(--trazo2)}
+.ruta{list-style:none;margin:0;padding:0}
+.ruta li{position:relative}
+.ruta li::before{content:'';position:absolute;left:18px;top:0;bottom:0;width:1.5px;background:var(--trazo2)}
+.ruta li:first-child::before{top:50%}.ruta li:last-child::before{bottom:50%}
+.ruta li+li::after{content:'';position:absolute;left:10px;top:-2.5px;width:18px;height:5px;background:var(--trazo)}
+.curso .ruta button{display:grid;grid-template-columns:38px 30px 1fr;align-items:center;gap:0;padding:8px 6px 8px 0;min-height:52px;text-align:left}
+.ruta .pl{position:relative;z-index:1;width:24px;height:24px;margin-left:7px;border-radius:50%;border:2px solid var(--trazo);background:var(--plano2);text-decoration:none}
+.ruta .pl.on::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--ficha)}
+.ruta .pl.next{border-color:var(--ficha);box-shadow:0 0 0 5px rgba(255,210,63,.2)}
+.ruta .num{font:.82rem var(--num);color:var(--trazo2)}
+.ruta .tt{font-size:1rem;line-height:1.3}
+.ruta .tt small{display:block;font-size:.8rem;color:var(--trazo2);margin-top:1px}
+.ruta .sig .tt small{color:var(--ficha)}
+.ruta .sig{background:rgba(255,210,63,.07)}
+.redes{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.redes button{display:flex;flex-direction:column;width:100%;height:100%;padding:0;border:1.5px solid var(--trazo2);border-radius:0;background:var(--plano2);text-align:left;transition:border-color .12s}
+.redes button:hover:not(:disabled){border-color:var(--ficha)}
+.redes button:disabled{opacity:.45;cursor:not-allowed}
+.redes .th{background:var(--panel);border-bottom:1px solid rgba(143,176,230,.35);padding:6px 8px;pointer-events:none}
+.redes .th svg{display:block;width:100%;height:auto;max-height:150px}
+.redes .rc{display:flex;flex-direction:column;gap:4px;padding:10px 12px 12px;flex:1}
+.redes .rc b{font:400 1.2rem/1.2 var(--disp)}
+.redes .rc b .n{font:.8rem var(--num);color:var(--trazo2);margin-right:8px}
+.redes .rc i{font-style:normal;font-size:.9rem;color:var(--trazo)}
+.redes .rp{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:6px}
+.niv{font-size:.78rem;padding:1px 8px;border:1px solid var(--trazo2);color:var(--trazo2)}
+.niv.n1{border-color:#9fc3ff;color:#c6dbff}.niv.n2{border-color:var(--ficha);color:var(--ficha)}
+.busca{width:100%;max-width:520px;font:inherit;padding:.6rem .8rem;margin:0 0 16px;background:var(--plano2);color:var(--trazo);border:1.5px solid var(--trazo2);border-radius:2px}
+.busca::placeholder{color:var(--trazo2)}
+.glos{columns:2 340px;column-gap:30px}
+.gt{break-inside:avoid;padding:12px 0 14px;border-top:1px solid rgba(143,176,230,.35)}
+.gt h3{font:400 1.2rem/1.25 var(--disp);color:var(--ficha);margin:0 0 4px}
+.gt p{margin:0 0 6px;font-size:.96rem}
+.gt button{border:0;padding:0;font-size:.85rem;color:var(--trazo2);text-decoration:underline;text-underline-offset:3px}
+.gt button:hover{color:var(--trazo)}
+#ex>svg,#ex-t>svg,#ex-m>svg{display:block;margin:0 auto}
 .aviso{color:var(--ficha);min-height:1.5em;margin:0 0 8px}
 
 .car{display:grid;grid-template-columns:auto minmax(0,2.4fr) minmax(0,1.4fr) repeat(3,minmax(68px,.7fr));border:1.5px solid var(--trazo);background:var(--plano2)}
@@ -314,6 +382,23 @@ h2{font:400 1.8rem/1.2 var(--disp);margin:0 0 10px}
 .etapas .b span i{display:block;height:100%;background:var(--tinta)}
 .etapas button{padding:.15rem .6rem;font-size:.86rem;border-color:var(--tinta2);white-space:nowrap}
 
+@media (min-width:1440px){
+  body{font-size:18px}
+  #app{max-width:min(1760px,94vw);padding:28px 36px 60px}
+  .vista{max-width:1480px;padding:34px 48px 70px}
+  .play{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px 28px}
+  .play:has(#extra:not([hidden])) .red svg{max-height:380px}
+  .sheet{padding:28px 32px}
+  .lec{max-width:72ch}
+  .curso{columns:4 290px}
+  .redes{grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+  .shell{grid-template-columns:280px minmax(0,1fr)}
+  .fin{max-width:720px}
+}
+@media (min-width:1800px){
+  body{font-size:19px}
+  .vista{max-width:1640px}
+}
 @media (max-width:860px){
   #app{padding:12px 16px 50px}
   .hero{grid-template-columns:minmax(0,1fr)}
@@ -337,6 +422,15 @@ h2{font:400 1.8rem/1.2 var(--disp);margin:0 0 10px}
   .red svg{max-height:38vh}
   .est #st,.atajo{display:none}
   .curso{columns:1}
+  .redes{grid-template-columns:1fr;gap:10px}
+  .redes button{flex-direction:row}
+  .redes .th{width:128px;flex:none;border-bottom:0;border-right:1px solid rgba(143,176,230,.35);display:flex;align-items:center}
+  .redes .rc{padding:8px 10px}
+  .redes .rc b{font-size:1.08rem}
+  .redes .rc i{font-size:.84rem}
+  .glos{columns:1}
+  .abajo button{font-size:.9rem}
+  .lec{font-size:1rem}
   .car.enl{grid-template-columns:auto minmax(0,1fr) auto}
   .car.enl .ctl{grid-column:1;grid-row:1}
   .car.enl .ancho:nth-child(3) b{white-space:nowrap}
@@ -639,7 +733,7 @@ async function animFire(V,j,from,to){
 }
 
 let EPOCH=0,RUN=null,CUR=null,FOCO='todo',timer=null;
-const VISTAS={inicio:'Inicio',curso:'Curso',practicar:'Practicar'};
+const VISTAS={inicio:'Inicio',curso:'Curso',practicar:'Practicar',glosario:'Glosario'};
 let VISTA='inicio';
 function ruta(h){try{if(location.hash!==h)history.pushState({t:1},'',h);}catch(e){}}
 function limpiarRuta(){try{if(location.hash)history.replaceState(null,'',location.pathname+location.search);}catch(e){}}
@@ -692,7 +786,8 @@ function home(v,msg){
   ${canSave?`<section class="sync"><h3>Llevar tu progreso a otra PC</h3><p>Copiá tu código y pegalo en el otro navegador. Al cargarlo, se reemplaza el progreso de ese navegador.</p><div class="atajos-ini"><button id="sx">Copiar mi código</button><button id="si">Pegar un código</button></div><div id="sbox"></div></section>`:''}`,
  curso:`<div class="cab"><h2>Curso</h2>${fichas}</div>
   <p class="sub">Lecciones cortas, de lo más fácil a lo más difícil. Cada una explica, muestra y te hace practicar.</p>
-  <div class="curso">${CURSO.map((b,bi)=>`<section id="b${bi}"><h3>${b.b}</h3><ol start="${nL+1}">${b.l.map(l=>{const i=nL++;return `<li><button data-l="${i}"><span>${l.t}</span>${SAVE.done[l.id]?'<s class="on" aria-label="Terminada"></s>':'<s></s>'}</button></li>`;}).join('')}</ol></section>`).join('')}</div>`,
+  <p class="sub">Cada lección es una plaza de esta red. Cuando la terminás, gana su testigo.</p>
+  <div class="curso">${CURSO.map((b,bi)=>{const h=b.l.filter(l=>SAVE.done[l.id]).length;return `<section id="b${bi}"><h3>${b.b}<span>${h}/${b.l.length}</span></h3><ol class="ruta">${b.l.map(l=>{const i=nL++,on=!!SAVE.done[l.id],sig=l===nextL&&!on;return `<li><button data-l="${i}"${sig?' class="sig"':''}><s class="pl${on?' on':''}${sig?' next':''}" aria-hidden="true"></s><span class="num">${i+1}</span><span class="tt">${l.t}<small>${on?'Terminada':sig?'Seguís acá':l.s.length+' pasos'}</small></span></button></li>`;}).join('')}</ol></section>`;}).join('')}</div>`,
  practicar:`<h2>Practicar</h2>
   <p class="sub">Resolvé redes completas, de la más simple a la más larga, o probá un simulacro.</p>
   ${modos}
@@ -700,7 +795,11 @@ function home(v,msg){
   <div class="foco" role="group" aria-label="Etapas a practicar">${foco.map(([k,t])=>`<button data-f="${k}" aria-pressed="${k===FOCO}">${t}</button>`).join('')}</div>
   <p class="aviso" id="aviso" role="status">${msg||''}</p>
   <p class="foco-info" id="foco-info"></p>
-  <ol class="lista" id="lista-redes"></ol>`};
+  <ol class="redes" id="lista-redes"></ol>`,
+ glosario:`<h2>Glosario</h2>
+  <p class="sub">Todos los términos del curso, con la lección donde se explican.</p>
+  <input id="gbus" class="busca" type="search" placeholder="Buscar un término, por ejemplo: viva" aria-label="Buscar en el glosario" autocomplete="off">
+  <div class="glos" id="glos"></div><p id="gvacio" class="sub" hidden>No hay términos con esa búsqueda.</p>`};
  $('#app').className='conshell';
  $('#app').innerHTML=`<div class="shell">
   <aside class="lado">
@@ -718,6 +817,7 @@ function home(v,msg){
  if(canSave){let arm=false;document.querySelectorAll('.borrar').forEach(x=>x.onclick=()=>{if(!arm){arm=true;document.querySelectorAll('.borrar').forEach(y=>y.textContent='Tocá de nuevo para confirmar');return;}SAVE={best:{},pts:0,done:{},seen:{},bs:{},err:{}};store();home(VISTA);});}
  document.querySelectorAll('.foco button').forEach(b=>b.onclick=()=>{FOCO=b.dataset.f;document.querySelectorAll('.foco button').forEach(x=>x.setAttribute('aria-pressed',x===b));const a=$('#aviso');if(a)a.textContent='';listaRedes();});
  if(v==='practicar')listaRedes();
+ if(v==='glosario'){const g=$('#gbus');g.oninput=()=>glosario(g.value);glosario('');if(FINE)g.focus();}
  document.querySelectorAll('.curso button').forEach(b=>b.onclick=()=>lesson(+b.dataset.l));
  if(v==='inicio'){$('#cta').onclick=()=>lesson(LECS.indexOf(nextL));demo();syncPanel();}
 }
@@ -733,11 +833,72 @@ const FOCO_TXT={todo:'Cada red se resuelve completa: disparos, árbol, máquina 
  mt:'Solo la máquina de testigos. Las redes con ω no la tienen y quedan desactivadas.',
  props:'Solo propiedades: limitación, vivacidad, ciclicidad, conservación, conflicto, exclusión mutua y subclases.',
  matriz:'Solo método matricial: C⁻, C⁺, C, habilitación, disparo, vector f y alcanzabilidad.'};
+const NIVEL={lampara:0,torta:0,sandwich:0,canje:0,impresora:1,enzima:1,alcancia:1,cola:1,llave:1,buffer:2,cruzadas:2,cinco:2,r1:2};
+const GLOS=[
+['Red de Petri','Dibujo formado por plazas, transiciones y arcos que modela un sistema: qué puede pasar, qué hace falta y qué cambia.','que'],
+['Plaza (lugar)','Círculo. Representa una situación, una condición o un recurso.','piezas'],
+['Testigo (marca, ficha)','Punto dentro de una plaza. Indica que la condición se cumple, o cuántas unidades del recurso hay.','piezas'],
+['Transición','Rayita. Representa una acción o un evento que cambia el estado.','piezas'],
+['Arco','Flecha que une una plaza con una transición, o una transición con una plaza. Nunca une dos del mismo tipo.','piezas'],
+['Plaza de entrada','Plaza con una flecha hacia la transición: lo que la acción necesita.','piezas'],
+['Plaza de salida','Plaza a la que apunta la transición: lo que la acción produce.','piezas'],
+['Transición habilitada (sensibilizada)','Cada una de sus plazas de entrada tiene al menos tantas fichas como el peso de su flecha.','hab'],
+['Disparo','Sacar de cada entrada el peso de su flecha y poner en cada salida el peso de la suya.','dis'],
+['Peso de un arco','Número en la flecha: cuántas fichas mueve. Sin número, pesa 1.','peso'],
+['Marcado','Cantidad de fichas en cada plaza en un instante, escrita como vector. Define el estado de la red.','marc'],
+['Marcado inicial (M0)','El marcado con el que empieza la red.','marc'],
+['Inmediatamente alcanzable','Marcado al que se llega con un solo disparo.','marc'],
+['Alcanzable','Marcado al que se llega con una secuencia de disparos de cualquier largo.','marc'],
+['Conjunto de alcanzabilidad R(M0)','Todos los marcados alcanzables desde M0.','marc'],
+['Conflicto','Dos transiciones habilitadas que se disputan una ficha: si ocurre una, la otra ya no puede.','casos'],
+['Concurrencia','Dos transiciones habilitadas que no comparten fichas: pueden ocurrir las dos, en cualquier orden.','casos'],
+['Transición fuente','Transición sin entradas: siempre está habilitada.','casos'],
+['Transición sumidero','Transición sin salidas: solo elimina fichas.','casos'],
+['Árbol de alcanzabilidad','Árbol con todos los marcados alcanzables desde M0, unidos por la transición que se dispara.','arb1'],
+['Marcado frontera','Hoja del árbol donde se corta la rama: muerto, duplicado o con ω.','arb3'],
+['Marcado muerto','Marcado en el que ninguna transición está habilitada. Indica un bloqueo.','arb3'],
+['Marcado duplicado','Marcado que ya apareció en otra parte del árbol. Su rama se corta.','arb3'],
+['ω (omega)','Indica una plaza que puede acumular tantas fichas como se quiera.','arb4'],
+['Máquina de testigos','Versión compacta del árbol: cada estado se escribe con las plazas marcadas y aparece una sola vez.','mt1'],
+['Red k-limitada','Ninguna plaza supera k fichas en ningún marcado alcanzable.','p1'],
+['Red 1-limitada (binaria o segura)','Cada plaza tiene 0 o 1 ficha en todos los marcados alcanzables.','p1'],
+['Bloqueo (deadlock)','La red llega a un marcado muerto: ya no se puede disparar nada.','p2'],
+['Transición viva','Desde cualquier marcado alcanzable, se puede llegar a habilitarla de nuevo.','p2'],
+['Red viva','Todas sus transiciones son vivas.','p2'],
+['Red cíclica','Desde cualquier marcado alcanzable se puede volver a M0.','p3'],
+['Conservación estricta','La suma de fichas es la misma en todos los marcados alcanzables.','p4'],
+['Conservación con pesos','Existe un vector w de pesos positivos tal que la suma ponderada de fichas no cambia al disparar.','p4'],
+['Conflicto estructural','Una plaza alimenta a dos o más transiciones. Se ve en el dibujo.','p5'],
+['Conflicto efectivo','Un marcado alcanzable habilita a dos transiciones, y disparar una deshabilita a la otra.','p5'],
+['Exclusión mutua','Dos plazas que nunca tienen fichas al mismo tiempo, o transiciones que se deshabilitan entre sí al dispararse.','p6'],
+['Red ordinaria','Todos sus arcos pesan 1.','p7'],
+['Red generalizada','Sus arcos pueden tener cualquier peso entero.','p7'],
+['Red pura','Ninguna plaza es entrada y salida de la misma transición.','p7'],
+['Máquina de estados','Cada transición tiene exactamente una entrada y una salida. Modela conflictos, pero no paralelismo.','p7'],
+['Grafo marcado','Cada plaza tiene exactamente una entrada y una salida. Modela paralelismo, pero no conflictos.','p7'],
+['Red de libre elección','Si una plaza alimenta a varias transiciones, es la única entrada de todas ellas.','p7'],
+['Red simple','Cada transición tiene como máximo una entrada compartida con otra transición.','p7'],
+['Matriz de incidencia previa (C<sup>−</sup>)','Una fila por transición y una columna por plaza: cuántas fichas saca cada transición de cada plaza.','f2'],
+['Matriz de incidencia posterior (C<sup>+</sup>)','Cuántas fichas pone cada transición en cada plaza.','f2'],
+['Matriz de incidencia (C)','C = C<sup>+</sup> − C<sup>−</sup>: cuánto cambia cada plaza al disparar cada transición.','f3'],
+['Vector ej','Representa a la transición tj: un 1 en la posición j y 0 en el resto.','f4'],
+['Vector de disparo f(σ)','Cuántas veces se dispara cada transición en la secuencia σ. No guarda el orden.','f5'],
+['Ecuación de estado','M = M0 + f·C. Si no tiene solución, M no es alcanzable; si la tiene, todavía hay que comprobar un orden real.','f6']
+];
+const sinTilde=t=>String(t).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/<[^>]+>/g,'').toLowerCase();
+function glosario(q){
+ const g=$('#glos');if(!g)return;const k=sinTilde(q.trim());
+ const L=GLOS.filter(([t,d])=>!k||sinTilde(t+' '+d).includes(k));
+ g.innerHTML=L.map(([t,d,l])=>{const i=LECS.findIndex(x=>x.id===l);return `<div class="gt"><h3>${t}</h3><p>${d}</p><button data-gl="${i}">Lección ${i+1}: ${LECS[i].t}</button></div>`;}).join('');
+ $('#gvacio').hidden=L.length>0;
+ g.querySelectorAll('[data-gl]').forEach(b=>b.onclick=()=>lesson(+b.dataset.gl));
+}
 function notaRed(d){return FOCO==='todo'?(SAVE.best[d.id]||0):((SAVE.bs||{})[FOCO+':'+d.id]||0);}
 function listaRedes(){
  const L=$('#lista-redes');if(!L)return;
  $('#foco-info').innerHTML=FOCO_TXT[FOCO].replace('C⁻','C<sup>−</sup>').replace('C⁺','C<sup>+</sup>')+' La red al azar también usa este filtro.';
- L.innerHTML=NETS.map((d,i)=>{const ok=soporta(d,FOCO);return `<li><button data-n="${i}"${ok?'':' disabled'}><span class="n">${i+1}</span><b>${d.t}</b><i>${ok?d.s:'Tiene ω: no tiene máquina de testigos.'}</i>${rate(notaRed(d))}</button></li>`;}).join('');
+ L.innerHTML=NETS.map((d,i)=>{const ok=soporta(d,FOCO);return `<li><button data-n="${i}"${ok?'':' disabled'}><div class="th" data-th="${i}"></div><div class="rc"><b><span class="n">${i+1}</span>${d.t}</b><i>${ok?d.s:'Tiene ω: no tiene máquina de testigos.'}</i><div class="rp"><span class="niv n${NIVEL[d.id]}">${['Básica','Intermedia','Avanzada'][NIVEL[d.id]]}</span>${rate(notaRed(d))}</div></div></button></li>`;}).join('');
+ L.querySelectorAll('[data-th]').forEach(el=>{const n=mkNet(NETS[+el.dataset.th]);const v=drawNet(n,el);paint(v,n.m0);});
  L.querySelectorAll('button').forEach(b=>b.onclick=()=>start(mkNet(NETS[+b.dataset.n]),'nivel'));
 }
 function demo(){
@@ -853,7 +1014,7 @@ function ask(it){
    if(it.markErr)it.markErr(v);
    box.classList.remove('temblor');void box.offsetWidth;if(R.mode!=='examen')box.classList.add('temblor');
    if(R.mode==='examen'||me.tries>=2){
-    me.locked=true;lock(false);if(it.fillSol)it.fillSol();
+    me.locked=true;lock(false);if(it.fillSol)it.fillSol();if(it.hlSol)hl(it.hlSol);
     fb('mal',`${it.why?it.why+'<br>':''}La respuesta era ${fmtSol(it,it.sol)}.`);
     acc.innerHTML='<button class="pri" id="sg">Seguir</button>';$('#sg').onclick=()=>res(it.sol);$('#sg').focus();
    }else fb('mal',`${it.why||'Eso no coincide.'} Probá de nuevo.`);
@@ -935,6 +1096,7 @@ function ask(it){
  });
 }
 document.addEventListener('keydown',e=>{
+ if(RUN&&RUN.mode==='leccion'&&!CUR&&!e.target.closest('input,textarea,select')){if(e.key==='ArrowRight'){const b=$('#next');if(b){e.preventDefault();b.click();}return;}if(e.key==='ArrowLeft'){const b=$('#prev');if(b){e.preventDefault();b.click();}return;}}
  if(CUR&&!CUR.locked&&/^[1-9]$/.test(e.key)&&!e.target.closest('input,.mat')){const b=document.querySelectorAll('#in .ops button')[+e.key-1];if(b&&!b.disabled){e.preventDefault();b.click();}return;}
  if(e.key!=='Enter'||!CUR||e.target.closest('.acc')||e.target.closest('.ops')||e.target.closest('.mat'))return;
  const g=$('#sg')||$('#chk');if(g&&!g.disabled){e.preventDefault();g.click();}
@@ -1179,40 +1341,58 @@ const Q={
  mat:(f,q,why,hint,signed)=>n=>({kind:'matrix',signed:!!signed,q,sol:n[f],why,hint,tipo:{pre:'cmenos',post:'cmas',C:'c'}[f]}),
  nums:(q,sol,why,hint)=>()=>({kind:'single',q,opts:numOpts(sol),sol,why,hint,show:v=>'<code>'+v+'</code>',ok:why})
 };
-const mx=(n,rows)=>`<table class="mini"><tr><th></th>${n.P.map(p=>`<th>${p.id}</th>`).join('')}</tr>${rows.map((r,j)=>`<tr><th>${n.T[j].id}</th>${r.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')}</table>`;
+
+const mx=(n,rows,h)=>`<table class="mini"><tr><th></th>${n.P.map(p=>`<th>${p.id}</th>`).join('')}</tr>${rows.map((r,j)=>`<tr><th>${n.T[j].id}</th>${r.map((v,i)=>`<td${h&&h[0]===j&&(h[1]===i||h[1]==='*')?' class="hl"':''}>${v}</td>`).join('')}</tr>`).join('')}</table>`;
+function chequeo(n,M,js){
+ js=js||n.T.map((_,j)=>j);
+ return `<table class="mini tabla-l"><tr><th>Transición</th><th>Pide</th><th>Hay</th><th>Resultado</th></tr>${js.map(j=>{const pide=n.pre[j].map((v,i)=>v?`${v} en ${pid(n,i)}`:null).filter(Boolean),hay=n.pre[j].map((v,i)=>v?`${sym(M[i])} en ${pid(n,i)}`:null).filter(Boolean),ok=enOne(n,M,j);
+  return `<tr><th>${tid(n,j)}</th><td>${pide.join(', ')||'nada'}</td><td>${hay.join(', ')||'—'}</td><td class="${ok?'si':'no'}">${ok?'Habilitada':'No habilitada'}</td></tr>`;}).join('')}</table>`;
+}
+function cambio(n,M,j){
+ const to=fire(n,M,j);
+ return `<table class="mini tabla-l"><tr><th>Plaza</th><th>Antes</th><th>Cambio</th><th>Después</th></tr>${n.P.map((p,i)=>{const a=n.pre[j][i],b=n.post[j][i],c=[a?`saca ${a}`:'',b?`pone ${b}`:''].filter(Boolean).join(', ')||'sin cambio';
+  return `<tr class="${a||b?'mov':''}"><th>${p.id}</th><td>${sym(M[i])}</td><td>${c}</td><td>${sym(to[i])}</td></tr>`;}).join('')}</table>`;
+}
+function camino(n,seq,M0){let M=(M0||n.m0).slice();const p=[`<code>${compact(M)}</code>`];for(const j of seq){M=fire(n,M,j);p.push(`<span class="paso-t">${tid(n,j)} →</span><code>${compact(M)}</code>`);}return `<p class="camino">${p.join('')}</p>`;}
+function compara(n,A,B){return `<table class="mini tabla-l"><tr><th>Plaza</th><th>Antepasado</th><th>Nuevo</th><th>Comparación</th></tr>${n.P.map((p,i)=>`<tr class="${B[i]>A[i]?'mov':''}"><th>${p.id}</th><td>${sym(A[i])}</td><td>${sym(B[i])}</td><td>${B[i]>A[i]?'creció':B[i]===A[i]?'igual':'bajó'}</td></tr>`).join('')}</table>`;}
+function sumaFilas(n,f){const t=mulFC(n,f);return `<table class="mini"><tr><th></th>${n.P.map(p=>`<th>${p.id}</th>`).join('')}</tr>${n.T.map((tt,k)=>f[k]?`<tr><th>${f[k]} × fila ${tt.id}</th>${n.C[k].map(v=>`<td>${f[k]*v}</td>`).join('')}</tr>`:'').join('')}<tr class="tot"><th>f·C</th>${t.map(v=>`<td>${v}</td>`).join('')}</tr></table>`;}
+function subTabla(ids){const si=v=>v?'<td class="si">Sí</td>':'<td class="no">No</td>';return `<table class="mini tabla-l"><tr><th>Red</th><th>Máquina de estados</th><th>Grafo marcado</th><th>Libre elección</th><th>Simple</th></tr>${ids.map(id=>{const d=NETS.find(x=>x.id===id),c=subclases(mkNet(d));return `<tr><th>${d.t}</th>${si(c.me)}${si(c.gm)}${si(c.rle)}${si(c.rs)}</tr>`;}).join('')}</table>`;}
+const LEYENDA=`<div class="leyenda"><span><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="12"/></svg>Plaza</span><span><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="12"/><circle cx="17" cy="17" r="4.5" class="f"/></svg>Testigo</span><span><svg viewBox="0 0 34 34" aria-hidden="true"><rect x="13" y="4" width="8" height="26" class="f"/></svg>Transición</span><span><svg viewBox="0 0 34 34" aria-hidden="true"><path d="M3 17H28M22 11l7 6-7 6"/></svg>Arco</span></div>`;
+const FLUJO=`<ol class="flujo"><li><b>¿Ya apareció en alguna parte del árbol?</b><span>Sí: corto la rama, es un <b>duplicado</b>.</span></li><li><b>¿Tiene lo mismo o más fichas que un antepasado de su rama, con alguna plaza mayor, y habilita las mismas transiciones?</b><span>Sí: escribo <b>ω</b> en las plazas que crecieron y sigo.</span></li><li><b>¿No habilita ninguna transición?</b><span>Sí: corto la rama, es un marcado <b>muerto</b>.</span></li><li><b>Si no es nada de lo anterior</b><span>Es un marcado nuevo: <b>sigo expandiendo</b>.</span></li></ol>`;
+
 const IMP=[2,0,1,0];
 const CURSO=[
 {b:'Primero: las piezas',l:[
 {id:'que',t:'Qué es una red de Petri',s:[
- {h:'Un juego de fichas',net:'lampara',t:`<p>Una red de Petri es un dibujo que muestra cómo funciona un sistema: qué cosas pueden pasar, qué hace falta para que pasen y qué cambia después.</p><p>Pensala como un juego de mesa muy simple. Hay cajas, fichas y acciones que mueven esas fichas.</p><p>Esta red es una lámpara. La ficha en la caja <code>apagada</code> te dice que ahora está apagada.</p>`},
+ {h:'Un juego de fichas',net:'lampara',t:`<p>Una red de Petri es un dibujo que muestra cómo funciona un sistema: <b>qué puede pasar</b>, <b>qué hace falta</b> para que pase y <b>qué cambia</b> después.</p><p>Pensala como un juego de mesa muy simple, con tres cosas: cajas, fichas y acciones que cambian las fichas de lugar.</p><p>Esta red modela una lámpara. Tiene dos cajas, <code>apagada</code> y <code>prendida</code>, y la ficha está en <code>apagada</code>: eso quiere decir que <b>ahora</b> la lámpara está apagada.</p><div class="clave"><b>Idea clave</b>Las fichas muestran cómo está el sistema en este momento. Cuando el sistema cambia, cambian las fichas.</div>`},
  {h:'Probala',net:'lampara',play:1,t:`<p>Las rayitas amarillas son las acciones que se pueden hacer ahora. Tocá una y mirá qué pasa con la ficha.</p><p>Tocá varias veces. Fijate que nunca podés prender una lámpara que ya está prendida: la red no lo permite.</p>`},
- {h:'Para qué sirve',net:'torta',t:`<p>Se usa sobre todo cuando varias cosas ocurren a la vez o compiten por algo. Por ejemplo, dos personas que quieren la misma porción de torta, o dos programas que quieren usar la misma impresora.</p><p>Con el dibujo se puede analizar el sistema antes de construirlo y detectar problemas, como que todo se trabe.</p>`},
+ {h:'Para qué sirve',net:'torta',t:`<p>Se usa sobre todo cuando <b>varias cosas ocurren a la vez</b> o <b>compiten por algo</b>: dos personas que quieren la misma porción de torta, dos programas que quieren la misma impresora, dos trenes que quieren la misma vía.</p><p>Con el dibujo se puede analizar el sistema antes de construirlo y contestar preguntas como estas:</p><ul><li>¿Se puede trabar todo?</li><li>¿Puede crecer algo sin límite, como una cola infinita?</li><li>¿Dos cosas que no deberían pasar juntas pueden pasar juntas?</li></ul><p>Todo el curso es aprender a responder esas preguntas.</p>`},
  {net:'lampara',M:[1,0],ask:Q.one('En la lámpara, ¿qué te dice una ficha dentro de una caja?',['Cómo está el sistema en este momento','Cuántas veces se usó la lámpara','Qué botón se apretó último'],0,'Las fichas muestran el estado actual del sistema.')}
 ]},
 {id:'piezas',t:'Las cuatro piezas',pr:{net:'lampara',st:'disparo'},s:[
- {h:'Plazas y testigos',net:'impresora',t:`<p>Las <b>plazas</b> (o lugares) son los círculos. Representan una situación o un recurso, como <code>esperando</code> o <code>libre</code>.</p><p>Los <b>testigos</b> (también marcas o fichas) son los puntos. Si hay dos en <code>p1</code>, hay dos documentos esperando.</p>`},
- {h:'Transiciones y arcos',net:'impresora',t:`<p>Las <b>transiciones</b> son las rayitas. Representan una acción o evento, como <code>empezar</code>.</p><p>Los <b>arcos</b> son las flechas. Conectan siempre una plaza con una transición, o una transición con una plaza. Nunca dos plazas ni dos transiciones entre sí.</p>`},
- {h:'Entradas y salidas',net:'impresora',t:`<p>Mirá una transición y sus flechas:</p><ul><li>Las plazas que <b>le apuntan</b> son sus <b>entradas</b>: lo que la acción necesita.</li><li>Las plazas a las que <b>ella apunta</b> son sus <b>salidas</b>: lo que la acción produce.</li></ul><p>Para <code>t1</code>, las entradas son <code>p1</code> y <code>p3</code>: hace falta un documento y la impresora libre. Su salida es <code>p2</code>.</p>`},
+ {h:'Plazas y testigos',net:'impresora',hl:['p1','p3'],t:`${LEYENDA}<p>Las <b>plazas</b> (también llamadas lugares) son los círculos. Cada una representa una situación o un recurso: <code>esperando</code>, <code>imprimiendo</code>, <code>libre</code>.</p><p>Los <b>testigos</b> (también marcas o fichas) son los puntos dentro de las plazas. Indican si esa situación se cumple y cuántas veces: los dos testigos en <code>p1</code> son dos documentos esperando, y el de <code>p3</code> indica que la impresora está libre.</p>`},
+ {h:'Transiciones y arcos',net:'impresora',hl:['t1','t2'],t:`<p>Las <b>transiciones</b> son las rayitas. Representan acciones o eventos que cambian el estado: <code>empezar</code> a imprimir, <code>terminar</code>.</p><p>Los <b>arcos</b> son las flechas. Dicen qué necesita cada acción y qué produce.</p><div class="ojo"><b>Ojo</b>Un arco siempre une una plaza con una transición, o una transición con una plaza. Nunca une dos plazas ni dos transiciones entre sí.</div>`},
+ {h:'Entradas y salidas',net:'impresora',hl:['t1','p1','p3','p2'],t:`<p>Mirá una transición y sus flechas:</p><ul><li>Las plazas que <b>le apuntan</b> son sus <b>entradas</b>: lo que la acción necesita y consume.</li><li>Las plazas a las que <b>ella apunta</b> son sus <b>salidas</b>: lo que la acción produce.</li></ul><p>En el dibujo está resaltada <code>t1</code>. Sus entradas son <code>p1</code> y <code>p3</code>: para empezar a imprimir hace falta un documento y la impresora libre. Su salida es <code>p2</code>: queda un documento imprimiéndose.</p><div class="clave"><b>Idea clave</b>Entradas: lo que se consume. Salidas: lo que se produce.</div>`},
  {net:'impresora',ask:Q.pl('¿Cuáles son las plazas de salida de t2?',[2,3],'Las flechas que salen de t2 llegan a p3 y p4.','Seguí las flechas que salen de la rayita t2.')},
  {net:'impresora',ask:Q.yn('¿Puede una flecha unir dos plazas directamente?',false,'Los arcos siempre unen una plaza con una transición, en cualquier sentido.')}
 ]},
 {id:'hab',t:'Cuándo se puede disparar',pr:{net:'torta',st:'disparo'},s:[
- {h:'La regla',net:'impresora',M:IMP,t:`<p>Una transición está <b>habilitada</b> (o sensibilizada) si cada una de sus plazas de entrada tiene fichas suficientes.</p><p><code>t1</code> pide una ficha en <code>p1</code> y una en <code>p3</code>. Hay 2 y 1, así que está habilitada.</p><p><code>t2</code> pide una ficha en <code>p2</code>, y no hay ninguna. No está habilitada.</p>`},
- {h:'Solo miran las entradas',net:'impresora',M:IMP,t:`<p>Las salidas no importan para saber si una transición puede dispararse. Que una plaza de salida ya tenga fichas no la bloquea.</p><p>Tampoco alcanza con que <i>una</i> entrada tenga fichas: tienen que tenerlas <b>todas</b>.</p>`},
+ {h:'La regla',net:'impresora',M:IMP,hl:['t1'],t:n=>`<p>Una transición está <b>habilitada</b> (o sensibilizada) cuando <b>cada una</b> de sus plazas de entrada tiene, por lo menos, tantas fichas como pide su flecha.</p><p>Para revisarlo, hacé esta tabla con el marcado actual <code>(2 0 1 0)</code>:</p>${chequeo(n,IMP)}<p><code>t1</code> pide una ficha en p1 y una en p3, y están las dos. <code>t2</code> pide una ficha en p2, que está vacía.</p>`},
+ {h:'Solo miran las entradas',net:'impresora',M:IMP,t:`<p>Para decidir si una transición puede dispararse, <b>mirás solo sus entradas</b>. Las salidas no cuentan: que una plaza de salida ya tenga fichas no la bloquea.</p><div class="ojo"><b>Ojo</b>No alcanza con que <i>alguna</i> entrada tenga fichas: tienen que tenerlas <b>todas</b>. Los documentos de p1 no le sirven a <code>t1</code> si la impresora no está libre en p3.</div>`},
  {net:'impresora',M:IMP,ask:Q.en(IMP)},
  {net:'impresora',M:[1,1,0,0],t:'Ahora un documento se está imprimiendo.',ask:Q.en([1,1,0,0])},
  {net:'impresora',M:[0,0,1,2],t:'Ya se imprimieron los dos documentos.',ask:Q.en([0,0,1,2])}
 ]},
 {id:'dis',t:'Qué pasa al disparar',pr:{net:'impresora',st:'disparo'},s:[
- {h:'Sacar y poner',net:'impresora',M:IMP,t:`<p>Disparar una transición habilitada es hacer dos cosas:</p><ol><li><b>Sacar</b> una ficha de cada plaza de entrada.</li><li><b>Poner</b> una ficha en cada plaza de salida.</li></ol><p>Solo cambian las plazas conectadas a esa transición. Las demás quedan igual.</p>`},
+ {h:'Sacar y poner',net:'impresora',M:IMP,hl:['t1'],t:n=>`<p>Disparar una transición habilitada es hacer dos cosas, siempre en este orden:</p><ol class="metodo"><li><b>Sacar</b> de cada plaza de entrada tantas fichas como pide su flecha.</li><li><b>Poner</b> en cada plaza de salida tantas fichas como indica su flecha.</li></ol><p>Así queda al disparar <code>t1</code> desde <code>(2 0 1 0)</code>:</p>${cambio(n,IMP,0)}<p>Las plazas que no están conectadas a <code>t1</code>, como p4, no cambian.</p>`},
  {h:'Probalo',net:'impresora',play:1,t:`<p>Dispará hasta que no quede nada amarillo. Mirá cómo cambia la lista de números debajo del dibujo.</p>`},
- {h:'Las fichas no viajan',net:'impresora',M:IMP,t:`<p>Es lo que más confunde: las fichas no se mueven de una caja a otra. Se borran unas y se crean otras.</p><p>Por eso la cantidad total puede cambiar. Al disparar <code>t1</code> se sacan 2 fichas y se pone 1: el total baja de 3 a 2.</p><p>Si hay varias habilitadas, se dispara <b>una por vez</b> y puede ser cualquiera.</p>`},
+ {h:'Las fichas no viajan',net:'impresora',M:IMP,t:`<p>Es lo que más confunde: las fichas <b>no se mueven</b> de una caja a otra. Se borran unas y se crean otras.</p><p>Pensalo como una receta y no como un traslado: <code>t1</code> consume un documento y la impresora libre, y produce «imprimiendo». Se van dos fichas y aparece una, así que el total baja de 3 a 2.</p><div class="ojo"><b>Ojo</b>Si hay varias transiciones habilitadas, se dispara <b>una sola por vez</b>, y puede ser cualquiera: la red no decide cuál.</div>`},
  {net:'impresora',M:IMP,ask:Q.fire(0,IMP)},
  {net:'impresora',M:[1,1,0,0],ask:Q.fire(1,[1,1,0,0])}
 ]},
 {id:'peso',t:'Flechas con peso',pr:{net:'sandwich',st:'disparo'},s:[
  {h:'Un número en la flecha',net:'sandwich',t:`<p>Una flecha puede llevar un número: su <b>peso</b>. Significa que esa flecha mueve esa cantidad de fichas. Sin número, pesa 1.</p><p>Armar un sándwich pide 2 panes y 1 feta. La flecha desde <code>pan</code> pesa 2.</p>`},
- {h:'Cambia la regla, pero poco',net:'sandwich',t:`<p><b>Para habilitar:</b> cada entrada debe tener al menos tantas fichas como el peso de su flecha. Con 1 solo pan no alcanza.</p><p><b>Al disparar:</b> se saca el peso de cada flecha de entrada y se pone el peso de cada flecha de salida.</p>`},
+ {h:'Cambia la regla, pero poco',net:'sandwich',M:[4,2,0],t:n=>`<p><b>Para habilitar:</b> cada entrada tiene que tener al menos tantas fichas como el peso de su flecha. Con 1 solo pan no alcanza, porque la flecha pide 2.</p><p><b>Al disparar:</b> se saca el peso de cada flecha de entrada y se pone el peso de cada flecha de salida. Desde <code>(4 2 0)</code>:</p>${cambio(n,[4,2,0],0)}<div class="clave"><b>Idea clave</b>Una flecha sin número pesa 1. Todo lo que aprendiste sigue igual: solo que, en vez de 1, usás el peso.</div>`},
  {net:'sandwich',M:[1,2,0],t:'Queda un solo pan.',ask:Q.en([1,2,0])},
  {net:'sandwich',M:[4,2,0],ask:Q.fire(0,[4,2,0])},
  {net:'canje',M:[0,1],t:'Devolver el premio te da 2 cupones.',ask:Q.fire(1,[0,1])}
@@ -1220,23 +1400,23 @@ const CURSO=[
 {id:'marc',t:'El marcado: la foto del momento',pr:{net:'torta',st:'disparo'},s:[
  {h:'Una lista de números',net:'impresora',M:IMP,t:`<p>El <b>marcado</b> dice cuántas fichas hay en cada plaza en un instante. Define el estado de la red.</p><p>Se escribe como una lista en orden p1, p2, p3…: <code>(2 0 1 0)</code> significa 2 en p1, 0 en p2, 1 en p3 y 0 en p4.</p><p>El marcado con el que empezás se llama <b>M0</b> (marcado inicial).</p>`},
  {net:'llave',M:[1,0,1,0,1],ask:Q.vec('Mirá el dibujo. ¿Cuál es el marcado?',[1,0,1,0,1],'Contá las fichas de cada plaza, en orden de p1 a p5.','Si una plaza está vacía, va 0.')},
- {h:'Alcanzable',net:'impresora',M:IMP,t:`<p>Un marcado es <b>inmediatamente alcanzable</b> si llegás a él con un solo disparo.</p><p>Es <b>alcanzable</b> si llegás con una secuencia de disparos, de cualquier largo.</p><p>Al conjunto de todos los marcados alcanzables desde M0 se lo llama <b>R(M0)</b>.</p>`},
+ {h:'Alcanzable',net:'impresora',M:IMP,t:n=>`<p>Un marcado es <b>inmediatamente alcanzable</b> si llegás a él con <b>un solo</b> disparo. Es <b>alcanzable</b> si llegás con una secuencia de disparos de cualquier largo.</p><p>Por ejemplo, desde M0:</p>${camino(n,[0,1,0])}<p><code>1100</code> es inmediatamente alcanzable. <code>0101</code> también es alcanzable, pero hacen falta tres disparos.</p><p>Al conjunto de todos los marcados alcanzables desde M0 se lo llama <b>R(M0)</b>. El árbol de alcanzabilidad, que viene después, sirve justamente para encontrarlos todos.</p>`},
  {net:'impresora',M:IMP,ask:Q.yn('Desde (2 0 1 0), ¿(1 1 0 0) es inmediatamente alcanzable?',true,'Se llega disparando solo t1.')},
  {net:'impresora',M:IMP,ask:Q.yn('Desde (2 0 1 0), ¿(0 1 0 1) es inmediatamente alcanzable?',false,'Hacen falta tres disparos: t1, t2 y t1. Es alcanzable, pero no inmediatamente.')}
 ]},
 {id:'casos',t:'Varias a la vez y casos especiales',pr:{net:'cola',st:'disparo'},s:[
  {h:'Una ficha, un solo uso',net:'torta',M:[1,0,0],t:`<p>Las fichas son indivisibles: una ficha la puede usar una sola transición.</p><p>En la torta, <code>t1</code> y <code>t2</code> están habilitadas, pero hay una sola porción. Si come Ana, Beto ya no puede. Eso es un <b>conflicto</b>.</p>`},
  {net:'torta',M:[0,1,0],t:'Ana ya comió.',ask:Q.en([0,1,0])},
- {h:'A veces no se molestan',net:'cinco',M:[0,0,1,1,0],t:`<p>Acá <code>t3</code> y <code>t4</code> están habilitadas y usan fichas distintas. Podés disparar cualquiera sin afectar a la otra.</p><p>Eso es <b>concurrencia</b>: las dos pueden ocurrir, en el orden que sea.</p>`},
+ {h:'A veces no se molestan',net:'cinco',M:[0,0,1,1,0],hl:['t3','t4'],t:`<p>Acá <code>t3</code> y <code>t4</code> están habilitadas y usan fichas distintas: t3 usa la de p3 y t4 la de p4. Disparar una no le quita nada a la otra.</p><p>Eso es <b>concurrencia</b>: pueden ocurrir las dos, en el orden que sea.</p><table class="mini tabla-l"><tr><th></th><th>Conflicto</th><th>Concurrencia</th></tr><tr><th>¿Comparten una ficha?</th><td>Sí</td><td>No</td></tr><tr><th>¿Pueden ocurrir las dos?</th><td>No, una u otra</td><td>Sí, en cualquier orden</td></tr><tr><th>Ejemplo</th><td>Ana y Beto con una porción</td><td>t3 y t4 en esta red</td></tr></table>`},
  {h:'Fuente y sumidero',net:'cola',t:`<p>Una transición sin entradas se llama <b>fuente</b>. No pide nada, así que siempre está habilitada. En la cola, <code>t1</code> hace llegar clientes.</p><p>Una transición sin salidas se llama <b>sumidero</b>. Solo elimina fichas. En la cola, <code>t2</code> atiende y el cliente se va.</p>`},
  {net:'cola',M:[0],ask:Q.en([0])}
 ]}
 ]},
 {b:'Después: el árbol de alcanzabilidad',l:[
 {id:'arb1',t:'Cómo se arma un árbol',pr:{net:'impresora',st:'arbol'},s:[
- {h:'Todo lo que puede pasar',net:'impresora',M:IMP,tree:0,t:`<p>El árbol de alcanzabilidad es un dibujo de todos los marcados a los que se puede llegar.</p><p>Cada caja es un marcado. Cada flecha lleva el nombre de la transición que se disparó.</p><p>Arranca con una sola caja: M0.</p>`},
- {h:'Paso 1',net:'impresora',M:IMP,tree:1,t:`<p>Desde <code>2010</code> solo está habilitada <code>t1</code>. La disparás y te da <code>1100</code>. Dibujás la flecha y la caja nueva.</p>`},
- {h:'Paso 2',net:'impresora',M:[1,1,0,0],tree:2,t:`<p>Desde <code>1100</code>: <code>t1</code> ya no puede, porque la impresora está ocupada. Solo <code>t2</code> puede, y da <code>1011</code>.</p>`},
+ {h:'Todo lo que puede pasar',net:'impresora',M:IMP,tree:0,t:`<p>El <b>árbol de alcanzabilidad</b> dibuja todos los marcados a los que puede llegar la red, empezando por M0.</p><p>Cada caja es un marcado, y cada flecha lleva el nombre de la transición que se disparó para pasar de una caja a otra.</p><p>El método siempre es el mismo:</p><ol class="metodo"><li>Tomá un marcado que todavía no expandiste.</li><li>Mirá qué transiciones habilita.</li><li>Disparalas de a una, siempre desde ese mismo marcado, y dibujá una caja por cada resultado.</li><li>Decidí si cada caja nueva se sigue expandiendo o se corta.</li></ol><p>Al principio hay una sola caja: M0.</p>`},
+ {h:'Paso 1',net:'impresora',M:IMP,tree:1,t:n=>`<p>Expandís <code>2010</code>. Primero revisás qué habilita:</p>${chequeo(n,IMP)}<p>Solo <code>t1</code> está habilitada. La disparás, te da <code>1100</code>, y dibujás la flecha y la caja nueva.</p>`},
+ {h:'Paso 2',net:'impresora',M:[1,1,0,0],tree:2,t:n=>`<p>Ahora expandís <code>1100</code>:</p>${chequeo(n,[1,1,0,0])}<p><code>t1</code> ya no puede: queda un documento, pero la impresora está ocupada. Solo <code>t2</code> puede, y da <code>1011</code>.</p>`},
  {net:'impresora',M:[1,0,1,1],tree:2,ask:Q.fire(0,[1,0,1,1])},
  {h:'Hasta el final',net:'impresora',M:[0,0,1,2],tree:4,t:`<p>Repetís lo mismo hasta que no quede nada por hacer. En <code>0012</code> no hay documentos y no se puede disparar nada: la rama termina.</p><p>Eso es todo el método: <b>mirar qué se puede disparar, disparar, dibujar, repetir</b>.</p>`}
 ]},
@@ -1251,11 +1431,11 @@ const CURSO=[
  {net:'lampara',M:[1,0],tree:1,ask:Q.cut([1,0],'dup','(1 0) ya está en el árbol: es M0. Se corta como duplicado.')},
  {net:'impresora',M:[0,0,1,2],tree:3,ask:Q.cut([0,0,1,2],'dead','Es nuevo, pero no habilita ninguna transición: está muerto.')},
  {net:'impresora',M:[1,1,0,0],tree:0,ask:Q.cut([1,1,0,0],'new','Es nuevo y habilita t2, así que hay que seguir.')},
- {h:'Duplicado vale aunque esté en otra rama',net:'cinco',tree:9,t:`<p>Se corta si el marcado aparece en <b>cualquier parte</b> del árbol, no solo arriba en su rama.</p><p>En esta red, <code>00011</code> aparece primero en una rama. Cuando vuelve a salir en otra, se corta ahí. Las cajas punteadas son duplicados.</p><p>El orden para revisar cada marcado nuevo: ¿ya apareció? ¿Crece? ¿Está muerto? Si no es nada de eso, seguís.</p>`}
+ {h:'Duplicado vale aunque esté en otra rama',net:'cinco',tree:9,t:`<p>Un marcado es duplicado si aparece en <b>cualquier parte</b> del árbol, no solo arriba en su misma rama. En esta red, <code>00011</code> sale primero en una rama; cuando vuelve a salir en otra, se corta ahí. Las cajas punteadas son duplicados.</p><p>Para cada caja nueva, hacete estas preguntas <b>en este orden</b>:</p>${FLUJO}`},
 ]},
 {id:'arb4',t:'El símbolo ω',pr:{net:'alcancia',st:'arbol'},s:[
  {h:'Cuando las fichas crecen sin fin',net:'alcancia',M:[1,0,0],tree:0,t:`<p>En la alcancía, cada vuelta deja una moneda en <code>p3</code>. Nunca se repite un marcado, porque siempre hay una moneda más. Sin una regla extra, el árbol sería infinito.</p><p>Esa regla es el tercer tipo de corte.</p>`},
- {h:'La regla',net:'alcancia',M:[1,0,1],tree:2,t:`<p>Desde <code>100</code> llegamos a <code>010</code>, y desde ahí a <code>101</code>.</p><p><code>101</code> es igual a su antepasado <code>100</code> salvo que tiene <b>más fichas</b> en una plaza, y además <b>habilita las mismas transiciones</b>. Ese ciclo se puede repetir siempre.</p><p>Entonces, en esa plaza se escribe <b>ω</b>, que significa "tantas como quieras". Queda <code>10ω</code>.</p>`},
+ {h:'La regla',net:'alcancia',M:[1,0,1],tree:2,t:n=>`<p>Desde <code>100</code> llegamos a <code>010</code>, y desde ahí a <code>101</code>. Compará <code>101</code> con su antepasado <code>100</code>, plaza por plaza:</p>${compara(n,[1,0,0],[1,0,1])}<p>Se cumplen las dos condiciones:</p><ol class="metodo"><li>Ninguna plaza bajó y <b>al menos una creció</b>: p3 pasó de 0 a 1.</li><li><b>Habilitan las mismas transiciones</b>: los dos habilitan solo t1.</li></ol><p>Entonces ese ciclo se puede repetir para siempre, y p3 crece sin límite. En esa plaza se escribe <b>ω</b>, que significa «tantas como quieras»: queda <code>10ω</code>.</p>`},
  {net:'alcancia',M:[1,0,1],tree:1,ask:Q.cut([1,0,1],'omega','Tiene más fichas que su antepasado (1 0 0) y habilita lo mismo.')},
  {h:'Cómo se sigue con ω',net:'alcancia',M:[1,0,Infinity],tree:9,t:`<p>ω más o menos cualquier número sigue siendo ω.</p><p><code>10ω</code> con <code>t1</code> da <code>01ω</code>, y con <code>t2</code> vuelve a <code>10ω</code>, que es un duplicado. Listo: el árbol es finito.</p>`},
  {h:'Tienen que habilitar lo mismo',net:'cola',M:[1],tree:9,t:`<p>En la cola, <code>0</code> pasa a <code>1</code>. Aunque creció, <code>0</code> habilita solo <code>t1</code> y <code>1</code> habilita <code>t1</code> y <code>t2</code>: no habilitan lo mismo, así que todavía no va ω.</p><p>Después, <code>1</code> pasa a <code>2</code>, y los dos habilitan <code>t1</code> y <code>t2</code>. Ahí sí: ω.</p>`},
@@ -1271,8 +1451,8 @@ const CURSO=[
 ]},
 {b:'La máquina de testigos',l:[
 {id:'mt1',t:'Cómo se escriben los estados',pr:{net:'lampara',st:'mt'},s:[
- {h:'Otra forma de escribir',net:'impresora',M:IMP,t:`<p>La máquina de testigos es una versión más compacta del árbol.</p><p>En lugar de escribir todos los números, cada estado se escribe con los <b>nombres de las plazas que tienen fichas</b>.</p><p><code>(0 1 0 1)</code> se escribe <code>p2 p4</code>.</p>`},
- {h:'Si hay dos fichas, va dos veces',net:'impresora',M:IMP,t:`<p>El nombre se repite tantas veces como fichas tenga la plaza.</p><p><code>(2 0 1 0)</code> se escribe <code>p1 p1 p3</code>.</p><p>Las plazas vacías no se escriben. Por eso conviene cuando hay muchas plazas y pocas fichas.</p>`},
+ {h:'Otra forma de escribir',net:'impresora',M:IMP,t:`<p>La <b>máquina de testigos</b> es una versión más compacta del árbol. En lugar de escribir todos los números de un marcado, cada estado se escribe con los <b>nombres de las plazas que tienen fichas</b>:</p><table class="mini tabla-l"><tr><th>Marcado</th><th>En la máquina</th><th>Por qué</th></tr><tr><td><code>(0 1 0 1)</code></td><td><code>p2 p4</code></td><td>Hay una ficha en p2 y una en p4</td></tr><tr><td><code>(2 0 1 0)</code></td><td><code>p1 p1 p3</code></td><td>p1 tiene dos fichas: se escribe dos veces</td></tr><tr><td><code>(0 0 1 2)</code></td><td><code>p3 p4 p4</code></td><td>Las plazas vacías no se escriben</td></tr></table>`},
+ {h:'Cuándo conviene',net:'impresora',M:IMP,t:`<p>Conviene cuando hay <b>muchas plazas y pocas fichas</b>. En vez de escribir <code>(0 0 0 0 1 0 0 1)</code>, escribís <code>p5 p8</code>.</p><div class="clave"><b>Idea clave</b>La máquina tiene los mismos estados que el árbol. Lo único que cambia es la forma de nombrarlos, y que cada estado se dibuja una sola vez.</div>`},
  {net:'impresora',M:[1,1,0,0],ask:Q.bag(1,[1,1,0,0])},
  {net:'impresora',M:[0,1,0,1],ask:Q.bag(1,[0,1,0,1])}
 ]},
@@ -1292,28 +1472,28 @@ const CURSO=[
 ]},
 {id:'p2',t:'Vivacidad y bloqueos',pr:{net:'cruzadas',st:'props'},s:[
  {h:'¿Se puede trabar?',net:'cruzadas',tree:9,t:`<p>Un <b>marcado muerto</b> es uno donde no se puede disparar nada: el sistema se trabó.</p><p>En esta red, cada proceso agarra una llave y espera la otra. Es un bloqueo clásico. Son las hojas que dicen "muerto".</p>`},
- {h:'Red viva',net:'llave',mt:9,t:`<p>Una transición es <b>viva</b> si, desde cualquier marcado alcanzable, siempre existe alguna forma de volver a habilitarla.</p><p>Una red es <b>viva</b> si todas sus transiciones lo son.</p><p>En la máquina: desde cada óvalo tenés que poder llegar a una flecha de cada transición. Acá se cumple.</p>`},
+ {h:'Red viva',net:'llave',mt:9,t:`<p>Una <b>transición es viva</b> si, desde cualquier marcado alcanzable, siempre existe alguna secuencia de disparos que la vuelve a habilitar. Una <b>red es viva</b> si todas sus transiciones lo son.</p><p>Cómo comprobarlo con la máquina de testigos:</p><ol class="metodo"><li>Elegí un óvalo cualquiera.</li><li>Seguí las flechas y fijate si podés llegar a una flecha de cada transición.</li><li>Repetí desde todos los óvalos. Si se cumple siempre, la red es viva.</li></ol><p>En esta red se cumple: desde cualquier estado se puede volver a disparar todo.</p><div class="ojo"><b>Ojo</b>No alcanza con que cada transición aparezca una vez en el árbol. Una red puede disparar todo al principio y quedar trabada después.</div>`},
  {h:'Si hay un marcado muerto, no es viva',net:'impresora',mt:9,t:`<p>Si la red llega a un marcado muerto, desde ahí no se puede habilitar nada, así que <b>no es viva</b>.</p><p>La vivacidad sirve justamente para detectar bloqueos totales o parciales.</p>`},
  {net:'llave',mt:9,ask:(n=>Q.yn('¿Esta red es viva?',true,'No tiene marcados muertos, y desde cada estado se puede llegar a disparar cualquier transición.')(n))},
  {net:'torta',tree:9,ask:Q.yn('¿Esta red es viva?',false,'Después de que alguien come, nada puede dispararse: hay marcados muertos.')}
 ]},
 {id:'p3',t:'Ciclicidad',pr:{net:'buffer',st:'props'},s:[
- {h:'¿Puedo volver al principio?',net:'lampara',mt:9,t:`<p>Una red es <b>cíclica</b> si desde <b>cualquier</b> marcado alcanzable se puede volver a M0.</p><p>En la máquina: desde cada óvalo tiene que haber un camino hasta el óvalo inicial.</p><p>La lámpara lo cumple.</p>`},
- {h:'No es lo mismo que viva',net:'impresora',mt:9,t:`<p>La vivacidad pregunta por las <b>transiciones</b>. La ciclicidad pregunta por <b>volver a M0</b>. Se analizan por separado.</p><p>La impresora no es cíclica: los documentos impresos no vuelven a esperar.</p>`},
+ {h:'¿Puedo volver al principio?',net:'lampara',mt:9,t:`<p>Una red es <b>cíclica</b> si desde <b>cualquier</b> marcado alcanzable se puede volver a M0.</p><p>Cómo comprobarlo con la máquina de testigos:</p><ol class="metodo"><li>Marcá el óvalo de M0, el inicial.</li><li>Desde cada uno de los otros óvalos, buscá un camino de flechas que llegue a M0.</li><li>Si todos tienen camino, la red es cíclica. Si uno no lo tiene, no lo es.</li></ol><p>En la lámpara hay dos estados y desde los dos se vuelve a <code>p1</code>.</p>`},
+ {h:'No es lo mismo que viva',net:'impresora',mt:9,t:`<p>Las dos propiedades suenan parecidas, pero preguntan cosas distintas:</p><table class="mini tabla-l"><tr><th></th><th>Viva</th><th>Cíclica</th></tr><tr><th>Pregunta</th><td>¿Cada transición puede volver a dispararse?</td><td>¿Se puede volver a M0?</td></tr><tr><th>Se mira</th><td>Las transiciones</td><td>Los marcados</td></tr></table><p>Por eso se analizan por separado. La impresora no es ninguna de las dos: los documentos impresos no vuelven a esperar y la red termina trabada.</p>`},
  {net:'cinco',mt:9,ask:Q.yn('¿Esta red es cíclica?',true,'Desde cualquier estado se llega a p4 p5 y de ahí t5 vuelve a p1.')},
  {net:'cruzadas',tree:9,ask:Q.yn('¿Esta red es cíclica?',false,'Sus marcados finales no tienen ningún camino de regreso.')}
 ]},
 {id:'p4',t:'Conservación',pr:{net:'canje',st:'props'},s:[
  {h:'¿Se mantiene el total?',net:'lampara',mt:9,t:`<p>La <b>conservación estricta</b> pregunta si el número total de fichas es siempre el mismo. Sumás las fichas de cada marcado.</p><p>En la lámpara siempre hay 1. Se conserva.</p>`},
  {net:'impresora',tree:9,ask:Q.yn('¿La impresora tiene conservación estricta?',false,'Los totales son 3, 2, 3, 2, 3: cambian.','Sumá cada marcado del árbol.')},
- {h:'Conservación con pesos',net:'impresora',M:IMP,t:`<p>A veces cada plaza "vale" distinto. Se busca un vector de pesos <code>w</code>, con todos sus valores positivos, tal que el valor total no cambie.</p><p>La condición: en cada transición, el valor de lo que entra es igual al valor de lo que sale.</p><ul><li><code>t1</code>: <code>w1 + w3 = w2</code></li><li><code>t2</code>: <code>w2 = w3 + w4</code></li></ul><p>Elegís <code>w1 = 1</code> y <code>w3 = 1</code>. Sale <code>w2 = 2</code> y <code>w4 = 1</code>. Entonces <code>w = (1 2 1 1)</code>.</p>`},
+ {h:'Conservación con pesos',net:'impresora',M:IMP,t:`<p>A veces el total de fichas cambia, pero se conserva si cada plaza «vale» distinto. Se busca un vector de pesos <code>w</code>, todos positivos, tal que el valor total no cambie con ningún disparo.</p><p>Se arma <b>una ecuación por transición</b>: el valor de lo que saca tiene que ser igual al valor de lo que pone.</p><ol class="metodo"><li><code>t1</code> saca de p1 y p3, y pone en p2: <code>w1 + w3 = w2</code>.</li><li><code>t2</code> saca de p2, y pone en p3 y p4: <code>w2 = w3 + w4</code>.</li><li>Dale valores simples a las que sobran: <code>w1 = 1</code> y <code>w3 = 1</code>.</li><li>Despejá el resto: <code>w2 = 1 + 1 = 2</code>, y <code>w4 = 2 − 1 = 1</code>.</li></ol><p>Resultado: <code>w = (1 2 1 1)</code>. Si no existe ninguna solución con todos los pesos positivos, la red no es conservativa con pesos.</p>`},
  {h:'Comprobalo',net:'impresora',M:IMP,t:`<p>Multiplicá cada marcado por los pesos y sumá:</p><ul><li><code>(2 0 1 0)</code>: 2 + 1 = 3</li><li><code>(1 1 0 0)</code>: 1 + 2 = 3</li><li><code>(0 0 1 2)</code>: 1 + 2 = 3</li></ul><p>Da siempre 3. La impresora conserva con esos pesos.</p>`},
  {net:'canje',M:[2,0],ask:n=>({kind:'vector',q:'Encontrá un vector w con valores positivos que conserve esta red.',d:'t1: lo que entra vale 2·w1 y lo que sale vale w2.',labels:plab(n),sol:[1,2],check:v=>v.every(x=>x>0&&x!==Infinity)&&n.C.every(r=>r.reduce((a,c,i)=>a+c*v[i],0)===0),show:v=>'por ejemplo '+cv(v),why:'Tiene que cumplirse 2·w1 = w2.',hint:'Probá con w1 = 1 y despejá w2.'})}
 ]},
 {id:'p5',t:'Conflicto',pr:{net:'llave',st:'props'},s:[
  {h:'Conflicto estructural',net:'torta',t:`<p>Hay <b>conflicto estructural</b> cuando una plaza alimenta a más de una transición. Se ve directamente en el dibujo: de un círculo salen dos o más flechas.</p><p>Acá <code>p1</code> alimenta a <code>t1</code> y a <code>t2</code>.</p>`},
  {net:'llave',ask:Q.pl('¿Qué plazas tienen conflicto estructural?',[2],'De p3, la llave, salen flechas a t1 y t3.','Contá las flechas que salen de cada círculo.')},
- {h:'Conflicto efectivo',net:'cinco',M:[0,0,0,1,1],t:`<p>El <b>conflicto efectivo</b> depende del marcado. Dos transiciones lo tienen si:</p><ol><li>Existe un marcado alcanzable que habilita a las dos.</li><li>Al dispararse una, el marcado que queda no habilita a la otra.</li></ol><p>En <code>00011</code>, <code>t4</code> y <code>t5</code> usan la misma ficha de <code>p4</code>: la que se dispare primero le saca la posibilidad a la otra.</p>`},
+ {h:'Conflicto efectivo',net:'cinco',M:[0,0,0,1,1],hl:['t4','t5','p4'],t:`<p>El <b>conflicto efectivo</b> depende del marcado. Dos transiciones lo tienen si:</p><ol class="metodo"><li>Existe un marcado alcanzable que habilita a las dos.</li><li>Al dispararse una, el marcado que queda no habilita a la otra.</li></ol><p>En <code>00011</code>, <code>t4</code> y <code>t5</code> necesitan la misma ficha de <code>p4</code>: la que se dispare primero le saca la posibilidad a la otra.</p><table class="mini tabla-l"><tr><th></th><th>Estructural</th><th>Efectivo</th></tr><tr><th>Se ve en</th><td>El dibujo</td><td>Los marcados del árbol</td></tr><tr><th>Condición</th><td>Una plaza con dos o más transiciones de salida</td><td>Un marcado habilita a las dos y disparar una deshabilita a la otra</td></tr></table><p>El efectivo siempre viene de un estructural, pero puede haber conflicto estructural que nunca llegue a ser efectivo.</p>`},
  {net:'cinco',M:[0,0,1,1,0],ask:Q.yn('En (0 0 1 1 0), t3 y t4 están habilitadas. ¿Están en conflicto efectivo?',false,'No comparten entradas: t3 usa p3 y t4 usa p4. Es concurrencia.')},
  {net:'cinco',M:[0,0,0,1,1],ask:Q.yn('En (0 0 0 1 1), t4 y t5 están habilitadas. ¿Están en conflicto efectivo?',true,'Las dos necesitan la ficha de p4.')}
 ]},
@@ -1329,7 +1509,7 @@ const CURSO=[
  {h:'Máquina de estados y grafo marcado',net:'lampara',t:`<p><b>Máquina de estados:</b> cada <b>transición</b> tiene exactamente 1 entrada y 1 salida. Puede representar conflictos, pero no paralelismo.</p><p><b>Grafo marcado:</b> cada <b>plaza</b> tiene exactamente 1 entrada y 1 salida. Puede representar paralelismo y sincronización, pero no conflicto.</p><p>La lámpara cumple las dos.</p>`},
  {net:'torta',ask:n=>Q.yn('¿Es máquina de estados?',subclases(n).me,'Cada transición tiene 1 entrada y 1 salida.')()},
  {net:'torta',ask:n=>Q.yn('¿Es grafo marcado?',subclases(n).gm,'p1 tiene dos salidas, y además ninguna entrada.')()},
- {h:'Libre elección y simple',net:'llave',t:`<p><b>Libre elección:</b> si una plaza alimenta a varias transiciones, tiene que ser la <b>única entrada</b> de todas ellas.</p><p><b>Simple:</b> cada transición tiene como máximo <b>una</b> entrada compartida con otra transición.</p><p>Acá <code>p3</code> alimenta a <code>t1</code> y <code>t3</code>, pero <code>t1</code> también usa <code>p1</code>. No es de libre elección. Sí es simple: cada transición tiene una sola entrada compartida, <code>p3</code>.</p>`},
+ {h:'Libre elección y simple',net:'llave',t:`<p><b>Libre elección:</b> si una plaza alimenta a varias transiciones, tiene que ser la <b>única entrada</b> de todas ellas.</p><p><b>Simple:</b> cada transición tiene como máximo <b>una</b> entrada compartida con otra transición.</p><p>Acá <code>p3</code> alimenta a <code>t1</code> y <code>t3</code>, pero <code>t1</code> también usa <code>p1</code>: no es de libre elección. Sí es simple, porque cada transición tiene una sola entrada compartida, <code>p3</code>.</p><p>Así quedan algunas redes del curso:</p>${subTabla(['lampara','torta','llave','r1'])}`},
  {net:'torta',ask:n=>Q.yn('¿Es de libre elección?',subclases(n).rle,'p1 alimenta a dos transiciones y es la única entrada de ambas.')()}
 ]}
 ]},
@@ -1341,13 +1521,13 @@ const CURSO=[
  {net:'impresora',ask:Q.nums('¿Cuánto vale O(t2, p4)?',1,'De t2 sale una flecha sin número hacia p4: pesa 1.')}
 ]},
 {id:'f2',t:'Las matrices C<sup>−</sup> y C<sup>+</sup>',pr:{net:'torta',st:'matriz'},s:[
- {h:'Una tabla',net:'impresora',t:n=>`<p>Las matrices son la misma tabla de "qué saca y qué pone", con números.</p><p><b>Filas: transiciones. Columnas: plazas.</b> Respetá ese orden, porque muchas páginas lo hacen al revés.</p><p><b>C<sup>−</sup> (previa)</b> dice cuánto saca cada transición de cada plaza:</p>${mx(n,n.pre)}`},
- {h:'Cómo leerla',net:'impresora',t:n=>`<p>Fila <code>t1</code>, columna <code>p1</code>: ¿hay flecha de p1 a t1? Sí, pesa 1. Va un 1.</p><p>Fila <code>t2</code>, columna <code>p1</code>: ¿hay flecha de p1 a t2? No. Va un 0.</p><p><b>C<sup>+</sup> (posterior)</b> dice cuánto pone cada transición en cada plaza:</p>${mx(n,n.post)}`},
+ {h:'Una tabla',net:'impresora',t:n=>`<p>Las matrices son la misma tabla de «qué saca y qué pone», pero con números.</p><p><b>Filas: transiciones. Columnas: plazas.</b> Respetá ese orden, porque muchas páginas lo hacen al revés.</p><p><b>C<sup>−</sup> (previa)</b> dice cuánto saca cada transición de cada plaza. Para llenarla:</p><ol class="metodo"><li>Tomá una fila, por ejemplo <code>t1</code>.</li><li>Recorré las columnas: ¿hay una flecha desde esa plaza hacia t1?</li><li>Si hay, escribí su peso; si no, 0.</li></ol>${mx(n,n.pre)}`},
+ {h:'Cómo leerla',net:'impresora',hl:['t1','p1'],t:n=>`<p>La celda resaltada es fila <code>t1</code>, columna <code>p1</code>: ¿hay flecha de p1 hacia t1? Sí, sin número, así que pesa 1.</p>${mx(n,n.pre,[0,0])}<p><b>C<sup>+</sup> (posterior)</b> se llena igual, pero con las flechas que <b>salen</b> de cada transición: cuánto pone en cada plaza.</p>${mx(n,n.post)}`},
  {net:'lampara',ask:Q.mat('pre','Completá C<sup>−</sup> de la lámpara.','Mirá las flechas que entran a cada transición.','Fila t, columna p: el peso de la flecha de p hacia t.')},
  {net:'lampara',ask:Q.mat('post','Completá C<sup>+</sup> de la lámpara.','Mirá las flechas que salen de cada transición.','Fila t, columna p: el peso de la flecha de t hacia p.')}
 ]},
 {id:'f3',t:'La matriz de incidencia C',pr:{net:'impresora',st:'matriz'},s:[
- {h:'El cambio neto',net:'impresora',t:n=>`<p><code>C = C<sup>+</sup> − C<sup>−</sup></code>, casillero por casillero. Cada fila dice cómo cambia el marcado cuando se dispara esa transición.</p>${mx(n,n.C)}<p>Fila <code>t1</code>: p1 pierde 1, p2 gana 1, p3 pierde 1, p4 no cambia.</p>`},
+ {h:'El cambio neto',net:'impresora',t:n=>`<p><code>C = C<sup>+</sup> − C<sup>−</sup></code>, casillero por casillero. Por ejemplo, para la fila de <code>t1</code>:</p><table class="mini"><tr><th></th>${n.P.map(p=>`<th>${p.id}</th>`).join('')}</tr><tr><th>C<sup>+</sup></th>${n.post[0].map(v=>`<td>${v}</td>`).join('')}</tr><tr><th>− C<sup>−</sup></th>${n.pre[0].map(v=>`<td>${v}</td>`).join('')}</tr><tr class="tot"><th>C</th>${n.C[0].map(v=>`<td>${v}</td>`).join('')}</tr></table><p>Cada fila de C dice cómo cambia el marcado cuando se dispara esa transición. La matriz completa:</p>${mx(n,n.C,[0,'*'])}<p>Fila <code>t1</code>: p1 pierde 1, p2 gana 1, p3 pierde 1 y p4 no cambia.</p>`},
  {h:'Una trampa',net:'enzima',t:n=>`<p>Si una plaza es entrada y salida de la misma transición, se cancela y da 0:</p>${mx(n,n.C)}<p><code>p2</code> da 0, pero la enzima sí hace falta para disparar. Por eso C sola no describe toda la red, y la habilitación se controla con C<sup>−</sup>.</p>`},
  {net:'torta',ask:Q.mat('C','Completá C de la torta.','Restá lo que saca a lo que pone.','Tocar la celda alterna 0, 1, −1, 2, −2.',true)}
 ]},
@@ -1360,7 +1540,7 @@ const CURSO=[
 ]},
 {id:'f5',t:'Secuencias: el vector f',pr:{net:'cinco',st:'matriz'},s:[
  {h:'Varios disparos en una cuenta',net:'impresora',M:IMP,t:`<p>Para una secuencia σ se usa el <b>vector de disparo</b> <code>f(σ)</code>: cuenta cuántas veces se dispara cada transición.</p><p>La secuencia <code>t1 t2 t1</code> tiene <code>f = (2 1)</code>: dos veces t1 y una vez t2.</p><p>La fórmula es <code>M' = M0 + f·C</code>.</p>`},
- {h:'Cómo se hace f·C',net:'impresora',M:IMP,t:`<p>Tomás cada fila de C tantas veces como diga f, y sumás.</p><p><code>2·(−1 1 −1 0) + 1·(0 −1 1 1) = (−2 1 −1 1)</code></p><p>Después: <code>(2 0 1 0) + (−2 1 −1 1) = (0 1 0 1)</code>.</p><p>Es el mismo <code>0101</code> que da el árbol.</p>`},
+ {h:'Cómo se hace f·C',net:'impresora',M:IMP,t:n=>`<p>Tomás cada fila de C tantas veces como diga f, y sumás columna por columna. Para <code>f = (2 1)</code>:</p>${sumaFilas(n,[2,1])}<p>Después sumás M0: <code>(2 0 1 0) + (−2 1 −1 1) = (0 1 0 1)</code>.</p><p>Es el mismo <code>0101</code> que da el árbol.</p>`},
  {net:'impresora',M:IMP,ask:Q.vec('Para la secuencia t1 t2, ¿cuánto vale f?',[1,1],'t1 aparece una vez y t2 una vez.','Contá las apariciones.','t')},
  {net:'impresora',M:IMP,ask:Q.vec('Con f = (2 2), calculá M0 + f·C.',[0,0,1,2],'f·C = (−2 0 0 2). Sumado a (2 0 1 0) da (0 0 1 2).','Primero calculá f·C.')},
  {h:'f no guarda el orden',net:'impresora',M:IMP,t:`<p><code>f</code> dice cuántas veces, pero no en qué orden. Antes de usar la fórmula, comprobá que cada disparo esté habilitado cuando le toca.</p><p>Por ejemplo, <code>t2 t1 t1</code> también tiene <code>f = (2 1)</code>, pero no se puede hacer: <code>t2</code> no está habilitada en M0.</p>`},
@@ -1368,7 +1548,7 @@ const CURSO=[
  {net:'impresora',M:IMP,ask:Q.one('Para una secuencia, M0 + f·C da (2 −2 3 2). ¿Qué concluís?',['Que esa secuencia no se puede disparar','Que el marcado alcanzado es (2 0 3 2)','Que la red no es limitada','Que hay que cambiar el orden y listo'],0,'Un número negativo en M0 + f·C prueba que la secuencia no se puede disparar.')}
 ]},
 {id:'f6',t:'¿Se puede llegar a un marcado?',pr:{net:'cinco',st:'matriz'},s:[
- {h:'La pregunta al revés',net:'impresora',M:IMP,t:`<p>Te dan un marcado M y te preguntan si se puede llegar. Planteás <code>f = (a b)</code> y resolvés <code>M0 + f·C = M</code>.</p><p>Cada <b>columna</b> de C da una ecuación:</p><ul><li>p1: <code>2 − a</code></li><li>p2: <code>a − b</code></li><li>p3: <code>1 − a + b</code></li><li>p4: <code>b</code></li></ul>`},
+ {h:'La pregunta al revés',net:'impresora',M:IMP,t:`<p>Te dan un marcado M y te preguntan si se puede llegar. Planteás <code>f = (a b)</code>: a veces t1 y b veces t2. Después resolvés <code>M0 + f·C = M</code>.</p><p>¿Por qué se usan las <b>columnas</b>? La columna de una plaza dice cuánto cambia esa plaza con cada transición. Si t1 se dispara a veces y t2 b veces, cada plaza termina con lo que tenía más esos cambios:</p><ul><li>p1: <code>2 − a</code></li><li>p2: <code>a − b</code></li><li>p3: <code>1 − a + b</code></li><li>p4: <code>b</code></li></ul><p>Igualás cada una al valor de esa plaza en M y resolvés.</p>`},
  {h:'Con solución',net:'impresora',M:IMP,t:`<p>¿Se llega a <code>(1 0 1 1)</code>?</p><ul><li>p1: <code>2 − a = 1</code>, así que a = 1.</li><li>p4: <code>b = 1</code>.</li><li>p2: <code>1 − 1 = 0</code>. Se cumple.</li><li>p3: <code>1 − 1 + 1 = 1</code>. Se cumple.</li></ul><p>Solución: <code>f = (1 1)</code>, o sea <code>t1 t2</code>.</p>`},
  {h:'Sin solución',net:'impresora',M:IMP,t:`<p>¿Se llega a <code>(1 1 1 0)</code>?</p><ul><li>p1: a = 1.</li><li>p4: b = 0.</li><li>p3: <code>1 − 1 + 0 = 0</code>, pero tenía que dar 1.</li></ul><p>Contradicción: no tiene solución, así que <b>no se puede llegar</b>.</p>`},
  {net:'impresora',M:IMP,ask:n=>({kind:'vector',q:'Resolvé M0 + f·C = (0 1 0 1).',labels:tlab(n),sol:[2,1],why:'p1 da a = 2 y p4 da b = 1.',hint:'Usá las ecuaciones de p1 y p4.',alt:{l:'No tiene solución',v:'none'}})},
@@ -1436,6 +1616,7 @@ function lessonFig(st){
    }else{R.view=drawNet(R.n,$('#net'));R.playing=false;}
   }
   if(!st.play){setM(st.M||R.n.m0,st.M?'Marcado':'Marcado inicial M0');$('#st').textContent='';}
+ hl(st.hl||[]);
  }else{red.hidden=true;play.classList.add('solo');R.netId=null;}
  const parts=[];
  if(st.tree!==undefined)parts.push('t');if(st.mt!==undefined)parts.push('m');
@@ -1505,8 +1686,8 @@ function omegaItem(n,c){
  return {kind:'multi',q:`¿Qué plazas pasan a ω?`,d:`Compará ${cv(c.raw)} con su antepasado ${cv(c.anc.m)}.`,opts:pOpts(n),sol:c.omega,tipo:'omega',why:'Pasan a ω las plazas donde el marcado nuevo tiene más fichas que su antepasado.',hint:'Buscá las plazas donde el número creció respecto del antepasado.',
   ok:c.dupAfter?`Queda ${cv(c.m)}, que ya estaba en el árbol: se corta como duplicado.`:''};
 }
-const habItem=(n,M)=>({kind:'multi',q:`Con ${cv(M)}, ¿qué transiciones están habilitadas?`,d:'Si no hay ninguna, no marques nada.',opts:tOpts(n),sol:enabled(n,M),why:whyEn(n,M),hint:HINT_EN,tipo:'hab'});
-const dispItem=(n,M,j)=>({kind:'vector',q:`Disparás <code>${tid(n,j)}</code> desde ${cv(M)}. ¿Qué marcado queda?`,labels:plab(n),sol:fire(n,M,j),why:whyFire(n,M,j),hint:HINT_FIRE,pos:true,tipo:'disp'});
+const habItem=(n,M)=>({kind:'multi',q:`Con ${cv(M)}, ¿qué transiciones están habilitadas?`,d:'Si no hay ninguna, no marques nada.',opts:tOpts(n),sol:enabled(n,M),why:whyEn(n,M),hint:HINT_EN,tipo:'hab',hlSol:enabled(n,M).map(j=>tid(n,j))});
+const dispItem=(n,M,j)=>({kind:'vector',q:`Disparás <code>${tid(n,j)}</code> desde ${cv(M)}. ¿Qué marcado queda?`,labels:plab(n),sol:fire(n,M,j),why:whyFire(n,M,j),hint:HINT_FIRE,pos:true,tipo:'disp',hlSol:[tid(n,j),...n.P.filter((_,i)=>n.pre[j][i]||n.post[j][i]).map(p=>p.id)]});
 const nombreMT=m=>{const a=[];m.forEach((v,i)=>{for(let k=0;k<v;k++)a.push(i);});return a;};
 function bagItem(n,A,j){
  const B=fire(n,A,j),sol=nombreMT(B),o=nombreMT(A).map(i=>pid(n,i)).join(' ')||'estado vacío';
@@ -1552,7 +1733,7 @@ function propsItems(n,an){
    ['Porque es limitada.','Porque es viva.','Porque tiene más plazas que transiciones.']));
   if(an.w)I.push({kind:'vector',q:'Conservación con pesos: encontrá un vector w, con todos sus valores positivos, que mantenga constante el valor de la red.',labels:plab(n),pos:true,sol:an.w,check:v=>Array.isArray(v)&&v.every(x=>x>0&&x!==Infinity)&&n.C.every(r=>r.reduce((a,c,i)=>a+c*v[i],0)===0),show:v=>'por ejemplo '+cv(v),why:'En cada transición, el valor de lo que entra tiene que ser igual al valor de lo que sale.',hint:'Escribí una ecuación por transición: suma de w × peso en las entradas = suma de w × peso en las salidas. Asigná 1 a una plaza y despejá.',tipo:'pesos'});
  }
- I.push({kind:'multi',q:'Conflicto estructural: ¿qué plazas alimentan a más de una transición?',d:'Si no hay ninguna, no marques nada.',opts:pOpts(n),sol:an.structural,why:an.structural.length?'Son las plazas de las que salen flechas hacia dos o más transiciones.':'Ninguna plaza tiene más de una transición de salida.',hint:'Contá cuántas flechas salen de cada círculo.',tipo:'confest'});
+ I.push({kind:'multi',q:'Conflicto estructural: ¿qué plazas alimentan a más de una transición?',d:'Si no hay ninguna, no marques nada.',opts:pOpts(n),sol:an.structural,why:an.structural.length?'Son las plazas de las que salen flechas hacia dos o más transiciones.':'Ninguna plaza tiene más de una transición de salida.',hint:'Contá cuántas flechas salen de cada círculo.',tipo:'confest',hlSol:an.structural.map(i=>pid(n,i))});
  const ef=an.effective,NOEF='Porque nunca hay dos transiciones habilitadas a la vez que se quiten la ficha entre sí.';
  I.push({kind:'single',q:'Conflicto efectivo: ¿hay algún marcado donde dos transiciones estén habilitadas y disparar una deshabilite a la otra?',opts:YN,sol:!!ef,why:ef?`En ${cv(ef.m)}, <code>${tid(n,ef.a)}</code> y <code>${tid(n,ef.b)}</code> se quitan la ficha entre sí.`:'Cuando dos transiciones están habilitadas a la vez, una no le quita la posibilidad a la otra.',hint:'Buscá en el árbol marcados con dos ramas y fijate si comparten una ficha necesaria.',tipo:'confef'});
  I.push(porque('pq-confef',ef?'Tiene conflicto efectivo.':'No tiene conflicto efectivo.',
